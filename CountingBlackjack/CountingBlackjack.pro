@@ -55,7 +55,10 @@ SOURCES += \
     Box2D/Dynamics/b2World.cpp \
     Box2D/Dynamics/b2WorldCallbacks.cpp \
     Box2D/Rope/b2Rope.cpp \
+    card.cpp \
     counttracker.cpp \
+    deckmodel.cpp \
+    fieldmodel.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -107,7 +110,10 @@ HEADERS += \
     Box2D/Dynamics/b2World.h \
     Box2D/Dynamics/b2WorldCallbacks.h \
     Box2D/Rope/b2Rope.h \
+    card.h \
     counttracker.h \
+    deckmodel.h \
+    fieldmodel.h \
     mainwindow.h
 
 FORMS += \
