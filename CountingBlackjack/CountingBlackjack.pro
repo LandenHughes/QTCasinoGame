@@ -61,8 +61,10 @@ SOURCES += \
     deckmodel.cpp \
     fieldmodel.cpp \
     hand.cpp \
+    learnwindow.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    playwindow.cpp
 
 HEADERS += \
     Box2D/Box2D.h \
@@ -118,10 +120,14 @@ HEADERS += \
     deckmodel.h \
     fieldmodel.h \
     hand.h \
-    mainwindow.h
+    learnwindow.h \
+    mainwindow.h \
+    playwindow.h
 
 FORMS += \
-    mainwindow.ui
+    learnwindow.ui \
+    mainwindow.ui \
+    playwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
