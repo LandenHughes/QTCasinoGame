@@ -12,47 +12,40 @@ FieldModel::FieldModel()
 
 }
 
-QVector<QVector<Card>> FieldModel::getPlayerHands()
+QVector<Hand> FieldModel::getPlayerHands()
 {
     return playerHands;
 }
 
-void FieldModel::insurePlayer()
+Hand& FieldModel::getPlayerHand(int handIndex)
 {
-    playerChips -= betChips/2;
-    isInsured = true;
-}
-
-int FieldModel::getHandScore(int handIndex)
-{
-    int scoreTotal = 0;
-    int acesTotal = 0;
-    for (int i = 0; i < playerHands.at(handIndex).size(); i++)
-    {
-        Card card = playerHands.at(handIndex).at(i);
-        if (card.getRank() >= 10)
-            scoreTotal += 10;
-        else
-            scoreTotal += card.getRank();
-
-        if (card.getRank() == 1)
-            acesTotal++;
-    }
-
-    //Add aces bonus for 1 or 11
-    while (scoreTotal <= 11 && acesTotal > 0)
-    {
-        scoreTotal += 10;
-        acesTotal--;
-    }
-
-    return scoreTotal;
+    return playerHands[handIndex];
 }
 
 void FieldModel::endRound()
 {
     //TODO: Give Payouts
 
+    //Clear all variables to a 0 state (except chips)
+    playerHands.clear();
+    dealerHand.clear();
+    isDealerCardHidden = true;
+}
 
+void FieldModel::addToHand(int currentHand, Card card)
+{
+    playerHands[currentHand].addCard(card);
+}
 
+int FieldModel::splitHand(int handIndex)
+{
+    //Assumes the hand is valid
+    //Copy the hand.
+    playerHands.push_back(Hand(playerHands.at(handIndex)));
+    //Remove the last card from the original hand.
+    playerHands[handIndex].cards.pop_back();
+    //Remove the first card from the original hand.
+    playerHands.back().cards.pop_front();
+    //Return index of the new hand (at the end).
+    return playerHands.size()-1;
 }
