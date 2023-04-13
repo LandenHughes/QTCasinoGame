@@ -54,6 +54,10 @@ public:
      */
     void dealOutCards();
 
+    /**
+     * @brief Begins the turn of the dealer, where they reveal their card and hit to 17+.
+     */
+    void dealerTurn();
 
     /**
      * @brief End the round, give the player any chips they've won, send cards on the field to the discard pile.

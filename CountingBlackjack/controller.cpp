@@ -23,7 +23,7 @@ void Controller::stay()
 {
     currentHand++;
     if (currentHand > fieldModel.getPlayerHands().size())
-        /* TODO, GO TO DEALER's TURN*/;
+        dealerTurn();
 }
 
 void Controller::split()
@@ -55,8 +55,17 @@ void Controller::dealOutCards()
     fieldModel.dealerHand.push_back(deckModel.dealCard());
 }
 
+void Controller::dealerTurn()
+{
+    //TODO
+    //Please PLEASE put the dealer stuff in here.
+    //Eventually...
+    endRound();
+}
+
 void Controller::endRound()
 {
+    //Let deck and field models calculate payouts, etc.
     deckModel.clearCardsOnField();
     fieldModel.endRound();
 }
