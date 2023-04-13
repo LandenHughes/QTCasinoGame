@@ -30,6 +30,7 @@ void Controller::split()
 {
     //DOES NOT CHECK IF THIS CAN BE DONE.
     int newHandIndex = fieldModel.splitHand(currentHand);
+    //Give each new hand a new card
     hit(currentHand);
     hit(newHandIndex);
 }
