@@ -77,12 +77,12 @@ void Controller::dealOutCards()
 void Controller::dealerTurn()
 {
     //Hit until above 17.
-    while (fieldModel.getDealerScore() < 17)
-    {
-        Card cardHit = deckModel.dealCard();
-        fieldModel.dealerHand.push_back(cardHit);
-    }
-    endRound();
+//    while (fieldModel.getDealerScore() < 17)
+//    {
+//        Card cardHit = deckModel.dealCard();
+//        fieldModel.dealerHand.push_back(cardHit);
+//    }
+//    endRound();
 }
 
 void Controller::endRound()

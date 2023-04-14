@@ -14,42 +14,10 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="dealerArea">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>100</y>
-      <width>421</width>
-      <height>141</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="text">
-     <string>Dealer card Area</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="playerArea">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>360</y>
-      <width>461</width>
-      <height>175</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="text">
-     <string>player hands area</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="drawDeck">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>10</x>
       <y>100</y>
       <width>100</width>
       <height>140</height>
@@ -65,7 +33,7 @@
    <widget class="QLabel" name="discardDeck">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>690</x>
       <y>100</y>
       <width>100</width>
       <height>140</height>
@@ -81,7 +49,7 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>380</x>
       <y>310</y>
       <width>49</width>
       <height>51</height>
@@ -94,7 +62,7 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>380</x>
       <y>240</y>
       <width>49</width>
       <height>51</height>
@@ -107,9 +75,9 @@
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>650</x>
+      <x>690</x>
       <y>260</y>
-      <width>111</width>
+      <width>101</width>
       <height>261</height>
      </rect>
     </property>
@@ -120,8 +88,8 @@
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>440</y>
+      <x>20</x>
+      <y>400</y>
       <width>81</width>
       <height>16</height>
      </rect>
@@ -133,7 +101,7 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>470</x>
       <y>330</y>
       <width>80</width>
       <height>24</height>
@@ -146,7 +114,7 @@
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>180</x>
       <y>330</y>
       <width>80</width>
       <height>24</height>
@@ -159,7 +127,7 @@
    <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>270</x>
       <y>330</y>
       <width>80</width>
       <height>24</height>
@@ -172,7 +140,7 @@
    <widget class="QPushButton" name="pushButton_4">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>560</x>
       <y>330</y>
       <width>80</width>
       <height>24</height>
@@ -185,7 +153,7 @@
    <widget class="QPushButton" name="pushButton_5">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>560</x>
       <y>300</y>
       <width>80</width>
       <height>24</height>
@@ -198,8 +166,8 @@
    <widget class="QPushButton" name="pushButton_6">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>490</y>
+      <x>20</x>
+      <y>450</y>
       <width>80</width>
       <height>24</height>
      </rect>
@@ -211,7 +179,7 @@
    <widget class="QPushButton" name="pushButton_7">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>180</x>
       <y>300</y>
       <width>80</width>
       <height>24</height>
@@ -224,8 +192,8 @@
    <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>460</y>
+      <x>20</x>
+      <y>420</y>
       <width>81</width>
       <height>24</height>
      </rect>
@@ -260,6 +228,28 @@
       <string>100</string>
      </property>
     </item>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>100</y>
+      <width>561</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="dealerArea"/>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>370</y>
+      <width>561</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="playerArea"/>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

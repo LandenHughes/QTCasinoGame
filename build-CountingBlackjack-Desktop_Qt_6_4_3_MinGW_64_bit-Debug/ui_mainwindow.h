@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
@@ -25,8 +26,6 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QLabel *dealerArea;
-    QLabel *playerArea;
     QLabel *drawDeck;
     QLabel *discardDeck;
     QLabel *label_5;
@@ -41,6 +40,10 @@ public:
     QPushButton *pushButton_6;
     QPushButton *pushButton_7;
     QComboBox *comboBox;
+    QWidget *horizontalLayoutWidget;
+    QHBoxLayout *dealerArea;
+    QWidget *horizontalLayoutWidget_2;
+    QHBoxLayout *playerArea;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -51,55 +54,47 @@ public:
         MainWindow->resize(800, 600);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
-        dealerArea = new QLabel(centralwidget);
-        dealerArea->setObjectName("dealerArea");
-        dealerArea->setGeometry(QRect(180, 100, 421, 141));
-        dealerArea->setFrameShape(QFrame::Box);
-        playerArea = new QLabel(centralwidget);
-        playerArea->setObjectName("playerArea");
-        playerArea->setGeometry(QRect(160, 360, 461, 175));
-        playerArea->setFrameShape(QFrame::Box);
         drawDeck = new QLabel(centralwidget);
         drawDeck->setObjectName("drawDeck");
-        drawDeck->setGeometry(QRect(70, 100, 100, 140));
+        drawDeck->setGeometry(QRect(10, 100, 100, 140));
         drawDeck->setFrameShape(QFrame::Box);
         discardDeck = new QLabel(centralwidget);
         discardDeck->setObjectName("discardDeck");
-        discardDeck->setGeometry(QRect(610, 100, 100, 140));
+        discardDeck->setGeometry(QRect(690, 100, 100, 140));
         discardDeck->setFrameShape(QFrame::Box);
         label_5 = new QLabel(centralwidget);
         label_5->setObjectName("label_5");
-        label_5->setGeometry(QRect(360, 310, 49, 51));
+        label_5->setGeometry(QRect(380, 310, 49, 51));
         label_6 = new QLabel(centralwidget);
         label_6->setObjectName("label_6");
-        label_6->setGeometry(QRect(360, 240, 49, 51));
+        label_6->setGeometry(QRect(380, 240, 49, 51));
         label_7 = new QLabel(centralwidget);
         label_7->setObjectName("label_7");
-        label_7->setGeometry(QRect(650, 260, 111, 261));
+        label_7->setGeometry(QRect(690, 260, 101, 261));
         label_8 = new QLabel(centralwidget);
         label_8->setObjectName("label_8");
-        label_8->setGeometry(QRect(30, 440, 81, 16));
+        label_8->setGeometry(QRect(20, 400, 81, 16));
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(450, 330, 80, 24));
+        pushButton->setGeometry(QRect(470, 330, 80, 24));
         pushButton_2 = new QPushButton(centralwidget);
         pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(160, 330, 80, 24));
+        pushButton_2->setGeometry(QRect(180, 330, 80, 24));
         pushButton_3 = new QPushButton(centralwidget);
         pushButton_3->setObjectName("pushButton_3");
-        pushButton_3->setGeometry(QRect(250, 330, 80, 24));
+        pushButton_3->setGeometry(QRect(270, 330, 80, 24));
         pushButton_4 = new QPushButton(centralwidget);
         pushButton_4->setObjectName("pushButton_4");
-        pushButton_4->setGeometry(QRect(540, 330, 80, 24));
+        pushButton_4->setGeometry(QRect(560, 330, 80, 24));
         pushButton_5 = new QPushButton(centralwidget);
         pushButton_5->setObjectName("pushButton_5");
-        pushButton_5->setGeometry(QRect(540, 300, 80, 24));
+        pushButton_5->setGeometry(QRect(560, 300, 80, 24));
         pushButton_6 = new QPushButton(centralwidget);
         pushButton_6->setObjectName("pushButton_6");
-        pushButton_6->setGeometry(QRect(30, 490, 80, 24));
+        pushButton_6->setGeometry(QRect(20, 450, 80, 24));
         pushButton_7 = new QPushButton(centralwidget);
         pushButton_7->setObjectName("pushButton_7");
-        pushButton_7->setGeometry(QRect(160, 300, 80, 24));
+        pushButton_7->setGeometry(QRect(180, 300, 80, 24));
         comboBox = new QComboBox(centralwidget);
         comboBox->addItem(QString());
         comboBox->addItem(QString());
@@ -108,7 +103,19 @@ public:
         comboBox->addItem(QString());
         comboBox->addItem(QString());
         comboBox->setObjectName("comboBox");
-        comboBox->setGeometry(QRect(30, 460, 81, 24));
+        comboBox->setGeometry(QRect(20, 420, 81, 24));
+        horizontalLayoutWidget = new QWidget(centralwidget);
+        horizontalLayoutWidget->setObjectName("horizontalLayoutWidget");
+        horizontalLayoutWidget->setGeometry(QRect(120, 100, 561, 141));
+        dealerArea = new QHBoxLayout(horizontalLayoutWidget);
+        dealerArea->setObjectName("dealerArea");
+        dealerArea->setContentsMargins(0, 0, 0, 0);
+        horizontalLayoutWidget_2 = new QWidget(centralwidget);
+        horizontalLayoutWidget_2->setObjectName("horizontalLayoutWidget_2");
+        horizontalLayoutWidget_2->setGeometry(QRect(120, 370, 561, 141));
+        playerArea = new QHBoxLayout(horizontalLayoutWidget_2);
+        playerArea->setObjectName("playerArea");
+        playerArea->setContentsMargins(0, 0, 0, 0);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -126,8 +133,6 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        dealerArea->setText(QCoreApplication::translate("MainWindow", "Dealer card Area", nullptr));
-        playerArea->setText(QCoreApplication::translate("MainWindow", "player hands area", nullptr));
         drawDeck->setText(QCoreApplication::translate("MainWindow", "Deck", nullptr));
         discardDeck->setText(QCoreApplication::translate("MainWindow", "Discard", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "P SCORE", nullptr));
