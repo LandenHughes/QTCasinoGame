@@ -320,6 +320,7 @@ DISTFILES += \
     Playing_Cards/ace_of_hearts.png \
     Playing_Cards/ace_of_spades.png \
     Playing_Cards/ace_of_spades2.png \
+    Playing_Cards/back.png \
     Playing_Cards/black_joker.png \
     Playing_Cards/jack_of_clubs.png \
     Playing_Cards/jack_of_clubs2.png \

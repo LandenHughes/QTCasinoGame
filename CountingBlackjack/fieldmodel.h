@@ -51,7 +51,7 @@ public:
     int playerChips;
     //Determines wether or not the dealer's first card should be displayed or not.
     bool isDealerCardHidden;
-    //Dealer's hand.  Tthe dealer's hand is fundementally different than the players (they can't split, etc.
+    //Dealer's hand.  The dealer's hand is fundementally different than the players (they can't split, etc.
     QVector<Card> dealerHand;
     //Represents the hands of the player.  Needs to be layered like this to represent splits.
     QVector<Hand> playerHands;

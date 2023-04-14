@@ -3,12 +3,15 @@
 
 #include "fieldmodel.h"
 #include "deckmodel.h"
+#include <QObject>
+#include <QWidget>
 
-class Controller
+class Controller : public QObject
 {
+    Q_OBJECT
 public:
     Controller();
-
+public slots:
     /**
      * @brief Place a bet on the given hand.
      * @param hand
@@ -24,6 +27,11 @@ public:
     bool hit();
 
     bool hit(int hand);
+
+    /**
+     * @brief Adds a card to the dealer's hand
+     */
+    void dealerHit();
 
     /**
      * @brief Requests a stay for the current hand.
@@ -64,6 +72,15 @@ public:
      */
     void endRound();
 
+signals:
+    /**
+     * @brief Used to tell the view that either the dealer or the player has 'hit'.
+     * @param faceDown - True if card is to be dealt face down. False otherwise.
+     * @param hand - Represents the hand that a card will be added to. -1 for dealer, 0-infinity for player hands.
+     * @param suit - Represents the suit of the card given: 0-Heart, 1-Club, 2-Diamond, 3-Spade.
+     * @param rank - Rank of the card: 1 is A, 11 is J, 12 is Q, 13 is K.  0 is Joker, but blackjack isn't palyed with Jokers.
+     */
+    void hitAction(bool faceDown, int hand, int suit, int rank);
 private:
     int currentHand = 0;
     FieldModel fieldModel;

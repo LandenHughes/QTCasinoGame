@@ -14,13 +14,13 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="dealerArea">
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>110</y>
+      <y>100</y>
       <width>421</width>
-      <height>131</height>
+      <height>141</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -30,7 +30,7 @@
      <string>Dealer card Area</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="playerArea">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -46,13 +46,13 @@
      <string>player hands area</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="drawDeck">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>150</y>
-      <width>49</width>
-      <height>81</height>
+      <x>70</x>
+      <y>100</y>
+      <width>100</width>
+      <height>140</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -62,13 +62,13 @@
      <string>Deck</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="discardDeck">
     <property name="geometry">
      <rect>
       <x>610</x>
-      <y>150</y>
-      <width>49</width>
-      <height>81</height>
+      <y>100</y>
+      <width>100</width>
+      <height>140</height>
      </rect>
     </property>
     <property name="frameShape">

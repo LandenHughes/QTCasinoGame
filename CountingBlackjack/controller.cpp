@@ -5,6 +5,11 @@ Controller::Controller()
 {
 }
 
+bool Controller::bet(int hand)
+{
+    //TODO
+}
+
 bool Controller::hit()
 {
     Card cardHit = deckModel.dealCard();
@@ -16,7 +21,16 @@ bool Controller::hit(int hand)
 {
     Card cardHit = deckModel.dealCard();
     fieldModel.addToHand(hand, cardHit);
+    emit hitAction(false, currentHand, cardHit.getSuit(), cardHit.getRank());
     return fieldModel.getPlayerHand(hand).getScore() > 21;
+}
+
+void Controller::dealerHit()
+{
+    Card cardHit = deckModel.dealCard();
+    fieldModel.dealerHand.push_back(cardHit);
+    if(fieldModel.isDealerCardHidden) emit hitAction(true, -1, cardHit.getSuit(), cardHit.getRank());
+    else emit hitAction(false, -1, cardHit.getSuit(), cardHit.getRank());
 }
 
 void Controller::stay()
@@ -50,10 +64,14 @@ void Controller::doubleDown()
 
 void Controller::dealOutCards()
 {
+    //Deal card to player
     hit();
-    fieldModel.dealerHand.push_back(deckModel.dealCard());
+    //Deal card to dealer
+    dealerHit();
+    //Deal card to player
     hit();
-    fieldModel.dealerHand.push_back(deckModel.dealCard());
+    //Deal card to dealer
+    dealerHit();
 }
 
 void Controller::dealerTurn()
