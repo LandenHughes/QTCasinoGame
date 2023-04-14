@@ -10,12 +10,6 @@ public:
     Hand();
 
     /**
-     * @brief Insures the hand.
-     * @return Cost of insuring the hand.
-     */
-    int insureHand();
-
-    /**
      * @brief getScore
      * @return Total score of hand
      */

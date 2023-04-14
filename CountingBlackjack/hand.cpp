@@ -36,12 +36,6 @@ void Hand::addCard(Card card)
     cards.push_back(card);
 }
 
-int Hand::insureHand()
-{
-    //TODO
-    return 0;
-}
-
 void Hand::doubleDown()
 {
     doubledDown = true;

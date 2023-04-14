@@ -52,7 +52,7 @@ void Controller::split()
 void Controller::insurance()
 {
     //Insures the hand, and subtracts cost from chips.  DOES NOT CHECK IF THIS CAN BE DONE.
-    fieldModel.playerChips -= fieldModel.getPlayerHand(currentHand).insureHand();
+    fieldModel.playerChips -= fieldModel.insurePlayer();
 }
 
 void Controller::doubleDown()
@@ -76,9 +76,12 @@ void Controller::dealOutCards()
 
 void Controller::dealerTurn()
 {
-    //TODO
-    //Please PLEASE put the dealer stuff in here.
-    //Eventually...
+    //Hit until above 17.
+    while (fieldModel.getDealerScore() < 17)
+    {
+        Card cardHit = deckModel.dealCard();
+        fieldModel.dealerHand.push_back(cardHit);
+    }
     endRound();
 }
 

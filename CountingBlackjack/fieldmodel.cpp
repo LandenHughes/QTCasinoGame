@@ -49,3 +49,9 @@ int FieldModel::splitHand(int handIndex)
     //Return index of the new hand (at the end).
     return playerHands.size()-1;
 }
+
+int FieldModel::insurePlayer()
+{
+    //TODO
+    return 0;
+}

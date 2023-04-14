@@ -35,6 +35,12 @@ public:
     int splitHand(int currentHand);
 
     /**
+     * @brief Insures the player.
+     * @return Cost of insuring the hand.
+     */
+    int insurePlayer();
+
+    /**
      * @brief Adds a given card to a given hand.
      * @param currentHand
      * @param card
