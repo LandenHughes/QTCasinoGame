@@ -16,6 +16,13 @@ public:
     DeckModel(int numberOfDecks);
 
     /**
+     * @brief Constructor, creates a BlackJack with exactly the cards in cardInDeck.
+     * Order of cards is preserved, with the first card in cardsToAdd dealt first.
+     * @param numberOfDecks
+     */
+    DeckModel(Card cardsToAdd[], int numCards);
+
+    /**
      * @brief Shuffles all cards in cardsInDeck.
      */
     void shuffle();

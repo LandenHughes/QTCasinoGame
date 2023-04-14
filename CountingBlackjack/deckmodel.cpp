@@ -1,4 +1,5 @@
 #include "deckmodel.h"
+#include <cstdlib>
 
 DeckModel::DeckModel(int numberOfDecks)
 {
@@ -10,6 +11,12 @@ DeckModel::DeckModel(int numberOfDecks)
    shuffle();
 }
 
+DeckModel::DeckModel(Card cardsToAdd[], int numCards)
+{
+   for (int i = 0; i < numCards; i++)
+        cardsInDeck.push_front(cardsToAdd[i]);
+}
+
 void DeckModel::reshuffle()
 {
     cardsInDeck.append(cardsDiscarded);
@@ -19,7 +26,14 @@ void DeckModel::reshuffle()
 
 void DeckModel::shuffle()
 {
-    //TODO: Implement shuffle.
+    int cardsToShuffle = cardsInDeck.size();
+    for (int swapFrom = 0; swapFrom < cardsToShuffle; swapFrom++)
+    {
+        Card swappedCard = cardsInDeck[swapFrom];
+        int swapTo = rand() % cardsToShuffle;
+        cardsInDeck[swapFrom] = cardsInDeck[swapTo];
+        cardsInDeck[swapTo] = swappedCard;
+    }
 }
 
 void DeckModel::clearCardsOnField()
