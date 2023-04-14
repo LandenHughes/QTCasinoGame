@@ -9,8 +9,10 @@
 class Controller : public QObject
 {
     Q_OBJECT
+
 public:
     Controller();
+
 public slots:
     /**
      * @brief Place a bet on the given hand.
@@ -26,7 +28,7 @@ public slots:
      */
     bool hit();
 
-    bool hit(int hand);
+    bool hitHand(int hand);
 
     /**
      * @brief Adds a card to the dealer's hand
@@ -34,10 +36,10 @@ public slots:
     void dealerHit();
 
     /**
-     * @brief Requests a stay for the current hand.
+     * @brief Requests a stand for the current hand.
      * @param currentHand - Hand to perform this action on
      */
-    void stay();
+    void stand();
 
     /**
      * @brief Set the player to split their current hand.
@@ -81,7 +83,9 @@ signals:
      * @param rank - Rank of the card: 1 is A, 11 is J, 12 is Q, 13 is K.  0 is Joker, but blackjack isn't palyed with Jokers.
      */
     void hitAction(bool faceDown, int hand, int suit, int rank);
+
 private:
+    int currentBet = 0;
     int currentHand = 0;
     FieldModel fieldModel;
     DeckModel deckModel;

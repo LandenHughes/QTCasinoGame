@@ -3,6 +3,7 @@
 Controller::Controller()
     :deckModel(DeckModel(2))
 {
+
 }
 
 bool Controller::bet(int hand)
@@ -17,7 +18,7 @@ bool Controller::hit()
     return fieldModel.getPlayerHand(currentHand).getScore() > 21;
 }
 
-bool Controller::hit(int hand)
+bool Controller::hitHand(int hand)
 {
     Card cardHit = deckModel.dealCard();
     fieldModel.addToHand(hand, cardHit);
@@ -33,7 +34,7 @@ void Controller::dealerHit()
     else emit hitAction(false, -1, cardHit.getSuit(), cardHit.getRank());
 }
 
-void Controller::stay()
+void Controller::stand()
 {
     currentHand++;
     if (currentHand > fieldModel.getPlayerHands().size())
@@ -45,8 +46,8 @@ void Controller::split()
     //DOES NOT CHECK IF THIS CAN BE DONE.
     int newHandIndex = fieldModel.splitHand(currentHand);
     //Give each new hand a new card
-    hit(currentHand);
-    hit(newHandIndex);
+    hitHand(currentHand);
+    hitHand(newHandIndex);
 }
 
 void Controller::insurance()
@@ -59,7 +60,7 @@ void Controller::doubleDown()
 {
     fieldModel.getPlayerHand(currentHand).doubleDown();
     hit();
-    stay();
+    stand();
 }
 
 void Controller::dealOutCards()

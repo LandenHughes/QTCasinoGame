@@ -98,7 +98,7 @@
      <string>Bet Place Area</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="splitPushButton">
     <property name="geometry">
      <rect>
       <x>470</x>
@@ -111,12 +111,12 @@
      <string>SPLIT</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="hitPushButton">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>159</x>
       <y>330</y>
-      <width>80</width>
+      <width>101</width>
       <height>24</height>
      </rect>
     </property>
@@ -124,7 +124,7 @@
      <string>HIT</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="standPushButton">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -137,12 +137,12 @@
      <string>STAND</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="doubleDownPushButton">
     <property name="geometry">
      <rect>
       <x>560</x>
       <y>330</y>
-      <width>80</width>
+      <width>111</width>
       <height>24</height>
      </rect>
     </property>
@@ -150,12 +150,12 @@
      <string>DOUBLE DOWN</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="insurancePushButton">
     <property name="geometry">
      <rect>
       <x>560</x>
       <y>300</y>
-      <width>80</width>
+      <width>111</width>
       <height>24</height>
      </rect>
     </property>
@@ -163,7 +163,7 @@
      <string>INSURANCE</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="dealPushButton">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -176,12 +176,12 @@
      <string>DEAL</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_7">
+   <widget class="QPushButton" name="gimmickPushButton">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>159</x>
       <y>300</y>
-      <width>80</width>
+      <width>101</width>
       <height>24</height>
      </rect>
     </property>
@@ -189,7 +189,7 @@
      <string>GIMMICK BTN</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="betComboBox">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -252,17 +252,170 @@
     <layout class="QHBoxLayout" name="playerArea"/>
    </widget>
   </widget>
+  <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuPlay">
+    <property name="title">
+     <string>Play</string>
+    </property>
+    <addaction name="actionStartPlay"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuLessons">
+    <property name="title">
+     <string>Lessons</string>
+    </property>
+    <widget class="QMenu" name="menuSection1">
+     <property name="title">
+      <string>Section 1: Basics Fules</string>
+     </property>
+     <addaction name="actionLesson1"/>
+     <addaction name="actionLesson2"/>
+     <addaction name="actionLesson3"/>
+    </widget>
+    <widget class="QMenu" name="menuSection_2_Advanced_Rules">
+     <property name="title">
+      <string>Section 2: Advanced Rules</string>
+     </property>
+     <addaction name="actionLesson4"/>
+     <addaction name="actionLesson5"/>
+     <addaction name="actionLesson6"/>
+    </widget>
+    <widget class="QMenu" name="menuSection_3_Basic_Strategy">
+     <property name="title">
+      <string>Section 3: Basic Strategy</string>
+     </property>
+     <addaction name="actionLesson7"/>
+     <addaction name="actionLesson8"/>
+     <addaction name="actionLesson9"/>
+     <addaction name="actionLesson10"/>
+     <addaction name="actionLesson11"/>
+    </widget>
+    <widget class="QMenu" name="menuSection_4_Card_Counting">
+     <property name="title">
+      <string>Section 4: Card Counting</string>
+     </property>
+     <addaction name="actionLesson12"/>
+     <addaction name="actionLesson13"/>
+     <addaction name="actionLesson14"/>
+     <addaction name="actionLesson15"/>
+    </widget>
+    <addaction name="menuSection1"/>
+    <addaction name="menuSection_2_Advanced_Rules"/>
+    <addaction name="menuSection_3_Basic_Strategy"/>
+    <addaction name="menuSection_4_Card_Counting"/>
+   </widget>
+   <addaction name="menuPlay"/>
+   <addaction name="menuLessons"/>
+   <addaction name="menuHelp"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionSection_1">
+   <property name="text">
+    <string>Section 1</string>
+   </property>
+  </action>
+  <action name="actionSections">
+   <property name="text">
+    <string>Sections</string>
+   </property>
+  </action>
+  <action name="actionhelp">
+   <property name="text">
+    <string>help</string>
+   </property>
+  </action>
+  <action name="actionLesson1">
+   <property name="text">
+    <string>Lesson 1: Card Values, Hitting and Busting</string>
+   </property>
+  </action>
+  <action name="actionLesson2">
+   <property name="text">
+    <string>Lesson 2: Betting, Order of Play, and Dealer's Play</string>
+   </property>
+  </action>
+  <action name="actionLesson3">
+   <property name="text">
+    <string>Lesson 3: Blackjack!</string>
+   </property>
+  </action>
+  <action name="actionStartPlay">
+   <property name="text">
+    <string>Start Play Mode</string>
+   </property>
+  </action>
+  <action name="actionLesson4">
+   <property name="text">
+    <string>Lesson 4: Splitting</string>
+   </property>
+  </action>
+  <action name="actionLesson5">
+   <property name="text">
+    <string>Lesson 5: Doubling Down</string>
+   </property>
+  </action>
+  <action name="actionLesson6">
+   <property name="text">
+    <string>Lesson 6: Insurance</string>
+   </property>
+  </action>
+  <action name="actionLesson7">
+   <property name="text">
+    <string>Lesson 7: Introduction to Basic Strategy</string>
+   </property>
+  </action>
+  <action name="actionLesson8">
+   <property name="text">
+    <string>Lesson 8: Hard Counts</string>
+   </property>
+  </action>
+  <action name="actionLesson9">
+   <property name="text">
+    <string>Lesson 9: Soft Counts</string>
+   </property>
+  </action>
+  <action name="actionLesson10">
+   <property name="text">
+    <string>Lesson 10: When to Double Down</string>
+   </property>
+  </action>
+  <action name="actionLesson11">
+   <property name="text">
+    <string>Lesson 11: When to Split</string>
+   </property>
+  </action>
+  <action name="actionLesson12">
+   <property name="text">
+    <string>Lesson 12: Counting Cards and the Running Count</string>
+   </property>
+  </action>
+  <action name="actionLesson13">
+   <property name="text">
+    <string>Lesson 13: Running Count Vs. True Count</string>
+   </property>
+  </action>
+  <action name="actionLesson14">
+   <property name="text">
+    <string>Lesson 14: Bet Spreads</string>
+   </property>
+  </action>
+  <action name="actionLesson15">
+   <property name="text">
+    <string>Lesson 15: The Illustrious 18</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

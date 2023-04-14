@@ -34,6 +34,14 @@ public slots:
      */
     void setupUI();
 
+    /**
+     * @brief Takes the menu action just pressed and emits a signal with the lesson number
+     */
+    void selectLesson();
+
+signals:
+    void startLessonNumber(int lessonNum);
+
 private:
     Ui::MainWindow *ui;
     Controller& controller;
