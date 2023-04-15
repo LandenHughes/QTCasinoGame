@@ -1,8 +1,16 @@
 #include "hand.h"
 
-Hand::Hand()
+Hand::Hand(int initialBet)
 {
+    bet = initialBet;
+}
 
+Hand Hand::split()
+{
+    Hand result(bet);
+    result.addCard(cards.back());
+    cards.pop_back();
+    return result;
 }
 
 int Hand::getScore()
@@ -31,12 +39,38 @@ int Hand::getScore()
     return scoreTotal;
 }
 
+int Hand::getBet()
+{
+    return bet;
+}
+
 void Hand::addCard(Card card)
 {
     cards.push_back(card);
 }
 
+bool Hand::canHit()
+{
+    return !doubledDown;
+}
+
+bool Hand::canDouble()
+{
+    return !doubledDown && cards.size() == 2 && getScore() >= 9 && getScore() <= 11;
+}
+
+bool Hand::canSplit()
+{
+    return !doubledDown && cards.size() == 2 && cards[0].getRank() == cards[1].getRank();
+}
+
 void Hand::doubleDown()
 {
     doubledDown = true;
+    bet *= 2;
+}
+
+void Hand::insure()
+{
+    insured = true;
 }

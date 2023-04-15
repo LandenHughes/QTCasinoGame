@@ -40,13 +40,7 @@ void FieldModel::addToHand(int currentHand, Card card)
 int FieldModel::splitHand(int handIndex)
 {
     //Assumes the hand is valid
-    //Copy the hand.
-    playerHands.push_back(Hand(playerHands.at(handIndex)));
-    //Remove the last card from the original hand.
-    playerHands[handIndex].cards.pop_back();
-    //Remove the first card from the original hand.
-    playerHands.back().cards.pop_front();
-    //Return index of the new hand (at the end).
+    playerHands.push_back(playerHands[handIndex].split());
     return playerHands.size()-1;
 }
 
