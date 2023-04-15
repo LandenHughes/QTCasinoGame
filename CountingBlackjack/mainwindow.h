@@ -39,6 +39,11 @@ public slots:
      */
     void selectLesson();
 
+    /**
+     * @brief Tells the controller to deal out cards and passes bet amount to controller.
+     */
+    void startRound();
+
 signals:
     void startLessonNumber(int lessonNum);
 

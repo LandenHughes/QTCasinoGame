@@ -6,23 +6,27 @@ Controller::Controller()
 
 }
 
-bool Controller::bet(int hand)
+bool Controller::bet(int hand, int betAmount)
 {
-    //TODO
+    //TODO: Test that the player has enough money to make bet
+    //TODO: Determine correct hand, for now we are working with only one hand
+    Hand newHand(betAmount);
+    fieldModel.playerHands.push_back(newHand);
+    return true;
 }
 
 bool Controller::hit()
 {
-    Card cardHit = deckModel.dealCard();
-    fieldModel.addToHand(currentHand, cardHit);
-    return fieldModel.getPlayerHand(currentHand).getScore() > 21;
+    return hit(currentHand);
 }
 
-bool Controller::hitHand(int hand)
+bool Controller::hit(int hand)
 {
     Card cardHit = deckModel.dealCard();
     fieldModel.addToHand(hand, cardHit);
-    emit hitAction(false, currentHand, cardHit.getSuit(), cardHit.getRank());
+    qDebug()<<cardHit.getSuit();
+    qDebug()<<cardHit.getRank();
+    emit hitAction(false, hand, cardHit.getSuit(), cardHit.getRank());
     return fieldModel.getPlayerHand(hand).getScore() > 21;
 }
 
@@ -30,7 +34,11 @@ void Controller::dealerHit()
 {
     Card cardHit = deckModel.dealCard();
     fieldModel.dealerHand.push_back(cardHit);
-    if(fieldModel.isDealerCardHidden) emit hitAction(true, -1, cardHit.getSuit(), cardHit.getRank());
+    if(fieldModel.isDealerCardHidden)
+    {
+        emit hitAction(true, -1, cardHit.getSuit(), cardHit.getRank());
+        fieldModel.isDealerCardHidden = false;
+    }
     else emit hitAction(false, -1, cardHit.getSuit(), cardHit.getRank());
 }
 
@@ -46,8 +54,8 @@ void Controller::split()
     //DOES NOT CHECK IF THIS CAN BE DONE.
     int newHandIndex = fieldModel.splitHand(currentHand);
     //Give each new hand a new card
-    hitHand(currentHand);
-    hitHand(newHandIndex);
+    hit(currentHand);
+    hit(newHandIndex);
 }
 
 void Controller::insurance()
@@ -65,6 +73,7 @@ void Controller::doubleDown()
 
 void Controller::dealOutCards()
 {
+    bet(currentHand, currentBet);
     //Deal card to player
     hit();
     //Deal card to dealer
@@ -91,4 +100,9 @@ void Controller::endRound()
     //Let deck and field models calculate payouts, etc.
     deckModel.clearCardsOnField();
     fieldModel.endRound();
+}
+
+void Controller::setBet(int newBet)
+{
+    currentBet = newBet;
 }

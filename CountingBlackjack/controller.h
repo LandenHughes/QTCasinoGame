@@ -17,9 +17,10 @@ public slots:
     /**
      * @brief Place a bet on the given hand.
      * @param hand
+     * @param betAmount
      * @return
      */
-    bool bet(int hand);
+    bool bet(int hand, int betAmount);
 
     /**
      * @brief Request a hit from the deck for the currently playing had.
@@ -28,7 +29,7 @@ public slots:
      */
     bool hit();
 
-    bool hitHand(int hand);
+    bool hit(int hand);
 
     /**
      * @brief Adds a card to the dealer's hand
@@ -73,6 +74,12 @@ public slots:
      * @brief End the round, give the player any chips they've won, send cards on the field to the discard pile.
      */
     void endRound();
+
+    /**
+     * @brief Setter for currentBet
+     * @param newBet
+     */
+    void setBet(int newBet);
 
 signals:
     /**

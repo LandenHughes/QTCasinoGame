@@ -6,7 +6,7 @@ DeckModel::DeckModel(int numberOfDecks)
    for (int i = 0; i < numberOfDecks; i++)
        for (int rank = 1; rank <= 13; rank++)
            for (int suit = 0; suit < 4; suit++)
-               cardsInDeck.push_back(Card(rank, suit));
+               cardsInDeck.push_back(Card(suit, rank));
 
    shuffle();
 }
@@ -26,6 +26,8 @@ void DeckModel::reshuffle()
 
 void DeckModel::shuffle()
 {
+    //Sets seed for rand() ~ ensures truly random numbers every time
+    srand((unsigned int)time(NULL));
     int cardsToShuffle = cardsInDeck.size();
     for (int swapFrom = 0; swapFrom < cardsToShuffle; swapFrom++)
     {

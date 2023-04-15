@@ -5,6 +5,7 @@
 
 #include "card.h"
 #include <QVector>
+#include <ctime>
 
 class DeckModel
 {

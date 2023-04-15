@@ -15,10 +15,10 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     connect(&control, &Controller::hitAction, this, &MainWindow::addCardToPlayArea);
 
     //Game Control Buttons
-    connect(ui->hitPushButton, &QPushButton::clicked, &control, &Controller::hit);
+    connect(ui->hitPushButton, &QPushButton::clicked, &control, qOverload<>(&Controller::hit));
     connect(ui->splitPushButton, &QPushButton::clicked, &control, &Controller::split);
     connect(ui->standPushButton, &QPushButton::clicked, &control, &Controller::stand);
-    connect(ui->dealPushButton, &QPushButton::clicked, &control, &Controller::dealOutCards);
+    connect(ui->dealPushButton, &QPushButton::clicked, this, &MainWindow::startRound);
     connect(ui->insurancePushButton, &QPushButton::clicked, &control, &Controller::insurance);
     connect(ui->doubleDownPushButton, &QPushButton::clicked, &control, &Controller::doubleDown);
 
@@ -96,6 +96,7 @@ void MainWindow::addCardToPlayArea(bool faceDown, int hand, int suit, int rank)
             break;
         }
 
+        qDebug()<<cardAddress;
         //Set card image
         QPixmap cardImage(cardAddress);
         cardImage = cardImage.scaled(ui->drawDeck->size());
@@ -126,14 +127,19 @@ void MainWindow::setupUI()
     ui->playerArea->setAlignment(Qt::AlignHCenter);
 
     //TODO: FOR TESTING~REMOVE LATER
-    addCardToPlayArea(true, -1, 0, 0);
-    addCardToPlayArea(true, 0, 0, 0);
-    addCardToPlayArea(false, 0, 0, 1);
-    addCardToPlayArea(false, 0, 1, 6);
-    addCardToPlayArea(false, 0, 2, 11);
-    addCardToPlayArea(false, 0, 3, 13);
-    addCardToPlayArea(false, -1, 2, 12);
-    addCardToPlayArea(false, -1, 0, 3);
+//    addCardToPlayArea(true, -1, 0, 0);
+//    addCardToPlayArea(true, 0, 0, 0);
+//    addCardToPlayArea(false, 0, 0, 1);
+//    addCardToPlayArea(false, 0, 1, 6);
+//    addCardToPlayArea(false, 0, 2, 11);
+//    addCardToPlayArea(false, 0, 3, 13);
+//    addCardToPlayArea(false, 0, 3, 13);
+//    addCardToPlayArea(false, 0, 3, 13);
+//    addCardToPlayArea(false, 0, 3, 13);
+//    addCardToPlayArea(false, 0, 3, 13);
+//    addCardToPlayArea(false, 0, 3, 13);
+//    addCardToPlayArea(false, -1, 2, 12);
+//    addCardToPlayArea(false, -1, 0, 3);
 }
 
 //Lesson Menu Slots
@@ -149,4 +155,16 @@ void MainWindow::selectLesson()
         int lessonNum = actionText.toInt();
         emit startLessonNumber(lessonNum);
     }
+}
+
+void MainWindow::startRound()
+{
+    ui->hitPushButton->setEnabled(true);
+    ui->standPushButton->setEnabled(true);
+    ui->doubleDownPushButton->setEnabled(true);
+    ui->dealPushButton->setEnabled(false);
+    ui->betComboBox->setEnabled(false);
+    ui->handNumberComboBox->setEnabled(false);
+    controller.setBet(ui->betComboBox->currentText().toInt());
+    controller.dealOutCards();
 }
