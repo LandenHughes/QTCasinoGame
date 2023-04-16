@@ -49,30 +49,20 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>310</y>
-      <width>49</width>
-      <height>51</height>
+      <x>360</x>
+      <y>300</y>
+      <width>101</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>P SCORE</string>
+     <string>Total Chips</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>380</x>
-      <y>240</y>
-      <width>49</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>D Score</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_7">
+   <widget class="QLabel" name="labelCurrentBet">
     <property name="geometry">
      <rect>
       <x>690</x>
@@ -83,6 +73,9 @@
     </property>
     <property name="text">
      <string>Chips Area</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_8">
@@ -162,7 +155,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>DOUBLE DOWN</string>
+     <string>DOUBLE</string>
     </property>
    </widget>
    <widget class="QPushButton" name="insurancePushButton">
@@ -326,6 +319,22 @@
      </property>
     </item>
    </widget>
+   <widget class="QLabel" name="labelTotalChips">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>320</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>XXX</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
@@ -334,7 +343,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuPlay">

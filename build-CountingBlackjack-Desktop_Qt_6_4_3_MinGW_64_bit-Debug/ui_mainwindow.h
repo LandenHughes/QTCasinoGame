@@ -1,13 +1,11 @@
+#pragma once
 /********************************************************************************
-** Form generated from reading UI file 'mainwindow.ui'
+** Form generated from reading UI file ''
 **
 ** Created by: Qt User Interface Compiler version 6.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
-
-#ifndef UI_MAINWINDOW_H
-#define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
@@ -50,8 +48,7 @@ public:
     QLabel *drawDeck;
     QLabel *discardDeck;
     QLabel *label_5;
-    QLabel *label_6;
-    QLabel *label_7;
+    QLabel *labelCurrentBet;
     QLabel *label_8;
     QPushButton *splitPushButton;
     QPushButton *hitPushButton;
@@ -67,6 +64,7 @@ public:
     QHBoxLayout *playerArea;
     QLabel *label_9;
     QComboBox *handNumberComboBox;
+    QLabel *labelTotalChips;
     QStatusBar *statusbar;
     QMenuBar *menubar;
     QMenu *menuPlay;
@@ -132,13 +130,12 @@ public:
         discardDeck->setFrameShape(QFrame::Box);
         label_5 = new QLabel(centralwidget);
         label_5->setObjectName("label_5");
-        label_5->setGeometry(QRect(380, 310, 49, 51));
-        label_6 = new QLabel(centralwidget);
-        label_6->setObjectName("label_6");
-        label_6->setGeometry(QRect(380, 240, 49, 51));
-        label_7 = new QLabel(centralwidget);
-        label_7->setObjectName("label_7");
-        label_7->setGeometry(QRect(690, 260, 101, 261));
+        label_5->setGeometry(QRect(360, 300, 101, 21));
+        label_5->setAlignment(Qt::AlignCenter);
+        labelCurrentBet = new QLabel(centralwidget);
+        labelCurrentBet->setObjectName("label_7");
+        labelCurrentBet->setGeometry(QRect(690, 260, 101, 261));
+        labelCurrentBet->setAlignment(Qt::AlignCenter);
         label_8 = new QLabel(centralwidget);
         label_8->setObjectName("label_8");
         label_8->setGeometry(QRect(20, 370, 81, 16));
@@ -203,13 +200,17 @@ public:
         handNumberComboBox->addItem(QString());
         handNumberComboBox->setObjectName("handNumberComboBox");
         handNumberComboBox->setGeometry(QRect(20, 450, 81, 24));
+        labelTotalChips = new QLabel(centralwidget);
+        labelTotalChips->setObjectName("labelTotalChips");
+        labelTotalChips->setGeometry(QRect(360, 320, 101, 21));
+        labelTotalChips->setAlignment(Qt::AlignCenter);
         MainWindow->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
         MainWindow->setStatusBar(statusbar);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 800, 21));
+        menubar->setGeometry(QRect(0, 0, 800, 25));
         menuPlay = new QMenu(menubar);
         menuPlay->setObjectName("menuPlay");
         menuHelp = new QMenu(menubar);
@@ -279,14 +280,13 @@ public:
         actionLesson15->setText(QCoreApplication::translate("MainWindow", "Lesson 15: The Illustrious 18", nullptr));
         drawDeck->setText(QCoreApplication::translate("MainWindow", "Deck", nullptr));
         discardDeck->setText(QCoreApplication::translate("MainWindow", "Discard", nullptr));
-        label_5->setText(QCoreApplication::translate("MainWindow", "P SCORE", nullptr));
-        label_6->setText(QCoreApplication::translate("MainWindow", "D Score", nullptr));
-        label_7->setText(QCoreApplication::translate("MainWindow", "Chips Area", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "Total Chips", nullptr));
+        labelCurrentBet->setText(QCoreApplication::translate("MainWindow", "Chips Area", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", "Bet", nullptr));
         splitPushButton->setText(QCoreApplication::translate("MainWindow", "SPLIT", nullptr));
         hitPushButton->setText(QCoreApplication::translate("MainWindow", "HIT", nullptr));
         standPushButton->setText(QCoreApplication::translate("MainWindow", "STAND", nullptr));
-        doubleDownPushButton->setText(QCoreApplication::translate("MainWindow", "DOUBLE DOWN", nullptr));
+        doubleDownPushButton->setText(QCoreApplication::translate("MainWindow", "DOUBLE", nullptr));
         insurancePushButton->setText(QCoreApplication::translate("MainWindow", "INSURANCE", nullptr));
         dealPushButton->setText(QCoreApplication::translate("MainWindow", "DEAL", nullptr));
         gimmickPushButton->setText(QCoreApplication::translate("MainWindow", "GIMMICK BTN", nullptr));
@@ -305,6 +305,7 @@ public:
         handNumberComboBox->setItemText(4, QCoreApplication::translate("MainWindow", "5", nullptr));
 
         handNumberComboBox->setCurrentText(QCoreApplication::translate("MainWindow", "1", nullptr));
+        labelTotalChips->setText(QCoreApplication::translate("MainWindow", "XXX", nullptr));
         menuPlay->setTitle(QCoreApplication::translate("MainWindow", "Play", nullptr));
         menuHelp->setTitle(QCoreApplication::translate("MainWindow", "Help", nullptr));
         menuLessons->setTitle(QCoreApplication::translate("MainWindow", "Lessons", nullptr));
@@ -322,4 +323,3 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // UI_MAINWINDOW_H
