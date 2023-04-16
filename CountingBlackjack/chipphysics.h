@@ -1,5 +1,5 @@
 /**
- * @class chipPhysics
+ * @class ChipPhysics
  * @file chipphysics.h
  * @brief Header file to setup Box 2D related objects in order to simulate chips
  * falling.
@@ -13,12 +13,13 @@
 #include <QWidget>
 
 
-class chipPhysics : public QObject
+class ChipPhysics : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit chipPhysics(Controller& control, QObject *parent = nullptr);
+    explicit ChipPhysics(Controller& control, QObject *parent = nullptr);
+    ~ChipPhysics();
 
 public slots:
 
@@ -26,8 +27,17 @@ signals:
 
 private:
     Controller &controller; //Controller can send signals to be recieved and such
-    b2BodyDef chipBody; //Body of the chip(s)
-    b2AABB world; //Axis aligned bounding box to represent the "world" (our frame)
+
+    //b2AABB world; //Axis aligned bounding box to represent the "world" (our frame)
+    b2World* world;
+
+    /**
+     * @brief initializes all the components to make chips and their functionality such as
+     * position, bouncability, etc.
+     */
+    void setupBodies();
+
+private slots:
 
 };
 
