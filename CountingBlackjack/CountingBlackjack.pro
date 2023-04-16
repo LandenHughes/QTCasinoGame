@@ -56,6 +56,7 @@ SOURCES += \
     Box2D/Dynamics/b2WorldCallbacks.cpp \
     Box2D/Rope/b2Rope.cpp \
     card.cpp \
+    chipphysics.cpp \
     controller.cpp \
     counttracker.cpp \
     deckmodel.cpp \
@@ -113,6 +114,7 @@ HEADERS += \
     Box2D/Dynamics/b2WorldCallbacks.h \
     Box2D/Rope/b2Rope.h \
     card.h \
+    chipphysics.h \
     controller.h \
     counttracker.h \
     deckmodel.h \
