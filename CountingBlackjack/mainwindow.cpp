@@ -128,9 +128,17 @@ void MainWindow::addCardToPlayArea(int hand, int suit, int rank, bool faceDown)
 void MainWindow::removeCardFromPlayArea(int hand, int card)
 {
     if (hand == -1)
-        delete ui->dealerArea->takeAt(card);
+    {
+        QLayoutItem* item = ui->dealerArea->takeAt(card);
+        delete item->widget();
+        delete item;
+    }
     else
-        delete ui->playerArea->takeAt(card);
+    {
+        QLayoutItem* item = ui->playerArea->takeAt(card);
+        delete item->widget();
+        delete item;
+    }
 }
 
 void MainWindow::showCard(int hand, int cardPos, Card card)
@@ -219,6 +227,7 @@ void MainWindow::clearPlayerArea()
     while (ui->playerArea->count() > 0)
     {
         QLayoutItem* toDelete = ui->playerArea->takeAt(0);
+        delete toDelete->widget();
         delete toDelete;
     }
 }
@@ -228,6 +237,7 @@ void MainWindow::clearDealerArea()
     while (ui->dealerArea->count() > 0)
     {
         QLayoutItem* toDelete = ui->dealerArea->takeAt(0);
+        delete toDelete->widget();
         delete toDelete;
     }
 }
