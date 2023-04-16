@@ -12,14 +12,20 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     ui->setupUi(this);
     setupUI();
 
+    //Controller Signals
     connect(&control, &Controller::hitAction, this, &MainWindow::addCardToPlayArea);
+    connect(&control, &Controller::initalDeal, this, &MainWindow::initalDeal);
+    connect(&control, &Controller::focusHand, this, &MainWindow::focusHand);
+    connect(&control, &Controller::showCard, this, &MainWindow::showCard);
+    connect(&control, &Controller::setChipTotal, this, &MainWindow::setPlayerChips);
+    connect(&control, &Controller::roundFinished, this, &MainWindow::endRound);
 
     //Game Control Buttons
     connect(ui->hitPushButton, &QPushButton::clicked, &control, qOverload<>(&Controller::hit));
     connect(ui->splitPushButton, &QPushButton::clicked, &control, &Controller::split);
     connect(ui->standPushButton, &QPushButton::clicked, &control, &Controller::stand);
     connect(ui->dealPushButton, &QPushButton::clicked, this, &MainWindow::startRound);
-    connect(ui->insurancePushButton, &QPushButton::clicked, &control, &Controller::insurance);
+    connect(ui->acceptInsurancePushButton, &QPushButton::clicked, &control, &Controller::insurance);
     connect(ui->doubleDownPushButton, &QPushButton::clicked, &control, &Controller::doubleDown);
 
     //Lesson Menu Buttons
@@ -38,6 +44,9 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     connect(ui->actionLesson13, &QAction::triggered, this, &MainWindow::selectLesson);
     connect(ui->actionLesson14, &QAction::triggered, this, &MainWindow::selectLesson);
     connect(ui->actionLesson15, &QAction::triggered, this, &MainWindow::selectLesson);
+
+    //Initalize Default Game
+    controller.initalizeGame(10000, 2);
 }
 
 MainWindow::~MainWindow()
@@ -45,7 +54,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::addCardToPlayArea(bool faceDown, int hand, int suit, int rank)
+void MainWindow::addCardToPlayArea(int hand, int suit, int rank, bool faceDown)
 {
     QLabel* newCard = new QLabel;
     if(faceDown)
@@ -116,6 +125,25 @@ void MainWindow::addCardToPlayArea(bool faceDown, int hand, int suit, int rank)
     }
 }
 
+void MainWindow::removeCardFromPlayArea(int hand, int card)
+{
+    if (hand == -1)
+        delete ui->dealerArea->takeAt(card);
+    else
+        delete ui->playerArea->takeAt(card);
+}
+
+void MainWindow::showCard(int hand, int cardPos, Card card)
+{
+    removeCardFromPlayArea(hand, cardPos);
+    addCardToPlayArea(hand, card.getSuit(), card.getRank(), false);
+}
+
+void MainWindow::setPlayerChips(int chips)
+{
+    ui->labelTotalChips->setText(QString::number(chips));
+}
+
 void MainWindow::setupUI()
 {
     //Set image for draw pile
@@ -161,10 +189,66 @@ void MainWindow::startRound()
 {
     ui->hitPushButton->setEnabled(true);
     ui->standPushButton->setEnabled(true);
-    ui->doubleDownPushButton->setEnabled(true);
+    ui->splitPushButton->setEnabled(false);
+    ui->doubleDownPushButton->setEnabled(false);
     ui->dealPushButton->setEnabled(false);
     ui->betComboBox->setEnabled(false);
     ui->handNumberComboBox->setEnabled(false);
-    controller.setBet(ui->betComboBox->currentText().toInt());
-    controller.dealOutCards();
+    controller.dealOutCards(ui->handNumberComboBox->currentText().toInt(), ui->betComboBox->currentText().toInt());
+}
+
+void MainWindow::initalDeal(QVector<Card> dealerHand, QVector<Card> playerCards, int totalChips)
+{
+    clearDealerArea();
+    clearPlayerArea();
+
+    for (int card = 0; card < 2; card++)
+        for (int hand = -1; hand < playerCards.size()/2; hand++)
+        {
+            if (hand == -1)
+                addCardToPlayArea(-1, dealerHand[card].getSuit(), dealerHand[card].getRank(), card == 0);
+            else
+                addCardToPlayArea(hand, playerCards[2*hand + card].getSuit(), playerCards[2*hand + card].getRank(), false);
+        }
+
+    setPlayerChips(totalChips);
+}
+
+void MainWindow::clearPlayerArea()
+{
+    while (ui->playerArea->count() > 0)
+    {
+        QLayoutItem* toDelete = ui->playerArea->takeAt(0);
+        delete toDelete;
+    }
+}
+
+void MainWindow::clearDealerArea()
+{
+    while (ui->dealerArea->count() > 0)
+    {
+        QLayoutItem* toDelete = ui->dealerArea->takeAt(0);
+        delete toDelete;
+    }
+}
+
+
+void MainWindow::focusHand(QVector<Card> hand)
+{
+    clearPlayerArea();
+    for (int i = 0; i < hand.size(); i++)
+    {
+        addCardToPlayArea(0, hand[i].getSuit(), hand[i].getRank(), false);
+    }
+}
+
+void MainWindow::endRound()
+{
+    ui->hitPushButton->setEnabled(false);
+    ui->standPushButton->setEnabled(false);
+    ui->splitPushButton->setEnabled(false);
+    ui->doubleDownPushButton->setEnabled(false);
+    ui->dealPushButton->setEnabled(true);
+    ui->betComboBox->setEnabled(true);
+    ui->handNumberComboBox->setEnabled(true);
 }

@@ -1,9 +1,13 @@
 #include "hand.h"
 
-Hand::Hand(int initialBet)
-{
-    bet = initialBet;
-}
+Hand::Hand(int initialBet) :
+    bet(initialBet)
+{ }
+
+Hand::Hand(QVector<Card> initialCards, int initialBet) :
+    bet(initialBet),
+    cards(initialCards)
+{ }
 
 Hand Hand::split()
 {
@@ -11,6 +15,11 @@ Hand Hand::split()
     result.addCard(cards.back());
     cards.pop_back();
     return result;
+}
+
+QVector<Card> Hand::asList()
+{
+    return cards;
 }
 
 int Hand::getScore()
@@ -62,6 +71,11 @@ bool Hand::canDouble()
 bool Hand::canSplit()
 {
     return !doubledDown && cards.size() == 2 && cards[0].getRank() == cards[1].getRank();
+}
+
+bool Hand::isBlackjack()
+{
+    return cards.size() == 2 && getScore() == 21;
 }
 
 void Hand::doubleDown()

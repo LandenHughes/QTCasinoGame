@@ -14,10 +14,23 @@ public:
     Hand(int initialBet);
 
     /**
+     * @brief Creates a new hand with the given cards and the given inital bet
+     * @param The initalCards
+     * @param The initial bet
+     */
+    Hand(QVector<Card> initialCards, int initialBet);
+
+    /**
      * @brief splits the hand into 2 hands
      * @return
      */
     Hand split();
+
+    /**
+     * @brief asList
+     * @return The cards in the hand as a QVector
+     */
+    QVector<Card> asList();
 
     /**
      * @brief getScore
@@ -48,6 +61,12 @@ public:
      * @return Whether the current hand can be doubled down
      */
     bool canDouble();
+
+    /**
+     * @brief isBlackjack
+     * @return
+     */
+    bool isBlackjack();
 
     /**
      * @brief isInsured

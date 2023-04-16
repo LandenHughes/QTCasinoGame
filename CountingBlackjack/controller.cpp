@@ -1,18 +1,9 @@
 #include "controller.h"
 
 Controller::Controller()
-    :deckModel(DeckModel(2))
+    :fieldModel(FieldModel(0)),
+    deckModel(DeckModel(0))
 {
-
-}
-
-bool Controller::bet(int hand, int betAmount)
-{
-    //TODO: Test that the player has enough money to make bet
-    //TODO: Determine correct hand, for now we are working with only one hand
-    Hand newHand(betAmount);
-    fieldModel.playerHands.push_back(newHand);
-    return true;
 }
 
 bool Controller::hit()
@@ -26,27 +17,37 @@ bool Controller::hit(int hand)
     fieldModel.addToHand(hand, cardHit);
     qDebug()<<cardHit.getSuit();
     qDebug()<<cardHit.getRank();
-    emit hitAction(false, hand, cardHit.getSuit(), cardHit.getRank());
-    return fieldModel.getPlayerHand(hand).getScore() > 21;
+    emit hitAction(hand, cardHit.getSuit(), cardHit.getRank());
+
+    bool isBust = fieldModel.getPlayerHand(hand).getScore() > 21;
+
+    if(isBust)
+        stand();
+    return isBust;
+}
+
+void Controller::initalizeGame(int playerChips, int numberDecks)
+{
+    fieldModel = FieldModel(playerChips);
+    deckModel = DeckModel(numberDecks);
+
+    emit setChipTotal(playerChips);
 }
 
 void Controller::dealerHit()
 {
     Card cardHit = deckModel.dealCard();
-    fieldModel.dealerHand.push_back(cardHit);
-    if(fieldModel.isDealerCardHidden)
-    {
-        emit hitAction(true, -1, cardHit.getSuit(), cardHit.getRank());
-        fieldModel.isDealerCardHidden = false;
-    }
-    else emit hitAction(false, -1, cardHit.getSuit(), cardHit.getRank());
+    fieldModel.addToHand(-1, cardHit);
+    emit hitAction(-1, cardHit.getSuit(), cardHit.getRank());
 }
 
 void Controller::stand()
 {
     currentHand++;
-    if (currentHand > fieldModel.getPlayerHands().size())
+    if (currentHand >= fieldModel.getPlayerHands().size())
         dealerTurn();
+    else
+        emit focusHand(fieldModel.getPlayerHand(currentHand).asList());
 }
 
 void Controller::split()
@@ -61,7 +62,7 @@ void Controller::split()
 void Controller::insurance()
 {
     //Insures the hand, and subtracts cost from chips.  DOES NOT CHECK IF THIS CAN BE DONE.
-    fieldModel.playerChips -= fieldModel.insurePlayer();
+    fieldModel.insurePlayer();
 }
 
 void Controller::doubleDown()
@@ -71,28 +72,27 @@ void Controller::doubleDown()
     stand();
 }
 
-void Controller::dealOutCards()
+void Controller::dealOutCards(int numberHands, int bet)
 {
-    bet(currentHand, currentBet);
-    //Deal card to player
-    hit();
-    //Deal card to dealer
-    dealerHit();
-    //Deal card to player
-    hit();
-    //Deal card to dealer
-    dealerHit();
+    QVector<Card> playerHands;
+    for(int i = 0; i < numberHands; i++)
+        playerHands.append(fieldModel.dealPlayerHand(deckModel, bet));
+    QVector<Card> dealerHand = fieldModel.dealDealerHand(deckModel);
+
+    emit initalDeal(dealerHand, playerHands, fieldModel.getPlayerChips());
+
+    currentHand = 0;
+    emit focusHand(fieldModel.getPlayerHand(currentHand).asList());
+
 }
 
 void Controller::dealerTurn()
 {
+    emit showCard(-1, 0, fieldModel.getDealerHiddenCard());
     //Hit until above 17.
-//    while (fieldModel.getDealerScore() < 17)
-//    {
-//        Card cardHit = deckModel.dealCard();
-//        fieldModel.dealerHand.push_back(cardHit);
-//    }
-//    endRound();
+    while (fieldModel.getDealerScore() < 17)
+        dealerHit();
+    endRound();
 }
 
 void Controller::endRound()
@@ -100,9 +100,7 @@ void Controller::endRound()
     //Let deck and field models calculate payouts, etc.
     deckModel.clearCardsOnField();
     fieldModel.endRound();
+    emit setChipTotal(fieldModel.getPlayerChips());
+    emit roundFinished();
 }
 
-void Controller::setBet(int newBet)
-{
-    currentBet = newBet;
-}

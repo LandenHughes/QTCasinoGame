@@ -1,11 +1,13 @@
-#pragma once
 /********************************************************************************
-** Form generated from reading UI file ''
+** Form generated from reading UI file 'mainwindow.ui'
 **
 ** Created by: Qt User Interface Compiler version 6.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
+
+#ifndef UI_MAINWINDOW_H
+#define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
@@ -54,9 +56,9 @@ public:
     QPushButton *hitPushButton;
     QPushButton *standPushButton;
     QPushButton *doubleDownPushButton;
-    QPushButton *insurancePushButton;
+    QPushButton *acceptInsurancePushButton;
     QPushButton *dealPushButton;
-    QPushButton *gimmickPushButton;
+    QPushButton *denyInsurancePushButton;
     QComboBox *betComboBox;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *dealerArea;
@@ -133,7 +135,7 @@ public:
         label_5->setGeometry(QRect(360, 300, 101, 21));
         label_5->setAlignment(Qt::AlignCenter);
         labelCurrentBet = new QLabel(centralwidget);
-        labelCurrentBet->setObjectName("label_7");
+        labelCurrentBet->setObjectName("labelCurrentBet");
         labelCurrentBet->setGeometry(QRect(690, 260, 101, 261));
         labelCurrentBet->setAlignment(Qt::AlignCenter);
         label_8 = new QLabel(centralwidget);
@@ -156,17 +158,17 @@ public:
         doubleDownPushButton->setObjectName("doubleDownPushButton");
         doubleDownPushButton->setEnabled(false);
         doubleDownPushButton->setGeometry(QRect(560, 330, 111, 24));
-        insurancePushButton = new QPushButton(centralwidget);
-        insurancePushButton->setObjectName("insurancePushButton");
-        insurancePushButton->setEnabled(false);
-        insurancePushButton->setGeometry(QRect(560, 300, 111, 24));
+        acceptInsurancePushButton = new QPushButton(centralwidget);
+        acceptInsurancePushButton->setObjectName("acceptInsurancePushButton");
+        acceptInsurancePushButton->setEnabled(false);
+        acceptInsurancePushButton->setGeometry(QRect(510, 300, 161, 24));
         dealPushButton = new QPushButton(centralwidget);
         dealPushButton->setObjectName("dealPushButton");
         dealPushButton->setGeometry(QRect(20, 490, 80, 24));
-        gimmickPushButton = new QPushButton(centralwidget);
-        gimmickPushButton->setObjectName("gimmickPushButton");
-        gimmickPushButton->setEnabled(false);
-        gimmickPushButton->setGeometry(QRect(159, 300, 101, 24));
+        denyInsurancePushButton = new QPushButton(centralwidget);
+        denyInsurancePushButton->setObjectName("denyInsurancePushButton");
+        denyInsurancePushButton->setEnabled(false);
+        denyInsurancePushButton->setGeometry(QRect(159, 300, 151, 24));
         betComboBox = new QComboBox(centralwidget);
         betComboBox->addItem(QString());
         betComboBox->addItem(QString());
@@ -287,9 +289,9 @@ public:
         hitPushButton->setText(QCoreApplication::translate("MainWindow", "HIT", nullptr));
         standPushButton->setText(QCoreApplication::translate("MainWindow", "STAND", nullptr));
         doubleDownPushButton->setText(QCoreApplication::translate("MainWindow", "DOUBLE", nullptr));
-        insurancePushButton->setText(QCoreApplication::translate("MainWindow", "INSURANCE", nullptr));
+        acceptInsurancePushButton->setText(QCoreApplication::translate("MainWindow", "ACCEPT INSURANCE", nullptr));
         dealPushButton->setText(QCoreApplication::translate("MainWindow", "DEAL", nullptr));
-        gimmickPushButton->setText(QCoreApplication::translate("MainWindow", "GIMMICK BTN", nullptr));
+        denyInsurancePushButton->setText(QCoreApplication::translate("MainWindow", "DENY INSURANCE", nullptr));
         betComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "10", nullptr));
         betComboBox->setItemText(1, QCoreApplication::translate("MainWindow", "20", nullptr));
         betComboBox->setItemText(2, QCoreApplication::translate("MainWindow", "30", nullptr));
@@ -323,3 +325,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
+#endif // UI_MAINWINDOW_H

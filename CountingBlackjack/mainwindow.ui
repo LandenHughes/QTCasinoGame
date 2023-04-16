@@ -158,20 +158,20 @@
      <string>DOUBLE</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="insurancePushButton">
+   <widget class="QPushButton" name="acceptInsurancePushButton">
     <property name="enabled">
      <bool>false</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>560</x>
+      <x>510</x>
       <y>300</y>
-      <width>111</width>
+      <width>161</width>
       <height>24</height>
      </rect>
     </property>
     <property name="text">
-     <string>INSURANCE</string>
+     <string>ACCEPT INSURANCE</string>
     </property>
    </widget>
    <widget class="QPushButton" name="dealPushButton">
@@ -187,7 +187,7 @@
      <string>DEAL</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="gimmickPushButton">
+   <widget class="QPushButton" name="denyInsurancePushButton">
     <property name="enabled">
      <bool>false</bool>
     </property>
@@ -195,12 +195,12 @@
      <rect>
       <x>159</x>
       <y>300</y>
-      <width>101</width>
+      <width>151</width>
       <height>24</height>
      </rect>
     </property>
     <property name="text">
-     <string>GIMMICK BTN</string>
+     <string>DENY INSURANCE</string>
     </property>
    </widget>
    <widget class="QComboBox" name="betComboBox">
