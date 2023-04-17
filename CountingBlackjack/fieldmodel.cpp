@@ -37,7 +37,7 @@ QVector<Card> FieldModel::dealPlayerHand(DeckModel& deck, int bet)
     return hand;
 }
 
-Hand& FieldModel::getPlayerHand(int handIndex)
+Hand FieldModel::getPlayerHand(int handIndex)
 {
     return playerHands[handIndex];
 }

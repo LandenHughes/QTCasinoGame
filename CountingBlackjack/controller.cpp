@@ -94,6 +94,7 @@ void Controller::dealOutCards(int numberHands, int bet)
 void Controller::dealerTurn()
 {
     emit showCard(fieldModel.getDealerHiddenCard(), true, 0);
+    emit setDealerTotal(fieldModel.getDealerScore());
     //Hit until above 17.
     while (fieldModel.getDealerScore() < 17)
         dealerHit();
@@ -112,6 +113,7 @@ void Controller::endRound()
 void Controller::playOnHand(int handPos)
 {
     Hand hand = fieldModel.getPlayerHand(handPos);
+    emit setPlayerTotal(hand.getScore());
     emit setDoubleButtonEnabled(hand.canDouble());
     emit setSplitButtonEnabled(hand.canSplit());
     emit setHitButtonEnabled(hand.canHit());

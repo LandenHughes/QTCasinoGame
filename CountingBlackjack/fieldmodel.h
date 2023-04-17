@@ -34,7 +34,7 @@ public:
      * @param currentHand - Hand to perform this action on
      * @return QVector of the cards in the current hand
      */
-    Hand& getPlayerHand(int currentHand);
+    Hand getPlayerHand(int currentHand);
 
     /**
      * @brief Doubles down on the given hand.

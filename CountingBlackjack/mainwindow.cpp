@@ -233,7 +233,6 @@ void MainWindow::clearPlayerArea()
         delete toDelete->widget();
         delete toDelete;
     }
-    setPlayerTotal(0);
 }
 
 void MainWindow::clearDealerArea()
@@ -244,7 +243,6 @@ void MainWindow::clearDealerArea()
         delete toDelete->widget();
         delete toDelete;
     }
-    setDealerTotal(0);
 }
 
 
@@ -271,11 +269,13 @@ void MainWindow::endRound()
 void MainWindow::setPlayerTotal(int newTotal)
 {
     QString newTotalMessage = "Player Total: " + QString::number(newTotal);
+    qDebug() << newTotal << " " << newTotalMessage;
     ui->playerTotalLabel->setText(newTotalMessage);
 }
 
 void MainWindow::setDealerTotal(int newDTotal)
 {
     QString newTotalMessage = "Known Dealer Total: " + QString::number(newDTotal);
+    qDebug() << newDTotal << " " << newTotalMessage;
     ui->dealerTotalLabel->setText(newTotalMessage);
 }
