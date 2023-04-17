@@ -20,6 +20,7 @@ bool Controller::hit(int hand)
     emit setDoubleButtonEnabled(false);
     emit setSplitButtonEnabled(false);
     emit setHitButtonEnabled(fieldModel.getPlayerHand(hand).canHit());
+    emit setPlayerTotal(fieldModel.getPlayerHand(hand).getScore());
 
     return fieldModel.getPlayerHand(hand).getScore() > 21;
 }
@@ -36,6 +37,7 @@ void Controller::dealerHit()
 {
     Card card = fieldModel.dealToHand(deckModel, -1);
     emit hitAction(card, true, false);
+    emit setDealerTotal(fieldModel.getDealerScore());
 }
 
 void Controller::stand()
@@ -71,6 +73,7 @@ void Controller::doubleDown()
     emit setDoubleButtonEnabled(false);
     emit setSplitButtonEnabled(false);
     emit setHitButtonEnabled(false);
+    emit setPlayerTotal(fieldModel.getPlayerHand(currentHand).getScore());
 }
 
 void Controller::dealOutCards(int numberHands, int bet)
@@ -84,7 +87,8 @@ void Controller::dealOutCards(int numberHands, int bet)
 
     currentHand = 0;
     playOnHand(currentHand);
-
+    emit setPlayerTotal(fieldModel.getPlayerHand(currentHand).getScore());
+    emit setDealerTotal(fieldModel.getDealerScore() - fieldModel.getDealerHiddenCard().getValue());
 }
 
 void Controller::dealerTurn()

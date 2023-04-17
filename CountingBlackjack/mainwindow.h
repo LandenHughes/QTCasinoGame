@@ -92,6 +92,18 @@ public slots:
      */
     void endRound();
 
+    /**
+     * @brief Sets the label which tells the player their current total to newTotal
+     * @param newTotal
+     */
+    void setPlayerTotal(int newTotal);
+
+    /**
+     * @brief Sets the label which tells the player the dealer's current total to newDTotal
+     * @param newDTotal
+     */
+    void setDealerTotal(int newDTotal);
+
 signals:
     void startLessonNumber(int lessonNum);
 

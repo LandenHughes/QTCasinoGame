@@ -16,3 +16,13 @@ int Card::getRank()
 {
     return rank;
 }
+
+int Card::getValue()
+{
+    if (this->getRank() >= 10)
+        return 10;
+    else if (this->getRank() == 1)
+        return 11;
+    else
+        return this->getRank();
+}

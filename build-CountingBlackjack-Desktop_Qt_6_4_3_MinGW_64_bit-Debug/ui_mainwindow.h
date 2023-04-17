@@ -67,6 +67,8 @@ public:
     QLabel *label_9;
     QComboBox *handNumberComboBox;
     QLabel *labelTotalChips;
+    QLabel *dealerTotalLabel;
+    QLabel *playerTotalLabel;
     QStatusBar *statusbar;
     QMenuBar *menubar;
     QMenu *menuPlay;
@@ -206,13 +208,25 @@ public:
         labelTotalChips->setObjectName("labelTotalChips");
         labelTotalChips->setGeometry(QRect(360, 320, 101, 21));
         labelTotalChips->setAlignment(Qt::AlignCenter);
+        dealerTotalLabel = new QLabel(centralwidget);
+        dealerTotalLabel->setObjectName("dealerTotalLabel");
+        dealerTotalLabel->setGeometry(QRect(230, 60, 351, 31));
+        QFont font;
+        font.setPointSize(20);
+        dealerTotalLabel->setFont(font);
+        dealerTotalLabel->setAlignment(Qt::AlignCenter);
+        playerTotalLabel = new QLabel(centralwidget);
+        playerTotalLabel->setObjectName("playerTotalLabel");
+        playerTotalLabel->setGeometry(QRect(290, 520, 231, 31));
+        playerTotalLabel->setFont(font);
+        playerTotalLabel->setAlignment(Qt::AlignCenter);
         MainWindow->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
         MainWindow->setStatusBar(statusbar);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 800, 25));
+        menubar->setGeometry(QRect(0, 0, 800, 21));
         menuPlay = new QMenu(menubar);
         menuPlay->setObjectName("menuPlay");
         menuHelp = new QMenu(menubar);
@@ -308,6 +322,8 @@ public:
 
         handNumberComboBox->setCurrentText(QCoreApplication::translate("MainWindow", "1", nullptr));
         labelTotalChips->setText(QCoreApplication::translate("MainWindow", "XXX", nullptr));
+        dealerTotalLabel->setText(QCoreApplication::translate("MainWindow", "Known Dealer Total: 0", nullptr));
+        playerTotalLabel->setText(QCoreApplication::translate("MainWindow", "Hand Total: 0", nullptr));
         menuPlay->setTitle(QCoreApplication::translate("MainWindow", "Play", nullptr));
         menuHelp->setTitle(QCoreApplication::translate("MainWindow", "Help", nullptr));
         menuLessons->setTitle(QCoreApplication::translate("MainWindow", "Lessons", nullptr));

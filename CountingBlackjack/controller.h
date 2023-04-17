@@ -127,6 +127,18 @@ signals:
     void setHitButtonEnabled(bool enabled);
 
     /**
+     * @brief Sets the label which tells the player their current total to newTotal
+     * @param newTotal
+     */
+    void setPlayerTotal(int newTotal);
+
+    /**
+     * @brief Sets the label which tells the player the dealer's current total to newDTotal
+     * @param newDTotal
+     */
+    void setDealerTotal(int newDTotal);
+
+    /**
      * @brief Use to tell the view to offer insurance
      */
     void offerInsurance();
@@ -135,7 +147,6 @@ signals:
      * @brief Signal to indicate that the round is over
      */
     void roundFinished();
-
 private:
     /**
      * @brief Moves plays to given hand

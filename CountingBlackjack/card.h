@@ -8,7 +8,7 @@ public:
     Card(int suit, int rank);
     int getSuit();
     int getRank();
-
+    int getValue();
 private:
     //Suit: 0-Heart, 1-Club, 2-Diamond, 3-Spade.  Odds are black if that helps.
     int suit;

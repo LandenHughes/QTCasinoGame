@@ -22,6 +22,8 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     connect(&control, &Controller::setDoubleButtonEnabled, ui->doubleDownPushButton, &QWidget::setEnabled);
     connect(&control, &Controller::setSplitButtonEnabled, ui->splitPushButton, &QWidget::setEnabled);
     connect(&control, &Controller::setHitButtonEnabled, ui->hitPushButton, &QWidget::setEnabled);
+    connect(&control, &Controller::setPlayerTotal, this, &MainWindow::setPlayerTotal);
+    connect(&control, &Controller::setDealerTotal, this, &MainWindow::setDealerTotal);
 
     //Game Control Buttons
     connect(ui->hitPushButton, &QPushButton::clicked, &control, qOverload<>(&Controller::hit));
@@ -72,7 +74,7 @@ void MainWindow::addCardToPlayArea(Card card, bool toDealerArea, bool faceDown)
         {
             ui->dealerArea->addWidget(newCard);
         }
-        //Add to player's hand
+        //Add to player's hand ~ technically impossible during game
         else
         {
             //TODO: Determine the correct player hand
@@ -231,6 +233,7 @@ void MainWindow::clearPlayerArea()
         delete toDelete->widget();
         delete toDelete;
     }
+    setPlayerTotal(0);
 }
 
 void MainWindow::clearDealerArea()
@@ -241,6 +244,7 @@ void MainWindow::clearDealerArea()
         delete toDelete->widget();
         delete toDelete;
     }
+    setDealerTotal(0);
 }
 
 
@@ -262,4 +266,16 @@ void MainWindow::endRound()
     ui->dealPushButton->setEnabled(true);
     ui->betComboBox->setEnabled(true);
     ui->handNumberComboBox->setEnabled(true);
+}
+
+void MainWindow::setPlayerTotal(int newTotal)
+{
+    QString newTotalMessage = "Player Total: " + QString::number(newTotal);
+    ui->playerTotalLabel->setText(newTotalMessage);
+}
+
+void MainWindow::setDealerTotal(int newDTotal)
+{
+    QString newTotalMessage = "Known Dealer Total: " + QString::number(newDTotal);
+    ui->dealerTotalLabel->setText(newTotalMessage);
 }
