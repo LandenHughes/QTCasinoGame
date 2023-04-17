@@ -13,17 +13,15 @@ bool Controller::hit()
 
 bool Controller::hit(int hand)
 {
-    Card cardHit = deckModel.dealCard();
-    fieldModel.addToHand(hand, cardHit);
-    qDebug()<<cardHit.getSuit();
-    qDebug()<<cardHit.getRank();
-    emit hitAction(hand, cardHit.getSuit(), cardHit.getRank());
+    Card card = fieldModel.dealToHand(deckModel, hand);
 
-    bool isBust = fieldModel.getPlayerHand(hand).getScore() > 21;
+    emit hitAction(card, hand == -1);
 
-    if(isBust)
-        stand();
-    return isBust;
+    emit setDoubleButtonEnabled(false);
+    emit setSplitButtonEnabled(false);
+    emit setHitButtonEnabled(fieldModel.getPlayerHand(hand).canHit());
+
+    return fieldModel.getPlayerHand(hand).getScore() > 21;
 }
 
 void Controller::initalizeGame(int playerChips, int numberDecks)
@@ -36,9 +34,8 @@ void Controller::initalizeGame(int playerChips, int numberDecks)
 
 void Controller::dealerHit()
 {
-    Card cardHit = deckModel.dealCard();
-    fieldModel.addToHand(-1, cardHit);
-    emit hitAction(-1, cardHit.getSuit(), cardHit.getRank());
+    Card card = fieldModel.dealToHand(deckModel, -1);
+    emit hitAction(card, true, false);
 }
 
 void Controller::stand()
@@ -47,16 +44,17 @@ void Controller::stand()
     if (currentHand >= fieldModel.getPlayerHands().size())
         dealerTurn();
     else
-        emit focusHand(fieldModel.getPlayerHand(currentHand).asList());
+        playOnHand(currentHand);
 }
 
 void Controller::split()
 {
     //DOES NOT CHECK IF THIS CAN BE DONE.
-    int newHandIndex = fieldModel.splitHand(currentHand);
-    //Give each new hand a new card
-    hit(currentHand);
-    hit(newHandIndex);
+    fieldModel.splitHand(deckModel, currentHand);
+
+    emit setChipTotal(fieldModel.getPlayerChips());
+
+    playOnHand(currentHand);
 }
 
 void Controller::insurance()
@@ -67,9 +65,12 @@ void Controller::insurance()
 
 void Controller::doubleDown()
 {
-    fieldModel.getPlayerHand(currentHand).doubleDown();
-    hit();
-    stand();
+    Card card = fieldModel.doubleDownHand(deckModel, currentHand);
+    emit hitAction(card);
+    emit setChipTotal(fieldModel.getPlayerChips());
+    emit setDoubleButtonEnabled(false);
+    emit setSplitButtonEnabled(false);
+    emit setHitButtonEnabled(false);
 }
 
 void Controller::dealOutCards(int numberHands, int bet)
@@ -82,13 +83,13 @@ void Controller::dealOutCards(int numberHands, int bet)
     emit initalDeal(dealerHand, playerHands, fieldModel.getPlayerChips());
 
     currentHand = 0;
-    emit focusHand(fieldModel.getPlayerHand(currentHand).asList());
+    playOnHand(currentHand);
 
 }
 
 void Controller::dealerTurn()
 {
-    emit showCard(-1, 0, fieldModel.getDealerHiddenCard());
+    emit showCard(fieldModel.getDealerHiddenCard(), true, 0);
     //Hit until above 17.
     while (fieldModel.getDealerScore() < 17)
         dealerHit();
@@ -104,3 +105,16 @@ void Controller::endRound()
     emit roundFinished();
 }
 
+void Controller::playOnHand(int handPos)
+{
+    Hand hand = fieldModel.getPlayerHand(handPos);
+    emit setDoubleButtonEnabled(hand.canDouble());
+    emit setSplitButtonEnabled(hand.canSplit());
+    emit setHitButtonEnabled(hand.canHit());
+    emit displayCardsInPlayerArea(hand.asList());
+}
+
+void Controller::offerInuranceOnHand(int hand)
+{
+
+}

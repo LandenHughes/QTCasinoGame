@@ -53,6 +53,11 @@ int Hand::getBet()
     return bet;
 }
 
+int Hand::numberOfCards()
+{
+    return cards.size();
+}
+
 void Hand::addCard(Card card)
 {
     cards.push_back(card);
@@ -60,7 +65,7 @@ void Hand::addCard(Card card)
 
 bool Hand::canHit()
 {
-    return !doubledDown;
+    return !doubledDown && getScore() < 21;
 }
 
 bool Hand::canDouble()

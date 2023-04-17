@@ -45,6 +45,12 @@ public:
     int getBet();
 
     /**
+     * @brief getNumCards
+     * @return
+     */
+    int numberOfCards();
+
+    /**
      * @brief canHit
      * @return Whether the can hand can be hit
      */

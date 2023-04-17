@@ -15,10 +15,13 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     //Controller Signals
     connect(&control, &Controller::hitAction, this, &MainWindow::addCardToPlayArea);
     connect(&control, &Controller::initalDeal, this, &MainWindow::initalDeal);
-    connect(&control, &Controller::focusHand, this, &MainWindow::focusHand);
-    connect(&control, &Controller::showCard, this, &MainWindow::showCard);
+    connect(&control, &Controller::displayCardsInPlayerArea, this, &MainWindow::displayCardsInPlayerArea);
+    connect(&control, &Controller::showCard, this, &MainWindow::flipCardUp);
     connect(&control, &Controller::setChipTotal, this, &MainWindow::setPlayerChips);
     connect(&control, &Controller::roundFinished, this, &MainWindow::endRound);
+    connect(&control, &Controller::setDoubleButtonEnabled, ui->doubleDownPushButton, &QWidget::setEnabled);
+    connect(&control, &Controller::setSplitButtonEnabled, ui->splitPushButton, &QWidget::setEnabled);
+    connect(&control, &Controller::setHitButtonEnabled, ui->hitPushButton, &QWidget::setEnabled);
 
     //Game Control Buttons
     connect(ui->hitPushButton, &QPushButton::clicked, &control, qOverload<>(&Controller::hit));
@@ -54,7 +57,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::addCardToPlayArea(int hand, int suit, int rank, bool faceDown)
+void MainWindow::addCardToPlayArea(Card card, bool toDealerArea, bool faceDown)
 {
     QLabel* newCard = new QLabel;
     if(faceDown)
@@ -65,7 +68,7 @@ void MainWindow::addCardToPlayArea(int hand, int suit, int rank, bool faceDown)
         newCard->setPixmap(cardBack);
 
         //Add to dealer's hand
-        if(hand == -1)
+        if(toDealerArea)
         {
             ui->dealerArea->addWidget(newCard);
         }
@@ -82,6 +85,7 @@ void MainWindow::addCardToPlayArea(int hand, int suit, int rank, bool faceDown)
         QString cardAddress = ":/images/Playing_Cards/";
 
         //Determine card rank
+        int rank = card.getRank();
         if(rank > 1 && rank < 11) cardAddress = cardAddress + QString::number(rank) + "_of_";
         else if(rank == 1) cardAddress = cardAddress + "ace_of_";
         else if(rank == 11) cardAddress = cardAddress + "jack_of_";
@@ -89,7 +93,7 @@ void MainWindow::addCardToPlayArea(int hand, int suit, int rank, bool faceDown)
         else if(rank == 13) cardAddress = cardAddress + "king_of_";
 
         //Determin card suit
-        switch(suit)
+        switch(card.getSuit())
         {
         case(0):
             cardAddress = cardAddress + "hearts.png";
@@ -112,7 +116,7 @@ void MainWindow::addCardToPlayArea(int hand, int suit, int rank, bool faceDown)
         newCard->setPixmap(cardImage);
 
         //Add to dealer's hand
-        if(hand == -1)
+        if(toDealerArea)
         {
             ui->dealerArea->addWidget(newCard);
         }
@@ -125,26 +129,26 @@ void MainWindow::addCardToPlayArea(int hand, int suit, int rank, bool faceDown)
     }
 }
 
-void MainWindow::removeCardFromPlayArea(int hand, int card)
+void MainWindow::removeCardFromPlayArea(bool inDealerHand, int cardPos)
 {
-    if (hand == -1)
+    if (inDealerHand)
     {
-        QLayoutItem* item = ui->dealerArea->takeAt(card);
+        QLayoutItem* item = ui->dealerArea->takeAt(cardPos);
         delete item->widget();
         delete item;
     }
     else
     {
-        QLayoutItem* item = ui->playerArea->takeAt(card);
+        QLayoutItem* item = ui->playerArea->takeAt(cardPos);
         delete item->widget();
         delete item;
     }
 }
 
-void MainWindow::showCard(int hand, int cardPos, Card card)
+void MainWindow::flipCardUp(Card card, int inDealerHand, int cardPos)
 {
-    removeCardFromPlayArea(hand, cardPos);
-    addCardToPlayArea(hand, card.getSuit(), card.getRank(), false);
+    removeCardFromPlayArea(inDealerHand, cardPos);
+    addCardToPlayArea(card, inDealerHand, false);
 }
 
 void MainWindow::setPlayerChips(int chips)
@@ -205,19 +209,16 @@ void MainWindow::startRound()
     controller.dealOutCards(ui->handNumberComboBox->currentText().toInt(), ui->betComboBox->currentText().toInt());
 }
 
-void MainWindow::initalDeal(QVector<Card> dealerHand, QVector<Card> playerCards, int totalChips)
+void MainWindow::initalDeal(QVector<Card> dealerCards, QVector<Card> playerCards, int totalChips)
 {
     clearDealerArea();
     clearPlayerArea();
 
     for (int card = 0; card < 2; card++)
-        for (int hand = -1; hand < playerCards.size()/2; hand++)
-        {
-            if (hand == -1)
-                addCardToPlayArea(-1, dealerHand[card].getSuit(), dealerHand[card].getRank(), card == 0);
-            else
-                addCardToPlayArea(hand, playerCards[2*hand + card].getSuit(), playerCards[2*hand + card].getRank(), false);
-        }
+    {
+        addCardToPlayArea(dealerCards[card], true, card == 0);
+        addCardToPlayArea(playerCards[card], false, false);
+    }
 
     setPlayerChips(totalChips);
 }
@@ -243,12 +244,12 @@ void MainWindow::clearDealerArea()
 }
 
 
-void MainWindow::focusHand(QVector<Card> hand)
+void MainWindow::displayCardsInPlayerArea(QVector<Card> hand)
 {
     clearPlayerArea();
     for (int i = 0; i < hand.size(); i++)
     {
-        addCardToPlayArea(0, hand[i].getSuit(), hand[i].getRank(), false);
+        addCardToPlayArea(hand[i], false, false);
     }
 }
 

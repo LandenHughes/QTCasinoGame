@@ -46,11 +46,21 @@ Card FieldModel::getDealerHiddenCard(){
     return dealerHand.front();
 }
 
-int FieldModel::splitHand(int handIndex)
+int FieldModel::splitHand(DeckModel& deck, int handIndex)
 {
     //Assumes the hand is valid
+    //Pay for split
+    playerChips -= playerHands[handIndex].getBet();
+
+    //Adds new hand to the end of playerHands
     playerHands.push_back(playerHands[handIndex].split());
-    return playerHands.size()-1;
+
+    //Deals cards to both hands.
+    int newHandIndex = playerHands.size()-1;
+    dealToHand(deck, handIndex);
+    dealToHand(deck, newHandIndex);
+
+    return newHandIndex;
 }
 
 int FieldModel::insurePlayer()
@@ -100,13 +110,21 @@ bool FieldModel::isDealerHandBlackjack()
     return dealerHand.size() == 2 && getDealerScore() == 21;
 }
 
-
-void FieldModel::addToHand(int currentHand, Card card)
+Card FieldModel::doubleDownHand(DeckModel& deck, int handIndex)
 {
-    if (currentHand == -1)
+    playerChips -= playerHands[handIndex].getBet();
+    playerHands[handIndex].doubleDown();
+    return dealToHand(deck, handIndex);
+}
+
+Card FieldModel::dealToHand(DeckModel& deck, int handIndex)
+{
+    Card card = deck.dealCard();
+    if (handIndex == -1)
         dealerHand.append(card);
     else
-        playerHands[currentHand].addCard(card);
+        playerHands[handIndex].addCard(card);
+    return card;
 }
 
 void FieldModel::endRound()

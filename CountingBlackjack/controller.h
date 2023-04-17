@@ -21,8 +21,6 @@ public slots:
      */
     bool hit();
 
-    bool hit(int hand);
-
     /**
      * @brief Initalizes the game
      * @param The player's starting chips
@@ -85,37 +83,74 @@ signals:
 
     /**
      * @brief Used to tell the view that either the dealer or the player has 'hit'.
-     * @param hand - Represents the hand that a card will be added to. -1 for dealer, 0-infinity for player hands.
-     * @param suit - Represents the suit of the card given: 0-Heart, 1-Club, 2-Diamond, 3-Spade.
-     * @param rank - Rank of the card: 1 is A, 11 is J, 12 is Q, 13 is K.  0 is Joker, but blackjack isn't palyed with Jokers.
+     * @param card - The card to add to view
+     * @param toDealerHand - Whether to add the card to the dealer's hand.
+     * @param faceDown - Whether the card will be dealt face down
      */
-    void hitAction(int hand, int suit, int rank, bool hideCard = false);
+    void hitAction(Card card, bool toDealerHand = false, bool faceDown = false);
 
     /**
      * @brief Used to tell the view to flip over a card
      * @param hand - the hand in which to flip the card. -1 for dealer, 0-infinity for player hands.
      * @param card - the card to flip.
      */
-    void showCard(int hand, int cardPos, Card card);
+    void showCard(Card card, int inDealerHand, int cardPos);
 
     /**
      * @brief Pulls up given hand to act on
      * @param hand - the hand to focus. Note: only works for player hands, -1 in will result in an execption
      */
-    void focusHand(QVector<Card> hand);
+    void displayCardsInPlayerArea(QVector<Card> hand);
 
     /**
-     * @brief Updates the chip counter, setting to parameter
+     * @brief Use to tell the view to update the chip counter
      * @param totalChips - The total number of chips that the player has
      */
     void setChipTotal(int totalChips);
 
     /**
-     * @brief A signal to indicate that the round is over
+     * @brief Use to tell the view to enables/disables split button
+     * @param enabled - If true, the button is enabled. Otherwise, it is disabled
+     */
+    void setSplitButtonEnabled(bool enabled);
+
+    /**
+     * @brief Use to tell the view to enables/disables split button
+     * @param enabled - If true, the button is enabled. Otherwise, it is disabled
+     */
+    void setDoubleButtonEnabled(bool enabled);
+
+    /**
+     * @brief Use to tell the view to enables/disables split button
+     * @param enabled - If true, the button is enabled. Otherwise, it is disabled
+     */
+    void setHitButtonEnabled(bool enabled);
+
+    /**
+     * @brief Use to tell the view to offer insurance
+     */
+    void offerInsurance();
+
+    /**
+     * @brief Signal to indicate that the round is over
      */
     void roundFinished();
 
 private:
+    /**
+     * @brief Moves plays to given hand
+     * @param hand - hand to move play to
+     */
+    void playOnHand(int hand);
+
+    /**
+     * @brief Displays hand and offers insurance on it
+     * @param hand - hand to offer insurance on it
+     */
+    void offerInuranceOnHand(int hand);
+
+    bool hit(int hand);
+
     int currentHand = 0;
     FieldModel fieldModel;
     DeckModel deckModel;

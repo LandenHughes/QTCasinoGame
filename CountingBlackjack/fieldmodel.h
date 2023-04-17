@@ -37,6 +37,20 @@ public:
     Hand& getPlayerHand(int currentHand);
 
     /**
+     * @brief Doubles down on the given hand.
+     * @param deck - The deck to deal the new cards from
+     * @param currentHand - Hand to double down
+     */
+    Card doubleDownHand(DeckModel& deck, int handIndex);
+
+    /**
+     * @brief Adds a given card to a given hand.
+     * @param currentHand - Determines which hand to add a card to. -1 refers to the dealers hand. [0-cards.size()) are the players hands
+     * @param card - The card to add to
+     */
+    Card dealToHand(DeckModel& deck, int currentHand);
+
+    /**
      * @brief getDealerHiddenCard
      * @return The first card in dealerHand
      */
@@ -44,10 +58,11 @@ public:
 
     /**
      * @brief Splits the current hand into two new hands, with the new hand going to the end of the hands list.
-     * @param currentHand
+     * @param deck - The deck to deal the new cards from
+     * @param currentHand - hand to split
      * @return Index of the new split hand.
      */
-    int splitHand(int currentHand);
+    int splitHand(DeckModel& deck, int handIndex);
 
     /**
      * @brief Insures the player.
@@ -81,11 +96,10 @@ public:
     bool isDealerHandBlackjack();
 
     /**
-     * @brief Adds a given card to a given hand.
-     * @param currentHand - Determines which hand to add a card to. -1 refers to the dealers hand. [0-cards.size()) are the players hands
-     * @param card - The card to add to
+     * @brief canOfferInsurance
+     * @return Whether or not insurance should be offered for the current hand
      */
-    void addToHand(int currentHand, Card card);
+    bool canOfferInsurance();
 
     /**
      * @brief Ends the round, gives payouts, clears everything up (reset).
