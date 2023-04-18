@@ -1,6 +1,7 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
+#include "chipphysics.h"
 #include "fieldmodel.h"
 #include "deckmodel.h"
 #include <QObject>
@@ -71,6 +72,11 @@ public slots:
      * @brief End the round, give the player any chips they've won, send cards on the field to the discard pile.
      */
     void endRound();
+
+    /**
+     * @brief doChipPhysics - sends
+     */
+    void doChipPhysics(QPixmap*);
 
 signals:
     /**
@@ -147,6 +153,11 @@ signals:
      * @brief Signal to indicate that the round is over
      */
     void roundFinished();
+
+    /**
+     * @brief signal to tell view to update the chip label
+     */
+    void notifyUpdateChipView();
 private:
     /**
      * @brief Moves plays to given hand
@@ -165,6 +176,7 @@ private:
     int currentHand = 0;
     FieldModel fieldModel;
     DeckModel deckModel;
+    ChipPhysics chip;
 };
 
 #endif // CONTROLLER_H

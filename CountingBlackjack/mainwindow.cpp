@@ -24,6 +24,7 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     connect(&control, &Controller::setHitButtonEnabled, ui->hitPushButton, &QWidget::setEnabled);
     connect(&control, &Controller::setPlayerTotal, this, &MainWindow::setPlayerTotal);
     connect(&control, &Controller::setDealerTotal, this, &MainWindow::setDealerTotal);
+    connect(&control, &Controller::notifyUpdateChipView, this, &MainWindow::updateChipsOnTable);
 
     //Game Control Buttons
     connect(ui->hitPushButton, &QPushButton::clicked, &control, qOverload<>(&Controller::hit));
@@ -169,6 +170,7 @@ void MainWindow::setupUI()
     ui->playerArea->setAlignment(Qt::AlignHCenter);
 
     chipMap = QPixmap(ui->labelCurrentBet->width(), ui->labelCurrentBet->height());//set the pixmap area for the chip animation area
+    chipMap.fill(Qt::transparent);
     //TODO: FOR TESTING~REMOVE LATER
 //    addCardToPlayArea(true, -1, 0, 0);
 //    addCardToPlayArea(true, 0, 0, 0);
@@ -212,6 +214,7 @@ void MainWindow::startRound()
     controller.dealOutCards(ui->handNumberComboBox->currentText().toInt(), ui->betComboBox->currentText().toInt());
     //TODO:
     //send a pixmap that represents the chipArea to chipPhysics for the chips to be drawn on
+    controller.doChipPhysics(&chipMap);
 }
 
 void MainWindow::initalDeal(QVector<Card> dealerCards, QVector<Card> playerCards, int totalChips)
@@ -281,4 +284,9 @@ void MainWindow::setDealerTotal(int newDTotal)
     QString newTotalMessage = "Known Dealer Total: " + QString::number(newDTotal);
     qDebug() << newDTotal << " " << newTotalMessage;
     ui->dealerTotalLabel->setText(newTotalMessage);
+}
+
+void MainWindow::updateChipsOnTable()
+{
+    ui->labelCurrentBet->setPixmap(chipMap);
 }

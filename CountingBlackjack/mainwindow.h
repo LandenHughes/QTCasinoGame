@@ -104,6 +104,11 @@ public slots:
      */
     void setDealerTotal(int newDTotal);
 
+    /**
+     * @brief updateChipsOnTable - updates the chips label to the current position of chips in view
+     */
+    void updateChipsOnTable();
+
 signals:
     void startLessonNumber(int lessonNum);
 

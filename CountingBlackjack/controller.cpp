@@ -124,3 +124,10 @@ void Controller::offerInuranceOnHand(int hand)
 {
 
 }
+
+void Controller::doChipPhysics(QPixmap *map)
+{
+    //give the chip class access to the map
+    chip.placeChipsOnMap(map);
+    emit notifyUpdateChipView();
+}

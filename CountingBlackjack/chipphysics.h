@@ -7,7 +7,7 @@
 #ifndef CHIPPHYSICS_H
 #define CHIPPHYSICS_H
 
-#include "controller.h"
+//#include "controller.h"
 #include <Box2D/Box2D.h>
 #include <QObject>
 #include <QWidget>
@@ -19,15 +19,15 @@ class ChipPhysics : public QObject
     Q_OBJECT
 
 public:
-    explicit ChipPhysics(Controller& control, QObject *parent = nullptr);
+    explicit ChipPhysics(QObject *parent = nullptr);
+
     ~ChipPhysics();
 
 public slots:
 
 signals:
 
-private:
-    Controller &controller; //Controller can send signals to be recieved and such
+public:
 
     //b2AABB world; //Axis aligned bounding box to represent the "world" (our frame)
     b2World* world;
