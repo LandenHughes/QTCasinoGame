@@ -168,6 +168,7 @@ void MainWindow::setupUI()
     ui->dealerArea->setAlignment(Qt::AlignHCenter);
     ui->playerArea->setAlignment(Qt::AlignHCenter);
 
+    chipMap = QPixmap(ui->labelCurrentBet->width(), ui->labelCurrentBet->height());//set the pixmap area for the chip animation area
     //TODO: FOR TESTING~REMOVE LATER
 //    addCardToPlayArea(true, -1, 0, 0);
 //    addCardToPlayArea(true, 0, 0, 0);
@@ -209,6 +210,8 @@ void MainWindow::startRound()
     ui->betComboBox->setEnabled(false);
     ui->handNumberComboBox->setEnabled(false);
     controller.dealOutCards(ui->handNumberComboBox->currentText().toInt(), ui->betComboBox->currentText().toInt());
+    //TODO:
+    //send a pixmap that represents the chipArea to chipPhysics for the chips to be drawn on
 }
 
 void MainWindow::initalDeal(QVector<Card> dealerCards, QVector<Card> playerCards, int totalChips)

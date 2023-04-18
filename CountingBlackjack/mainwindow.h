@@ -110,6 +110,7 @@ signals:
 private:
     Ui::MainWindow *ui;
     Controller& controller;
+    QPixmap chipMap;
 };
 
 #endif // MAINWINDOW_H

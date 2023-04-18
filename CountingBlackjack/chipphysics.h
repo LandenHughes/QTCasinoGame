@@ -11,6 +11,7 @@
 #include <Box2D/Box2D.h>
 #include <QObject>
 #include <QWidget>
+#include <QPainter>
 
 
 class ChipPhysics : public QObject
@@ -31,11 +32,22 @@ private:
     //b2AABB world; //Axis aligned bounding box to represent the "world" (our frame)
     b2World* world;
 
+
     /**
      * @brief initializes all the components to make chips and their functionality such as
      * position, bouncability, etc.
      */
     void setupBodies();
+
+    /**
+     * @brief createChips - creates a specified number of chips given the users bet amount
+     */
+    void createChips(int);
+
+    /**
+     * @brief placeChipsOnMap - uses a qpainter to draw all the chips on the pixmap representing the chip area in the UI
+     */
+    void placeChipsOnMap(QPixmap*);
 
 private slots:
 
