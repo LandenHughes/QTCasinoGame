@@ -19,7 +19,8 @@ public:
     /**
      * @brief Constructor, creates a BlackJack with exactly the cards in cardInDeck.
      * Order of cards is preserved, with the first card in cardsToAdd dealt first.
-     * @param numberOfDecks
+     * @param cardsToAdd
+     * @param numCards
      */
     DeckModel(Card cardsToAdd[], int numCards);
 
