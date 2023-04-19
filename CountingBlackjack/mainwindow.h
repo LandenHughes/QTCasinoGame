@@ -109,6 +109,11 @@ public slots:
      */
     void updateChipsOnTable();
 
+    /**
+     * @brief updateChipsOnTableAnimationDone - stop animation loop and update chip view box
+     */
+    void updateChipsOnTableAnimationDone();
+
 signals:
     void startLessonNumber(int lessonNum);
 

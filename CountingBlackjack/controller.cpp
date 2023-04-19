@@ -129,5 +129,9 @@ void Controller::doChipPhysics(QPixmap *map)
 {
     //give the chip class access to the map
     chip.placeChipsOnMap(map);
-    emit notifyUpdateChipView();
+    if(!chip.animationDone)
+        emit notifyUpdateChipView();
+    else
+        emit notifyUpdateChipAnimationDone();
+
 }
