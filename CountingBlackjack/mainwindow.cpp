@@ -161,6 +161,9 @@ void MainWindow::setPlayerChips(int chips)
 
 void MainWindow::setupUI()
 {
+    QPixmap table(":/images/UI_Images/blackjackTable");
+    table = table.scaled(ui->backgroundImage->size());
+    ui->backgroundImage->setPixmap(table);
     //Set image for draw pile
     QPixmap cardBack(":/images/Playing_Cards/back.png");
     cardBack = cardBack.scaled(ui->drawDeck->size());
