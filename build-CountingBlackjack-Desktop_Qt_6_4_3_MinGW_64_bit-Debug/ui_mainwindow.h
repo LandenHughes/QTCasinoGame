@@ -349,10 +349,10 @@ public:
         labelTotalChipsTitle->setText(QCoreApplication::translate("MainWindow", "Total Chips", nullptr));
         labelCurrentBet->setText(QCoreApplication::translate("MainWindow", "Chips Area", nullptr));
         labelBetTitle->setText(QCoreApplication::translate("MainWindow", "Bet", nullptr));
-        splitPushButton->setText(QCoreApplication::translate("MainWindow", "SPLIT", nullptr));
+        splitPushButton->setText(QString());
         hitPushButton->setText(QString());
-        standPushButton->setText(QCoreApplication::translate("MainWindow", "STAND", nullptr));
-        doubleDownPushButton->setText(QCoreApplication::translate("MainWindow", "DOUBLE", nullptr));
+        standPushButton->setText(QString());
+        doubleDownPushButton->setText(QString());
         acceptInsurancePushButton->setText(QCoreApplication::translate("MainWindow", "ACCEPT INSURANCE", nullptr));
         dealPushButton->setText(QCoreApplication::translate("MainWindow", "DEAL", nullptr));
         denyInsurancePushButton->setText(QCoreApplication::translate("MainWindow", "DENY INSURANCE", nullptr));

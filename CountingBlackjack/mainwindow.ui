@@ -119,7 +119,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>SPLIT</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="hitPushButton">
@@ -151,7 +151,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>STAND</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="doubleDownPushButton">
@@ -167,7 +167,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>DOUBLE</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="acceptInsurancePushButton">
