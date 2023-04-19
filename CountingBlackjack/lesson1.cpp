@@ -89,5 +89,6 @@ class Lesson1 : public Lesson
     void completeLesson()
     {
         //Do what needs to be done to comlplete the lesson, such as displaying a window.
+        emit lessonFinished();
     }
 };

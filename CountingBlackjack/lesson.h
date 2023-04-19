@@ -25,7 +25,7 @@ public:
     /**
      * @brief Completes the lesson, and does what it needs to to reset, like emiting lessonFinished.
      */
-    virtual void completeLesson();
+    virtual void completeLesson() = 0;
 
 signals:
     void lessonFinished();
