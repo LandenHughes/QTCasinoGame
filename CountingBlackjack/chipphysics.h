@@ -29,8 +29,6 @@ signals:
 public:
 
     b2World* world;
-    bool animationDone;
-
 
     /**
      * @brief initializes all the components to make chips and their functionality such as
@@ -42,11 +40,6 @@ public:
      * @brief createChips - creates a specified number of chips given the users bet amount
      */
     void createChips(int);
-
-    /**
-     * @brief placeChipsOnMap - uses a qpainter to draw all the chips on the pixmap representing the chip area in the UI
-     */
-    void placeChipsOnMap(QPixmap*);
 
     /**
      * @brief updateAnimation - Updates the world state through a wrold step so animation can continue

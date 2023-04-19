@@ -24,7 +24,6 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     connect(&control, &Controller::setPlayerTotal, this, &MainWindow::setPlayerTotal);
     connect(&control, &Controller::setDealerTotal, this, &MainWindow::setDealerTotal);
     connect(&control, &Controller::notifyUpdateChipView, this, &MainWindow::updateChipsOnTable);
-    connect(&control, &Controller::notifyUpdateChipAnimationDone, this, &MainWindow::updateChipsOnTableAnimationDone);
 
     //Game Control Buttons
     connect(ui->hitPushButton, &QPushButton::clicked, &control, qOverload<>(&Controller::hit));
@@ -210,6 +209,8 @@ void MainWindow::setupUI()
     ui->playerArea->setAlignment(Qt::AlignHCenter);
 
     chipMap = QPixmap(ui->labelCurrentBet->width(), ui->labelCurrentBet->height());//set the pixmap area for the chip animation area
+    qDebug() << "LabelInfo:" << ui->labelCurrentBet->width()<< " "<< ui->labelCurrentBet->width();
+
     chipMap.fill(Qt::transparent);
 }
 
@@ -329,19 +330,9 @@ void MainWindow::updateChipsOnTable(b2Body *chipList)
             painter.drawEllipse(centerPoint /2,
                                 currentChip->GetFixtureList()->GetShape()->m_radius, currentChip->GetFixtureList()->GetShape()->m_radius);
             qDebug() << "Chip Coordinates x then y:" << centerPoint.x()<< " "<< centerPoint.y();
-
-//            if(centerPoint.y() < -100){//this will be different from 100 but this is a stop condition to get the animation loop to stop (should stop when bodies stop moving)
-//                animationDone = true;
-//                currentChip->SetLinearVelocity(b2Vec2(0.0f, 0));//no more movement
-//            }//end if
         }
     }
 
     ui->labelCurrentBet->setPixmap(chipMap);
 }
 
-void MainWindow::updateChipsOnTableAnimationDone()
-{
-    ui->labelCurrentBet->setPixmap(chipMap);
-
-}

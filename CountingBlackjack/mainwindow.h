@@ -107,11 +107,6 @@ public slots:
      */
     void updateChipsOnTable(b2Body *currentChip);
 
-    /**
-     * @brief updateChipsOnTableAnimationDone - stop animation loop and update chip view box
-     */
-    void updateChipsOnTableAnimationDone();
-
 signals:
     void startLessonNumber(int lessonNum);
 
