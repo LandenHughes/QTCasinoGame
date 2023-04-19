@@ -29,8 +29,8 @@ signals:
 
 public:
 
-    //b2AABB world; //Axis aligned bounding box to represent the "world" (our frame)
     b2World* world;
+    bool animationDone;
 
 
     /**

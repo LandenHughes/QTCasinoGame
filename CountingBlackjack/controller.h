@@ -158,6 +158,11 @@ signals:
      * @brief signal to tell view to update the chip label
      */
     void notifyUpdateChipView();
+
+    /**
+     * @brief notifyUpdateChipAnimationDone - chip animation is done
+     */
+    void notifyUpdateChipAnimationDone();
 private:
     /**
      * @brief Moves plays to given hand

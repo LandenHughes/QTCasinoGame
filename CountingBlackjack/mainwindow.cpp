@@ -25,6 +25,7 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     connect(&control, &Controller::setPlayerTotal, this, &MainWindow::setPlayerTotal);
     connect(&control, &Controller::setDealerTotal, this, &MainWindow::setDealerTotal);
     connect(&control, &Controller::notifyUpdateChipView, this, &MainWindow::updateChipsOnTable);
+    connect(&control, &Controller::notifyUpdateChipAnimationDone, this, &MainWindow::updateChipsOnTableAnimationDone);
 
     //Game Control Buttons
     connect(ui->hitPushButton, &QPushButton::clicked, &control, qOverload<>(&Controller::hit));
@@ -297,4 +298,12 @@ void MainWindow::setDealerTotal(int newDTotal)
 void MainWindow::updateChipsOnTable()
 {
     ui->labelCurrentBet->setPixmap(chipMap);
+
+    //controller.doChipPhysics(&chipMap);
+}
+
+void MainWindow::updateChipsOnTableAnimationDone()
+{
+    ui->labelCurrentBet->setPixmap(chipMap);
+
 }
