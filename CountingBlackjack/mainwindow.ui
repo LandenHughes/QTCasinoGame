@@ -46,7 +46,7 @@
      <string>Discard</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_5">
+   <widget class="QLabel" name="labelTotalChipsTitle">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -57,6 +57,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Elephant</family>
       <pointsize>14</pointsize>
      </font>
     </property>
@@ -83,7 +84,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_8">
+   <widget class="QLabel" name="labelBetTitle">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -91,6 +92,12 @@
       <width>81</width>
       <height>16</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Elephant</family>
+      <pointsize>12</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Bet</string>
@@ -107,7 +114,7 @@
      <rect>
       <x>150</x>
       <y>600</y>
-      <width>161</width>
+      <width>160</width>
       <height>50</height>
      </rect>
     </property>
@@ -123,12 +130,12 @@
      <rect>
       <x>510</x>
       <y>600</y>
-      <width>161</width>
+      <width>160</width>
       <height>50</height>
      </rect>
     </property>
     <property name="text">
-     <string>HIT</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="standPushButton">
@@ -139,7 +146,7 @@
      <rect>
       <x>330</x>
       <y>600</y>
-      <width>161</width>
+      <width>160</width>
       <height>50</height>
      </rect>
     </property>
@@ -155,7 +162,7 @@
      <rect>
       <x>690</x>
       <y>600</y>
-      <width>161</width>
+      <width>160</width>
       <height>50</height>
      </rect>
     </property>
@@ -270,14 +277,22 @@
     </property>
     <layout class="QHBoxLayout" name="playerArea"/>
    </widget>
-   <widget class="QLabel" name="label_9">
+   <widget class="QLabel" name="labelNumberOfHandsTitle">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>0</x>
       <y>500</y>
-      <width>101</width>
+      <width>151</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Elephant</family>
+      <pointsize>12</pointsize>
+      <bold>false</bold>
+      <kerning>true</kerning>
+     </font>
     </property>
     <property name="text">
      <string>Number of hands</string>
@@ -335,6 +350,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Elephant</family>
       <pointsize>14</pointsize>
      </font>
     </property>
@@ -354,8 +370,46 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="palette">
+     <palette>
+      <active>
+       <colorrole role="Text">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </active>
+      <inactive>
+       <colorrole role="Text">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </inactive>
+      <disabled>
+       <colorrole role="Text">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>120</red>
+          <green>120</green>
+          <blue>120</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </disabled>
+     </palette>
+    </property>
     <property name="font">
      <font>
+      <family>Elephant</family>
       <pointsize>20</pointsize>
      </font>
     </property>
@@ -377,6 +431,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Elephant</family>
       <pointsize>20</pointsize>
      </font>
     </property>
@@ -403,9 +458,9 @@
    <zorder>backgroundImage</zorder>
    <zorder>drawDeck</zorder>
    <zorder>discardDeck</zorder>
-   <zorder>label_5</zorder>
+   <zorder>labelTotalChipsTitle</zorder>
    <zorder>labelCurrentBet</zorder>
-   <zorder>label_8</zorder>
+   <zorder>labelBetTitle</zorder>
    <zorder>splitPushButton</zorder>
    <zorder>hitPushButton</zorder>
    <zorder>standPushButton</zorder>
@@ -416,7 +471,7 @@
    <zorder>betComboBox</zorder>
    <zorder>horizontalLayoutWidget</zorder>
    <zorder>horizontalLayoutWidget_2</zorder>
-   <zorder>label_9</zorder>
+   <zorder>labelNumberOfHandsTitle</zorder>
    <zorder>handNumberComboBox</zorder>
    <zorder>labelTotalChips</zorder>
    <zorder>dealerTotalLabel</zorder>

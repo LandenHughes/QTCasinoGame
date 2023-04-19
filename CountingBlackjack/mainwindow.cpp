@@ -161,9 +161,28 @@ void MainWindow::setPlayerChips(int chips)
 
 void MainWindow::setupUI()
 {
+    QString styleSheet = "color: white";
+    ui->dealerTotalLabel->setStyleSheet(styleSheet);
+    ui->labelTotalChips->setStyleSheet(styleSheet);
+    ui->labelTotalChipsTitle->setStyleSheet(styleSheet);
+    ui->labelBetTitle->setStyleSheet(styleSheet);
+    ui->labelNumberOfHandsTitle->setStyleSheet(styleSheet);
+    ui->dealerTotalLabel->setStyleSheet(styleSheet);
+    ui->playerTotalLabel->setStyleSheet(styleSheet);
+    ui->acceptInsurancePushButton->setVisible(false);
+    ui->denyInsurancePushButton->setVisible(false);
+
+    //Set background to tabletop image
     QPixmap table(":/images/UI_Images/blackjackTable");
     table = table.scaled(ui->backgroundImage->size());
     ui->backgroundImage->setPixmap(table);
+
+    //Set hit button image
+    QPixmap hit(":/images/UI_Images/blackjackHitButton");
+    QIcon hitButtonIcon(hit);
+    ui->hitPushButton->setIcon(hitButtonIcon);
+    ui->hitPushButton->setIconSize(ui->hitPushButton->size());
+
     //Set image for draw pile
     QPixmap cardBack(":/images/Playing_Cards/back.png");
     cardBack = cardBack.scaled(ui->drawDeck->size());
@@ -174,20 +193,6 @@ void MainWindow::setupUI()
 
     chipMap = QPixmap(ui->labelCurrentBet->width(), ui->labelCurrentBet->height());//set the pixmap area for the chip animation area
     chipMap.fill(Qt::transparent);
-    //TODO: FOR TESTING~REMOVE LATER
-//    addCardToPlayArea(true, -1, 0, 0);
-//    addCardToPlayArea(true, 0, 0, 0);
-//    addCardToPlayArea(false, 0, 0, 1);
-//    addCardToPlayArea(false, 0, 1, 6);
-//    addCardToPlayArea(false, 0, 2, 11);
-//    addCardToPlayArea(false, 0, 3, 13);
-//    addCardToPlayArea(false, 0, 3, 13);
-//    addCardToPlayArea(false, 0, 3, 13);
-//    addCardToPlayArea(false, 0, 3, 13);
-//    addCardToPlayArea(false, 0, 3, 13);
-//    addCardToPlayArea(false, 0, 3, 13);
-//    addCardToPlayArea(false, -1, 2, 12);
-//    addCardToPlayArea(false, -1, 0, 3);
 }
 
 //Lesson Menu Slots
