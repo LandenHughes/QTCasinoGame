@@ -4,6 +4,8 @@ Controller::Controller()
     :fieldModel(FieldModel(0)),
     deckModel(DeckModel(0))
 {
+    chipTimer = new QTimer(this);
+    connect(chipTimer, &QTimer::timeout, this, &Controller::updateChips);
 }
 
 bool Controller::hit()
@@ -125,13 +127,26 @@ void Controller::offerInuranceOnHand(int hand)
 
 }
 
-void Controller::doChipPhysics(QPixmap *map)
-{
-    //give the chip class access to the map
-    chip.placeChipsOnMap(map);
-    if(!chip.animationDone)
-        emit notifyUpdateChipView();
-    else
-        emit notifyUpdateChipAnimationDone();
+////void Controller::doChipPhysics(int betAmt)
+//void Controller::doChipPhysics(QPixmap *map)
+//{
+//    //give the chip class access to the map
+//    chip.placeChipsOnMap(map);
+//    if(!chip.animationDone)
+//        emit notifyUpdateChipView();
+//    else
+//        emit notifyUpdateChipAnimationDone();
 
+//}
+
+void Controller::updateChips()
+{
+    chip.updateAnimation(); //Tells the world to step
+    emit notifyUpdateChipView(chip.getWorldChip());
+}
+
+void Controller::createChips(int betAmt)
+{
+    chip.createChips(betAmt);
+    chipTimer->start(20); //16ms is 60 frames a second
 }

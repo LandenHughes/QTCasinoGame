@@ -13,7 +13,6 @@
 #include <QWidget>
 #include <QPainter>
 
-
 class ChipPhysics : public QObject
 {
     Q_OBJECT
@@ -48,6 +47,17 @@ public:
      * @brief placeChipsOnMap - uses a qpainter to draw all the chips on the pixmap representing the chip area in the UI
      */
     void placeChipsOnMap(QPixmap*);
+
+    /**
+     * @brief updateAnimation - Updates the world state through a wrold step so animation can continue
+     */
+    void updateAnimation();
+
+    /**
+     * @brief getWorldChip - gets a chip body from the world list and returns it to the controller
+     * @return a pointer pointing to the chipBody in the world
+     */
+    b2Body* getWorldChip();
 
 private slots:
 

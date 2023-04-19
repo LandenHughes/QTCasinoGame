@@ -3,7 +3,6 @@
 #include "ui_mainwindow.h"
 #include <QDebug>
 
-
 MainWindow::MainWindow(Controller& control, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -241,7 +240,7 @@ void MainWindow::startRound()
     controller.dealOutCards(ui->handNumberComboBox->currentText().toInt(), ui->betComboBox->currentText().toInt());
     //TODO:
     //send a pixmap that represents the chipArea to chipPhysics for the chips to be drawn on
-    controller.doChipPhysics(&chipMap);
+    controller.createChips(ui->betComboBox->currentText().toInt());
 }
 
 void MainWindow::initalDeal(QVector<Card> dealerCards, QVector<Card> playerCards, int totalChips)
@@ -313,11 +312,32 @@ void MainWindow::setDealerTotal(int newDTotal)
     ui->dealerTotalLabel->setText(newTotalMessage);
 }
 
-void MainWindow::updateChipsOnTable()
+void MainWindow::updateChipsOnTable(b2Body *chipList)
 {
-    ui->labelCurrentBet->setPixmap(chipMap);
+     //controller.doChipPhysics(&chipMap);
 
-    //controller.doChipPhysics(&chipMap);
+    QPainter painter(&chipMap);
+    painter.setBrush(QColorConstants::Black);
+
+    chipMap.fill(Qt::transparent); //This is to reset the pixMap view
+
+    for(b2Body* currentChip = chipList; currentChip != nullptr; currentChip = currentChip->GetNext())//foreach body convery body info to something that can be drawn on a label
+    {
+        if(currentChip->GetType() == b2_dynamicBody && currentChip->GetFixtureList()->GetShape()->GetType() == b2Shape::e_circle)
+        {
+            QPointF centerPoint(currentChip->GetWorldCenter().x, currentChip->GetWorldCenter().y);
+            painter.drawEllipse(centerPoint /2,
+                                currentChip->GetFixtureList()->GetShape()->m_radius, currentChip->GetFixtureList()->GetShape()->m_radius);
+            qDebug() << "Chip Coordinates x then y:" << centerPoint.x()<< " "<< centerPoint.y();
+
+//            if(centerPoint.y() < -100){//this will be different from 100 but this is a stop condition to get the animation loop to stop (should stop when bodies stop moving)
+//                animationDone = true;
+//                currentChip->SetLinearVelocity(b2Vec2(0.0f, 0));//no more movement
+//            }//end if
+        }
+    }
+
+    ui->labelCurrentBet->setPixmap(chipMap);
 }
 
 void MainWindow::updateChipsOnTableAnimationDone()

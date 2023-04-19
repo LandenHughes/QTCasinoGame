@@ -6,6 +6,7 @@
 #include "deckmodel.h"
 #include <QObject>
 #include <QWidget>
+#include <QTimer>
 
 class Controller : public QObject
 {
@@ -73,10 +74,21 @@ public slots:
      */
     void endRound();
 
+//    /**
+//     * @brief doChipPhysics - sends
+//     */
+//    void doChipPhysics(QPixmap*);
+
     /**
-     * @brief doChipPhysics - sends
+     * @brief Method runs on a timer, tells the world to update, and the view to draw
      */
-    void doChipPhysics(QPixmap*);
+    void updateChips();
+
+    /**
+     * @brief createChips
+     * @param betAmt
+     */
+    void createChips(int betAmt);
 
 signals:
     /**
@@ -156,13 +168,15 @@ signals:
 
     /**
      * @brief signal to tell view to update the chip label
+     * @param chipBodyList - world sends chip information to the view so it can be drawn
      */
-    void notifyUpdateChipView();
+    void notifyUpdateChipView(b2Body *chipBodyList);
 
     /**
      * @brief notifyUpdateChipAnimationDone - chip animation is done
      */
     void notifyUpdateChipAnimationDone();
+
 private:
     /**
      * @brief Moves plays to given hand
@@ -182,6 +196,7 @@ private:
     FieldModel fieldModel;
     DeckModel deckModel;
     ChipPhysics chip;
+    QTimer *chipTimer;
 };
 
 #endif // CONTROLLER_H

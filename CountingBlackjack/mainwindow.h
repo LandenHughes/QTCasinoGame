@@ -5,8 +5,6 @@
 #include <QMainWindow>
 #include "controller.h"
 
-
-
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -107,7 +105,7 @@ public slots:
     /**
      * @brief updateChipsOnTable - updates the chips label to the current position of chips in view
      */
-    void updateChipsOnTable();
+    void updateChipsOnTable(b2Body *currentChip);
 
     /**
      * @brief updateChipsOnTableAnimationDone - stop animation loop and update chip view box
