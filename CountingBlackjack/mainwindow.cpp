@@ -184,6 +184,24 @@ void MainWindow::setupUI()
     ui->hitPushButton->setIcon(hitButtonIcon);
     ui->hitPushButton->setIconSize(ui->hitPushButton->size());
 
+    //Set stand button image
+    QPixmap stand(":/images/UI_Images/blackjackStandButton");
+    QIcon standButtonIcon(stand);
+    ui->standPushButton->setIcon(standButtonIcon);
+    ui->standPushButton->setIconSize(ui->standPushButton->size());
+
+    //Set double down button image
+    QPixmap doubleDown(":/images/UI_Images/blackjackDoubleDownButton");
+    QIcon doubleDownButtonIcon(doubleDown);
+    ui->doubleDownPushButton->setIcon(doubleDownButtonIcon);
+    ui->doubleDownPushButton->setIconSize(ui->doubleDownPushButton->size());
+
+    //Set split button image
+    QPixmap split(":/images/UI_Images/blackjackSplitButton");
+    QIcon splitButtonIcon(split);
+    ui->splitPushButton->setIcon(splitButtonIcon);
+    ui->splitPushButton->setIconSize(ui->doubleDownPushButton->size());
+
     //Set image for draw pile
     QPixmap cardBack(":/images/Playing_Cards/back.png");
     cardBack = cardBack.scaled(ui->drawDeck->size());

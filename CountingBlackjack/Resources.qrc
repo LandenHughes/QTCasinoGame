@@ -70,5 +70,8 @@
         <file>Playing_Cards/red_joker.png</file>
         <file>UI_Images/blackjackTable.png</file>
         <file>UI_Images/blackjackHitButton.png</file>
+        <file>UI_Images/blackjackDoubleDownButton.png</file>
+        <file>UI_Images/blackjackStandButton.png</file>
+        <file>UI_Images/blackjackSplitButton.png</file>
     </qresource>
 </RCC>
