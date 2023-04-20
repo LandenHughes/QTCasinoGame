@@ -22,35 +22,26 @@ void ChipPhysics::setupBodies()
     //World setup
     world = new b2World(b2Vec2(0.0f, 0.1f));
 
-    //Body setup for ground
-    float labelWidth = 101 * 2;//30 pixels per meter
-    float labelHeight = 211 * 2;//30 pixels per meter
+    //Body setup for boundary
+    float labelWidth = 101*2 ;//30 pixels per meter
+    float labelHeight = 211*2 ;//30 pixels per meter
+    //setup boundaries, each call to createFixture adds a new edge, edges cover the outside of the label
+    b2BodyDef boundaryDef;
+    boundaryDef.type = b2_staticBody;
+    b2Body *boundaryBody = world->CreateBody(&boundaryDef);
 
-    b2Vec2 vertices[4];
-    vertices[0].Set(0 , 0 );
-    vertices[1].Set(0 , labelHeight);//101 is the label width 211 is height
-    vertices[2].Set(labelWidth , labelHeight );
-    vertices[3].Set(labelWidth , 0 );
-    b2ChainShape boundry;
-    boundry.CreateLoop(vertices, 4);
+    b2EdgeShape boundaryEdge;
+    boundaryEdge.Set(b2Vec2(0, 0), b2Vec2(0, labelHeight));//top left -> bottom left
+    boundaryBody->CreateFixture(&boundaryEdge, 0);
 
-    // body for the bounding body
-    b2BodyDef boundryBodyDef;
-    boundryBodyDef.type = b2_staticBody;
-    boundryBodyDef.position.Set(0, 0);
-    b2Body* body = world->CreateBody(&boundryBodyDef);
+    boundaryEdge.Set(b2Vec2(0, labelHeight), b2Vec2(labelWidth, labelHeight));//bottom left -> bottom right
+    boundaryBody->CreateFixture(&boundaryEdge, 0);
 
-    // fixture for bounding body
-    b2FixtureDef boundryFixtureDef;
-    boundryFixtureDef.shape = &boundry;
-    boundryFixtureDef.density = 1.0f;
-    boundryFixtureDef.friction = 0.3f;
-    body->CreateFixture(&boundryFixtureDef);
+    boundaryEdge.Set(b2Vec2(labelWidth, labelHeight), b2Vec2(labelWidth, 0));//bottom left -> top right
+    boundaryBody->CreateFixture(&boundaryEdge, 0);
 
-
-    float xDisplacement = (labelWidth - body->GetPosition().x) / 2.0f;
-    float yDisplacement = (labelHeight - body->GetPosition().y) / 2.0f;
-    body->SetTransform(body->GetPosition() + b2Vec2(xDisplacement, yDisplacement), body->GetAngle());
+    boundaryEdge.Set(b2Vec2(0, 0), b2Vec2(labelWidth, 0));//top left -> top right
+    boundaryBody->CreateFixture(&boundaryEdge, 0);
 
 }
 
