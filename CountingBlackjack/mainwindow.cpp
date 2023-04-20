@@ -200,6 +200,18 @@ void MainWindow::setupUI()
     ui->splitPushButton->setIcon(splitButtonIcon);
     ui->splitPushButton->setIconSize(ui->doubleDownPushButton->size());
 
+    //Set accept insurance button image
+    QPixmap accept(":/images/UI_Images/blackjackAcceptInsuranceButton");
+    QIcon acceptButtonIcon(accept);
+    ui->acceptInsurancePushButton->setIcon(acceptButtonIcon);
+    ui->acceptInsurancePushButton->setIconSize(ui->acceptInsurancePushButton->size());
+
+    //Set deny insurance button image
+    QPixmap deny(":/images/UI_Images/blackjackDenyInsuranceButton");
+    QIcon denyButtonIcon(deny);
+    ui->denyInsurancePushButton->setIcon(denyButtonIcon);
+    ui->denyInsurancePushButton->setIconSize(ui->denyInsurancePushButton->size());
+
     //Set image for draw pile
     QPixmap cardBack(":/images/Playing_Cards/back.png");
     cardBack = cardBack.scaled(ui->drawDeck->size());

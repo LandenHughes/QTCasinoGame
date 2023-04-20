@@ -177,13 +177,13 @@
     <property name="geometry">
      <rect>
       <x>510</x>
-      <y>393</y>
+      <y>400</y>
       <width>340</width>
-      <height>31</height>
+      <height>30</height>
      </rect>
     </property>
     <property name="text">
-     <string>ACCEPT INSURANCE</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="dealPushButton">
@@ -206,13 +206,13 @@
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>393</y>
+      <y>400</y>
       <width>340</width>
-      <height>31</height>
+      <height>30</height>
      </rect>
     </property>
     <property name="text">
-     <string>DENY INSURANCE</string>
+     <string/>
     </property>
    </widget>
    <widget class="QComboBox" name="betComboBox">

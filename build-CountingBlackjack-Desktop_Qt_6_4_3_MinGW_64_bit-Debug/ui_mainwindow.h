@@ -172,14 +172,14 @@ public:
         acceptInsurancePushButton = new QPushButton(centralwidget);
         acceptInsurancePushButton->setObjectName("acceptInsurancePushButton");
         acceptInsurancePushButton->setEnabled(false);
-        acceptInsurancePushButton->setGeometry(QRect(510, 393, 340, 31));
+        acceptInsurancePushButton->setGeometry(QRect(510, 400, 340, 30));
         dealPushButton = new QPushButton(centralwidget);
         dealPushButton->setObjectName("dealPushButton");
         dealPushButton->setGeometry(QRect(30, 560, 80, 24));
         denyInsurancePushButton = new QPushButton(centralwidget);
         denyInsurancePushButton->setObjectName("denyInsurancePushButton");
         denyInsurancePushButton->setEnabled(false);
-        denyInsurancePushButton->setGeometry(QRect(150, 393, 340, 31));
+        denyInsurancePushButton->setGeometry(QRect(150, 400, 340, 30));
         betComboBox = new QComboBox(centralwidget);
         betComboBox->addItem(QString());
         betComboBox->addItem(QString());
@@ -353,9 +353,9 @@ public:
         hitPushButton->setText(QString());
         standPushButton->setText(QString());
         doubleDownPushButton->setText(QString());
-        acceptInsurancePushButton->setText(QCoreApplication::translate("MainWindow", "ACCEPT INSURANCE", nullptr));
+        acceptInsurancePushButton->setText(QString());
         dealPushButton->setText(QCoreApplication::translate("MainWindow", "DEAL", nullptr));
-        denyInsurancePushButton->setText(QCoreApplication::translate("MainWindow", "DENY INSURANCE", nullptr));
+        denyInsurancePushButton->setText(QString());
         betComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "10", nullptr));
         betComboBox->setItemText(1, QCoreApplication::translate("MainWindow", "20", nullptr));
         betComboBox->setItemText(2, QCoreApplication::translate("MainWindow", "30", nullptr));
