@@ -110,6 +110,17 @@ void Controller::endRound()
     fieldModel.endRound();
     emit setChipTotal(fieldModel.getPlayerChips());
     emit roundFinished();
+
+    if(fieldModel.playerWin)
+    {
+        if(fieldModel.isWinBlackjack)
+        {
+            chip.addWinningChips(true);
+            return;
+        }
+        chip.addWinningChips(false);
+    }
+
 }
 
 void Controller::playOnHand(int handPos)
@@ -127,18 +138,6 @@ void Controller::offerInuranceOnHand(int hand)
 
 }
 
-////void Controller::doChipPhysics(int betAmt)
-//void Controller::doChipPhysics(QPixmap *map)
-//{
-//    //give the chip class access to the map
-//    chip.placeChipsOnMap(map);
-//    if(!chip.animationDone)
-//        emit notifyUpdateChipView();
-//    else
-//        emit notifyUpdateChipAnimationDone();
-
-//}
-
 void Controller::updateChips()
 {
     chip.updateAnimation(); //Tells the world to step
@@ -147,6 +146,7 @@ void Controller::updateChips()
 
 void Controller::createChips(int betAmt)
 {
+    chip.clearWorld();
     chip.createChips(betAmt);
     chipTimer->start(10); //16ms is 60 frames a second
 }

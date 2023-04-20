@@ -34,6 +34,8 @@ QVector<Card> FieldModel::dealPlayerHand(DeckModel& deck, int bet)
 
     playerChips -= bet;
 
+    playerWin = false;
+    isWinBlackjack = false;
     return hand;
 }
 
@@ -133,11 +135,23 @@ void FieldModel::endRound()
         if (hand.getScore() > 21)
             continue;
         else if (hand.getScore() == getDealerScore())
+        {
             playerChips += hand.getBet();
+            playerWin = false;
+            isWinBlackjack = false;
+        }
         else if (hand.isBlackjack())
+        {
             playerChips += 2.5*hand.getBet();
+            playerWin = true;
+            isWinBlackjack = true;
+        }
         else if (getDealerScore() > 21 || hand.getScore() > getDealerScore())
+        {
             playerChips += 2*hand.getBet();
+            playerWin = true;
+            isWinBlackjack = false;
+        }
     }
 
     //Clear all variables to a 0 state (except chips)

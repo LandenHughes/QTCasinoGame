@@ -52,8 +52,24 @@ public:
      */
     b2Body* getWorldChip();
 
-private slots:
+    /**
+     * @brief clearWorld - Clears all the bodies from the world to start with an empty world
+     */
+    void clearWorld();
 
+    /**
+     * @brief addWinningChips - If player winds create that number of chips in the box before clearing
+     * @param isBlackjackWin - Add more chips if the win is a blackjack
+     */
+    void addWinningChips(bool isBlackjackWin);
+
+    /**
+     * @brief setupBoundries - sets up the boundries when needed
+     */
+    void setupBoundries();
+
+private:
+    float ppm = 10.0f; //Pixels per Meter ration since Box2D is 1m per 1 pixel
 };
 
 #endif // CHIPPHYSICS_H

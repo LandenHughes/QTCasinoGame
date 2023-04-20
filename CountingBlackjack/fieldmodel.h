@@ -106,6 +106,9 @@ public:
      */
     void endRound();
 
+    bool playerWin;
+    bool isWinBlackjack;
+
 private:
     //How many chips are in the player's has left to bet with. Does not include chips in play.
     int playerChips;

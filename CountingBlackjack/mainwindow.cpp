@@ -330,7 +330,7 @@ void MainWindow::updateChipsOnTable(b2Body *chipList)
      //controller.doChipPhysics(&chipMap);
 
     QPainter painter(&chipMap);
-    painter.setBrush(QColorConstants::Black);
+    painter.setBrush(QColorConstants::Red);
 
     chipMap.fill(Qt::transparent); //This is to reset the pixMap view
 
@@ -339,9 +339,9 @@ void MainWindow::updateChipsOnTable(b2Body *chipList)
         if(currentChip->GetType() == b2_dynamicBody && currentChip->GetFixtureList()->GetShape()->GetType() == b2Shape::e_circle)
         {
             QPointF centerPoint(currentChip->GetWorldCenter().x, currentChip->GetWorldCenter().y);
-            painter.drawEllipse(centerPoint /2,
+            painter.drawEllipse(centerPoint,
                                 currentChip->GetFixtureList()->GetShape()->m_radius, currentChip->GetFixtureList()->GetShape()->m_radius);
-            qDebug() << "Chip Coordinates x then y:" << centerPoint.x()<< " "<< centerPoint.y();
+            qDebug() << "Chip Coordinates x then y:" << centerPoint.x() << " " << centerPoint.y();
         }
     }
 

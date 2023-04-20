@@ -20,11 +20,63 @@ ChipPhysics::~ChipPhysics()
 void ChipPhysics::setupBodies()
 {
     //World setup
-    world = new b2World(b2Vec2(0.0f, 0.1f));
+    world = new b2World(b2Vec2(0.0f, 9.8f));
+    setupBoundries();
+}
 
+
+void ChipPhysics::createChips(int betAmt)//bet amt will determine number/color of chips
+{
+    for(int i = 0; i < betAmt/5; i++)//one chip for every $5 bet
+    {
+        b2BodyDef chipBodyDef;
+        chipBodyDef.type = b2_dynamicBody; //Dynamic bodies move when colliding with static objects
+        chipBodyDef.position.Set(10.0f + i * 25, 0.0f); //Starting position of the body (i*25 is an offset for creating multiple chips to avoid overlap)
+        chipBodyDef.angle = 0.0f; //Starting angle of the body
+        chipBodyDef.allowSleep = true; //When bodies are at rest they are put into a sleep state to improve performance
+        b2Body *worldChipBody = world->CreateBody(&chipBodyDef);
+
+        b2FixtureDef chipFixtureDef;
+        b2CircleShape chipShape;
+        chipShape.m_radius = 10.0f; //Set radius
+        chipFixtureDef.shape = &chipShape;
+        chipFixtureDef.density = 0.009f; //Chips are 9g in real life
+        chipFixtureDef.restitution = 0.0f; //Makes the chip bounce
+        worldChipBody->CreateFixture(&chipFixtureDef);
+        b2Fixture *chipFixture = worldChipBody->CreateFixture(&chipFixtureDef);
+        chipFixture->SetDensity(0.009f);
+
+        qDebug() << "body mass" << worldChipBody->GetMass();
+    }
+}
+
+void ChipPhysics::updateAnimation()
+{
+    world->Step(100.0f, 6.0f, 2.0f);
+    b2Body* bodyList = world->GetBodyList();
+    //if(bodyList[0].GetWorldCenter().y > 200)
+        //bodyList[0].ApplyForce( b2Vec2(0,-5), bodyList[0].GetWorldCenter(), true);
+}
+
+b2Body* ChipPhysics::getWorldChip()
+{
+    return world->GetBodyList();
+}
+
+void ChipPhysics::clearWorld()
+{
+    for(b2Body* currentChip = world->GetBodyList(); currentChip != nullptr; currentChip = currentChip->GetNext())
+    {
+        world->DestroyBody(currentChip);
+    }
+    setupBoundries();
+}
+
+void ChipPhysics::setupBoundries()
+{
     //Body setup for boundary
-    float labelWidth = 101*2 ;//30 pixels per meter
-    float labelHeight = 211*2 ;//30 pixels per meter
+    float labelWidth = 101; //Box2D 1 pixel = 1 meter
+    float labelHeight = 211;
     //setup boundaries, each call to createFixture adds a new edge, edges cover the outside of the label
     b2BodyDef boundaryDef;
     boundaryDef.type = b2_staticBody;
@@ -42,41 +94,26 @@ void ChipPhysics::setupBodies()
 
     boundaryEdge.Set(b2Vec2(0, 0), b2Vec2(labelWidth, 0));//top left -> top right
     boundaryBody->CreateFixture(&boundaryEdge, 0);
-
 }
 
-
-void ChipPhysics::createChips(int betAmt)//bet amt will determine number/color of chips
+void ChipPhysics::addWinningChips(bool isBlackjackWin)
 {
-    for(int i = 0; i < betAmt/5; i++)//one chip for every $5 bet
+    //NOTE: 0 counts as even in c++
+    int evenCounter = 1; //even counter is so we can to 2.5x for the blackjack win (every other chip is also added to get 0.5 more)
+
+    //Skip the Boundary body
+    b2Body* chipList = world->GetBodyList();
+    chipList = chipList->GetNext();
+
+    for(b2Body* currentChip = chipList; currentChip != nullptr; currentChip = currentChip->GetNext())//foreach body convery body info to something that can be drawn on a label
     {
-        b2BodyDef chipBodyDef;
-        chipBodyDef.type = b2_dynamicBody; //Dynamic bodies move when colliding with static objects
-        chipBodyDef.position.Set(10.0f + i * 25, 0.0f); //Starting position of the body (i*25 is an offset for creating multiple chips to avoid overlap)
-        chipBodyDef.angle = 0.0f; //Starting angle of the body
-        chipBodyDef.allowSleep = true; //When bodies are at rest they are put into a sleep state to improve performance
+        createChips(5); //Makes one chip
 
-        b2Body *worldChipBody = world->CreateBody(&chipBodyDef);
+        if(isBlackjackWin && evenCounter%2==0)
+        {
+            createChips(5);
+        }
 
-        b2FixtureDef chipFixtureDef;
-        b2CircleShape chipShape;
-        chipShape.m_radius = 5.0f; //Set radius
-        chipFixtureDef.shape = &chipShape;
-        chipFixtureDef.density = 1.0f;
-        chipFixtureDef.restitution = 1.0f; //Makes the chip bounce
-        worldChipBody->CreateFixture(&chipFixtureDef);
-        b2Fixture *chipFixture = worldChipBody->CreateFixture(&chipFixtureDef);
-        chipFixture->SetDensity(5.0f);
+        evenCounter++;
     }
 }
-
-void ChipPhysics::updateAnimation()
-{
-    world->Step(100.0f, 6, 2);
-}
-
-b2Body* ChipPhysics::getWorldChip()
-{
-    return world->GetBodyList();
-}
-
