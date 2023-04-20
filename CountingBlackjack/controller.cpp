@@ -148,5 +148,5 @@ void Controller::updateChips()
 void Controller::createChips(int betAmt)
 {
     chip.createChips(betAmt);
-    chipTimer->start(20); //16ms is 60 frames a second
+    chipTimer->start(10); //16ms is 60 frames a second
 }
