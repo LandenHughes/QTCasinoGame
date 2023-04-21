@@ -21,6 +21,7 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     connect(&control, &Controller::setDoubleButtonEnabled, ui->doubleDownPushButton, &QWidget::setEnabled);
     connect(&control, &Controller::setSplitButtonEnabled, ui->splitPushButton, &QWidget::setEnabled);
     connect(&control, &Controller::setHitButtonEnabled, ui->hitPushButton, &QWidget::setEnabled);
+    connect(&control, &Controller::setStandButtonEnabled, ui->standPushButton, &QWidget::setEnabled);
     connect(&control, &Controller::setPlayerTotal, this, &MainWindow::setPlayerTotal);
     connect(&control, &Controller::setDealerTotal, this, &MainWindow::setDealerTotal);
     connect(&control, &Controller::notifyUpdateChipView, this, &MainWindow::updateChipsOnTable);

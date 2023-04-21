@@ -133,16 +133,22 @@ signals:
     void setSplitButtonEnabled(bool enabled);
 
     /**
-     * @brief Use to tell the view to enables/disables split button
+     * @brief Use to tell the view to enables/disables double up button
      * @param enabled - If true, the button is enabled. Otherwise, it is disabled
      */
     void setDoubleButtonEnabled(bool enabled);
 
     /**
-     * @brief Use to tell the view to enables/disables split button
+     * @brief Use to tell the view to enables/disables hit button
      * @param enabled - If true, the button is enabled. Otherwise, it is disabled
      */
     void setHitButtonEnabled(bool enabled);
+
+    /**
+     * @brief Use to tell the view to enables/disables Stand button.  Used for lessons.
+     * @param enabled - If true, the button is enabled. Otherwise, it is disabled
+     */
+    void setStandButtonEnabled(bool enabled);
 
     /**
      * @brief Sets the label which tells the player their current total to newTotal
