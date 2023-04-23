@@ -37,9 +37,11 @@ public:
     void setupBodies();
 
     /**
-     * @brief createChips - creates a specified number of chips given the users bet amount
+     * @brief createChips - creates a specified number of chips given the user's bet amount
+     * @param betAmt - how much the user is betting (each chips is worth 5)
+     * @param offset - axis offset if needed so chips don't clip
      */
-    void createChips(int);
+    void createChips(int betAmt, int offset);
 
     /**
      * @brief updateAnimation - Updates the world state through a wrold step so animation can continue

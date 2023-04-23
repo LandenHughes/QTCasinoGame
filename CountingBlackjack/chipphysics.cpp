@@ -25,13 +25,24 @@ void ChipPhysics::setupBodies()
 }
 
 
-void ChipPhysics::createChips(int betAmt)//bet amt will determine number/color of chips
+void ChipPhysics::createChips(int betAmt, int offset)//bet amt will determine number/color of chips
 {
+    int yOffset = offset;
+    int xOffset = offset;
+
     for(int i = 0; i < betAmt/5; i++)//one chip for every $5 bet
     {
         b2BodyDef chipBodyDef;
         chipBodyDef.type = b2_dynamicBody; //Dynamic bodies move when colliding with static objects
-        chipBodyDef.position.Set(10.0f + i * 25, 0.0f); //Starting position of the body (i*25 is an offset for creating multiple chips to avoid overlap)
+
+        //Done so chips don't run off the screen at bets >20
+        if(i%5 == 0 && i != 0)
+        {
+            xOffset = 0; //Resets chips spawning to the left side of box
+            yOffset = 1; //Makes chips spawn higher to avoid clipping with other chips
+        }
+
+        chipBodyDef.position.Set((10.0f + xOffset * 25), (yOffset * 25)); //Starting position of the body (i*25 is an offset for creating multiple chips to avoid overlap)
         chipBodyDef.angle = 0.0f; //Starting angle of the body
         chipBodyDef.allowSleep = true; //When bodies are at rest they are put into a sleep state to improve performance
         b2Body *worldChipBody = world->CreateBody(&chipBodyDef);
@@ -46,6 +57,8 @@ void ChipPhysics::createChips(int betAmt)//bet amt will determine number/color o
         b2Fixture *chipFixture = worldChipBody->CreateFixture(&chipFixtureDef);
         chipFixture->SetDensity(0.009f);
 
+        yOffset++;
+        xOffset++;
         qDebug() << "body mass" << worldChipBody->GetMass();
     }
 }
@@ -53,9 +66,6 @@ void ChipPhysics::createChips(int betAmt)//bet amt will determine number/color o
 void ChipPhysics::updateAnimation()
 {
     world->Step(100.0f, 6.0f, 2.0f);
-    b2Body* bodyList = world->GetBodyList();
-    //if(bodyList[0].GetWorldCenter().y > 200)
-        //bodyList[0].ApplyForce( b2Vec2(0,-5), bodyList[0].GetWorldCenter(), true);
 }
 
 b2Body* ChipPhysics::getWorldChip()
@@ -105,15 +115,17 @@ void ChipPhysics::addWinningChips(bool isBlackjackWin)
     b2Body* chipList = world->GetBodyList();
     chipList = chipList->GetNext();
 
+    int offset = 0;
     for(b2Body* currentChip = chipList; currentChip != nullptr; currentChip = currentChip->GetNext())//foreach body convery body info to something that can be drawn on a label
     {
-        createChips(5); //Makes one chip
+        createChips(5, offset); //Makes one chip
 
         if(isBlackjackWin && evenCounter%2==0)
         {
-            createChips(5);
+            createChips(5, offset);
         }
 
         evenCounter++;
+        offset++;
     }
 }
