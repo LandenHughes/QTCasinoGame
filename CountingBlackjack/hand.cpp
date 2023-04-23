@@ -93,3 +93,9 @@ void Hand::insure()
 {
     insured = true;
 }
+
+bool Hand::isInsured()
+{
+    return insured;
+}
+

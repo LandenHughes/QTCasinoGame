@@ -7,6 +7,7 @@
 
 #include "fieldmodel.h"
 #include "deckmodel.h"
+#include <QDebug>
 
 FieldModel::FieldModel(int chips) :
     playerChips(chips)
@@ -65,10 +66,10 @@ int FieldModel::splitHand(DeckModel& deck, int handIndex)
     return newHandIndex;
 }
 
-int FieldModel::insurePlayer()
+void FieldModel::insureHand(int hand)
 {
-    //TODO
-    return 0;
+    playerHands[hand].insure();
+    playerChips -=  playerHands[hand].getBet() / 2;
 }
 
 int FieldModel::getDealerScore()
@@ -112,6 +113,13 @@ bool FieldModel::isDealerHandBlackjack()
     return dealerHand.size() == 2 && getDealerScore() == 21;
 }
 
+bool FieldModel::canOfferInsurance(int hand)
+{
+    return dealerHand[1].getRank() == 1
+           && playerChips >= getPlayerHand(hand).getBet() / 2
+           && getPlayerHand(hand).getScore() < 22;
+}
+
 Card FieldModel::doubleDownHand(DeckModel& deck, int handIndex)
 {
     playerChips -= playerHands[handIndex].getBet();
@@ -134,11 +142,21 @@ void FieldModel::endRound()
     foreach (Hand hand, playerHands) {
         if (hand.getScore() > 21)
             continue;
+        else if (dealerHand.length() == 2
+                 && getDealerScore() == 21
+                 && hand.isInsured())
+        {
+            playerChips += hand.getBet() * 1.5;
+            playerWin = true;
+            isWinBlackjack = false;
+            continue;
+        }
         else if (hand.getScore() == getDealerScore())
         {
             playerChips += hand.getBet();
             playerWin = false;
             isWinBlackjack = false;
+            continue;
         }
         else if (hand.isBlackjack())
         {

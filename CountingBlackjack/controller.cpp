@@ -42,6 +42,12 @@ void Controller::dealerHit()
     emit setDealerTotal(fieldModel.getDealerScore());
 }
 
+void Controller::endTurn()
+{
+    if(fieldModel.canOfferInsurance(currentHand)) emit offerInsurance();
+    else stand();
+}
+
 void Controller::stand()
 {
     currentHand++;
@@ -61,10 +67,18 @@ void Controller::split()
     playOnHand(currentHand);
 }
 
-void Controller::insurance()
+void Controller::acceptInsurance()
 {
-    //Insures the hand, and subtracts cost from chips.  DOES NOT CHECK IF THIS CAN BE DONE.
-    fieldModel.insurePlayer();
+    emit showInsuranceButtons(false);
+    fieldModel.insureHand(currentHand);
+    emit setChipTotal(fieldModel.getPlayerChips());
+    stand();
+}
+
+void Controller::denyInsurance()
+{
+    emit showInsuranceButtons(false);
+    stand();
 }
 
 void Controller::doubleDown()
@@ -85,7 +99,7 @@ void Controller::dealOutCards(int numberHands, int bet)
         playerHands.append(fieldModel.dealPlayerHand(deckModel, bet));
     QVector<Card> dealerHand = fieldModel.dealDealerHand(deckModel);
 
-    emit initalDeal(dealerHand, playerHands, fieldModel.getPlayerChips());
+    emit initialDeal(dealerHand, playerHands, fieldModel.getPlayerChips());
 
     currentHand = 0;
     playOnHand(currentHand);
@@ -130,12 +144,8 @@ void Controller::playOnHand(int handPos)
     emit setDoubleButtonEnabled(hand.canDouble());
     emit setSplitButtonEnabled(hand.canSplit());
     emit setHitButtonEnabled(hand.canHit());
+    emit setStandButtonEnabled(true);
     emit displayCardsInPlayerArea(hand.asList());
-}
-
-void Controller::offerInuranceOnHand(int hand)
-{
-
 }
 
 void Controller::updateChips()

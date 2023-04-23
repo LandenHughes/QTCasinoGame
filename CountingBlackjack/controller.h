@@ -36,8 +36,12 @@ public slots:
     void dealerHit();
 
     /**
+     * @brief Plays through insurance if necessary, then calls stand()
+     */
+    void endTurn();
+
+    /**
      * @brief Requests a stand for the current hand.
-     * @param currentHand - Hand to perform this action on
      */
     void stand();
 
@@ -48,9 +52,15 @@ public slots:
     void split();
 
     /**
-     * @brief Add an insurance to the player's bets.
+     * @brief acceptInsurance
      */
-    void insurance();
+    void acceptInsurance();
+
+    /**
+     * @brief denyInsurance
+     */
+    void denyInsurance();
+
 
     /**
      * @brief Do a double down.  Allows for only one hit, then returns.
@@ -97,7 +107,7 @@ signals:
      * @param playerHands - The player's current hands
      * @param totalChips - The total number of chips that the player has after bets
      */
-    void initalDeal(QVector<Card> dealerHand, QVector<Card> playerCards, int totalChips);
+    void initialDeal(QVector<Card> dealerHand, QVector<Card> playerCards, int totalChips);
 
     /**
      * @brief Used to tell the view that either the dealer or the player has 'hit'.
@@ -166,7 +176,6 @@ signals:
      * @brief Use to tell the view to offer insurance
      */
     void offerInsurance();
-
     /**
      * @brief Signal to indicate that the round is over
      */
@@ -182,6 +191,12 @@ signals:
      * @brief notifyUpdateChipAnimationDone - chip animation is done
      */
     void notifyUpdateChipAnimationDone();
+
+    /**
+     * @brief signal to tell view to either show or hide insurance buttons
+     * @param show
+     */
+    void showInsuranceButtons(bool show);
 
 private:
     /**

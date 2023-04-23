@@ -97,7 +97,7 @@ public:
     void insure();
 
 private:
-    bool insured;
+    bool insured = false;
     bool doubledDown;
     int bet;
     QVector<Card> cards;

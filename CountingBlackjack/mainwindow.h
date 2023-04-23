@@ -39,7 +39,7 @@ public slots:
      * @param playerHands - All of the cards in all of the player's current hands. All of the first hand's cards, the the next's and so on
      * @param totalChips - The total number of chips that the player has after bets
      */
-    void initalDeal(QVector<Card> dealerCards, QVector<Card> playerCards, int totalChips);
+    void initialDeal(QVector<Card> dealerCards, QVector<Card> playerCards, int totalChips);
 
     /**
      * @brief Used to tell the view to flip over a card
@@ -106,6 +106,27 @@ public slots:
      * @brief updateChipsOnTable - updates the chips label to the current position of chips in view
      */
     void updateChipsOnTable(b2Body *currentChip);
+
+    /**
+     * @brief Makes UI changes to show insurance buttons and disable other action buttons
+     */
+    void offerInsurance();
+
+    /**
+     * @brief Sets the visibility and enabled status of the insurance buttons.
+     * @param show
+     */
+    void showInsuranceButtons(bool show);
+
+//    /**
+//     * @brief Makes UI changes and informs controller of selection
+//     */
+//    void acceptInsurance();
+
+//    /**
+//     * @brief Makes UI changes and informs controller of selection
+//     */
+//    void denyInsurance();
 
 signals:
     void startLessonNumber(int lessonNum);

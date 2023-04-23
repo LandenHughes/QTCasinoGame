@@ -65,10 +65,10 @@ public:
     int splitHand(DeckModel& deck, int handIndex);
 
     /**
-     * @brief Insures the player.
-     * @return Cost of insuring the hand.
+     * @brief Insures the player's hand
+     * @param hand
      */
-    int insurePlayer();
+    void insureHand(int hand);
 
     /**
      * @brief Since the dealer's hand differs fundementally from a player's hand, it's score will be calculated here.
@@ -97,9 +97,10 @@ public:
 
     /**
      * @brief canOfferInsurance
+     * @param hand - the hand which will be insured
      * @return Whether or not insurance should be offered for the current hand
      */
-    bool canOfferInsurance();
+    bool canOfferInsurance(int hand);
 
     /**
      * @brief Ends the round, gives payouts, clears everything up (reset).

@@ -13,7 +13,7 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
 
     //Controller Signals
     connect(&control, &Controller::hitAction, this, &MainWindow::addCardToPlayArea);
-    connect(&control, &Controller::initalDeal, this, &MainWindow::initalDeal);
+    connect(&control, &Controller::initialDeal, this, &MainWindow::initialDeal);
     connect(&control, &Controller::displayCardsInPlayerArea, this, &MainWindow::displayCardsInPlayerArea);
     connect(&control, &Controller::showCard, this, &MainWindow::flipCardUp);
     connect(&control, &Controller::setChipTotal, this, &MainWindow::setPlayerChips);
@@ -25,14 +25,17 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     connect(&control, &Controller::setPlayerTotal, this, &MainWindow::setPlayerTotal);
     connect(&control, &Controller::setDealerTotal, this, &MainWindow::setDealerTotal);
     connect(&control, &Controller::notifyUpdateChipView, this, &MainWindow::updateChipsOnTable);
+    connect(&control, &Controller::offerInsurance, this, &MainWindow::offerInsurance);
+    connect(&control, &Controller::showInsuranceButtons, this, &MainWindow::showInsuranceButtons);
 
     //Game Control Buttons
     connect(ui->hitPushButton, &QPushButton::clicked, &control, qOverload<>(&Controller::hit));
     connect(ui->splitPushButton, &QPushButton::clicked, &control, &Controller::split);
-    connect(ui->standPushButton, &QPushButton::clicked, &control, &Controller::stand);
+    connect(ui->standPushButton, &QPushButton::clicked, &control, &Controller::endTurn);
     connect(ui->dealPushButton, &QPushButton::clicked, this, &MainWindow::startRound);
-    connect(ui->acceptInsurancePushButton, &QPushButton::clicked, &control, &Controller::insurance);
     connect(ui->doubleDownPushButton, &QPushButton::clicked, &control, &Controller::doubleDown);
+    connect(ui->acceptInsurancePushButton, &QPushButton::clicked, &control, &Controller::acceptInsurance);
+    connect(ui->denyInsurancePushButton, &QPushButton::clicked, &control, &Controller::denyInsurance);
 
     //Lesson Menu Buttons
     connect(ui->actionLesson1, &QAction::triggered, this, &MainWindow::selectLesson);
@@ -257,7 +260,7 @@ void MainWindow::startRound()
     controller.createChips(ui->betComboBox->currentText().toInt());
 }
 
-void MainWindow::initalDeal(QVector<Card> dealerCards, QVector<Card> playerCards, int totalChips)
+void MainWindow::initialDeal(QVector<Card> dealerCards, QVector<Card> playerCards, int totalChips)
 {
     clearDealerArea();
     clearPlayerArea();
@@ -328,7 +331,7 @@ void MainWindow::setDealerTotal(int newDTotal)
 
 void MainWindow::updateChipsOnTable(b2Body *chipList)
 {
-     //controller.doChipPhysics(&chipMap);
+    //controller.doChipPhysics(&chipMap);
 
     QPainter painter(&chipMap);
     painter.setBrush(QColorConstants::Red);
@@ -342,10 +345,47 @@ void MainWindow::updateChipsOnTable(b2Body *chipList)
             QPointF centerPoint(currentChip->GetWorldCenter().x, currentChip->GetWorldCenter().y);
             painter.drawEllipse(centerPoint,
                                 currentChip->GetFixtureList()->GetShape()->m_radius, currentChip->GetFixtureList()->GetShape()->m_radius);
-            qDebug() << "Chip Coordinates x then y:" << centerPoint.x() << " " << centerPoint.y();
+            //qDebug() << "Chip Coordinates x then y:" << centerPoint.x() << " " << centerPoint.y();
         }
     }
 
     ui->labelCurrentBet->setPixmap(chipMap);
 }
+
+void MainWindow::offerInsurance()
+{
+    //Make UI changes
+    ui->acceptInsurancePushButton->setEnabled(true);
+    ui->acceptInsurancePushButton->setVisible(true);
+    ui->denyInsurancePushButton->setEnabled(true);
+    ui->denyInsurancePushButton->setVisible(true);
+    ui->hitPushButton->setEnabled(false);
+    ui->standPushButton->setEnabled(false);
+    ui->doubleDownPushButton->setEnabled(false);
+    ui->splitPushButton->setEnabled(false);
+}
+
+void MainWindow::showInsuranceButtons(bool show)
+{
+    ui->acceptInsurancePushButton->setEnabled(show);
+    ui->acceptInsurancePushButton->setVisible(show);
+    ui->denyInsurancePushButton->setEnabled(show);
+    ui->denyInsurancePushButton->setVisible(show);
+}
+
+//void MainWindow::acceptInsurance()
+//{
+//    ui->acceptInsurancePushButton->setEnabled(false);
+//    ui->acceptInsurancePushButton->setVisible(false);
+//    ui->denyInsurancePushButton->setEnabled(false);
+//    ui->denyInsurancePushButton->setVisible(false);
+//}
+
+//void MainWindow::denyInsurance()
+//{
+//    ui->acceptInsurancePushButton->setEnabled(false);
+//    ui->acceptInsurancePushButton->setVisible(false);
+//    ui->denyInsurancePushButton->setEnabled(false);
+//    ui->denyInsurancePushButton->setVisible(false);
+//}
 
