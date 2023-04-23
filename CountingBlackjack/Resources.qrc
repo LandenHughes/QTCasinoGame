@@ -75,5 +75,6 @@
         <file>UI_Images/blackjackSplitButton.png</file>
         <file>UI_Images/blackjackAcceptInsuranceButton.png</file>
         <file>UI_Images/blackjackDenyInsuranceButton.png</file>
+        <file>UI_Images/blackjackChip.png</file>
     </qresource>
 </RCC>

@@ -343,8 +343,11 @@ void MainWindow::updateChipsOnTable(b2Body *chipList)
         if(currentChip->GetType() == b2_dynamicBody && currentChip->GetFixtureList()->GetShape()->GetType() == b2Shape::e_circle)
         {
             QPointF centerPoint(currentChip->GetWorldCenter().x, currentChip->GetWorldCenter().y);
-            painter.drawEllipse(centerPoint,
-                                currentChip->GetFixtureList()->GetShape()->m_radius, currentChip->GetFixtureList()->GetShape()->m_radius);
+            //painter.drawEllipse(centerPoint,
+                                //currentChip->GetFixtureList()->GetShape()->m_radius, currentChip->GetFixtureList()->GetShape()->m_radius);
+            painter.drawImage((int)currentChip->GetPosition().x,
+                              (int)currentChip->GetPosition().y - currentChip->GetFixtureList()->GetShape()->m_radius,
+                              QImage(":images/UI_Images/blackjackChip"));
             //qDebug() << "Chip Coordinates x then y:" << centerPoint.x() << " " << centerPoint.y();
         }
     }
