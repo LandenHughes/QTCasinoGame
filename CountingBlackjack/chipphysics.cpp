@@ -85,8 +85,8 @@ void ChipPhysics::clearWorld()
 void ChipPhysics::setupBoundries()
 {
     //Body setup for boundary
-    float labelWidth = 101; //Box2D 1 pixel = 1 meter
-    float labelHeight = 211;
+    float labelWidth = 90; //101; //Box2D 1 pixel = 1 meter
+    float labelHeight = 205; //211;
     //setup boundaries, each call to createFixture adds a new edge, edges cover the outside of the label
     b2BodyDef boundaryDef;
     boundaryDef.type = b2_staticBody;
