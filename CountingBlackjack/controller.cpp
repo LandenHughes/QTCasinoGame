@@ -92,6 +92,7 @@ void Controller::denyInsurance()
 void Controller::doubleDown()
 {
     Card card = fieldModel.doubleDownHand(deckModel, currentHand);
+    chip.addWinningChips(false);//double the chips displayed
     emit hitAction(card);
     emit setChipTotal(fieldModel.getPlayerChips());
     emit setDoubleButtonEnabled(false);
@@ -141,6 +142,10 @@ void Controller::endRound()
             return;
         }
         chip.addWinningChips(false);
+    }
+    else//player lost so remove chips
+    {
+        chip.clearWorld();
     }
 
 }
