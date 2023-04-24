@@ -35,6 +35,14 @@ void Controller::initalizeGame(int playerChips, int numberDecks)
     emit setChipTotal(playerChips);
 }
 
+void Controller::initalizeGame(int playerChips, Card cards[], int numCards)
+{
+    fieldModel = FieldModel(playerChips);
+    deckModel = DeckModel(cards, numCards);
+
+    emit setChipTotal(playerChips);
+}
+
 void Controller::dealerHit()
 {
     Card card = fieldModel.dealToHand(deckModel, -1);

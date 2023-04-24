@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "controller.h"
+#include "ui_mainwindow.h"
 
 /**
  * @brief The Lesson abstract class. From this class will all of the lesson subclasses with their functionality be derived.
@@ -32,15 +33,22 @@ signals:
     void displayTextPopup(QString title, QString message, QString buttonMessage);
 
 protected:
-    Lesson(Controller &controller, FieldModel &fieldModel, DeckModel &deckModel);
+    Lesson(Ui::MainWindow *ui, Controller &controller) : ui(ui), controller(controller) {}
 
     //Holds the current step of the lesson plan.  This should be increased whenever a player hits, stands, deals, etc.
     //When creating lessons, make sure to enable/disable options to be able to lead the player as you want.
     int currentStep;
 
+    Ui::MainWindow *ui;
     Controller &controller;
-    FieldModel &fieldModel;
-    DeckModel &deckModel;
+};
+
+class Lesson1 : public Lesson {
+public:
+    Lesson1(Ui::MainWindow *ui, Controller &controller);
+    void initLesson();
+    void stepLesson();
+    void completeLesson();
 };
 
 #endif // LESSON_H

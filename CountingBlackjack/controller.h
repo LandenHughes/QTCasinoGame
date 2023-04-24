@@ -31,6 +31,13 @@ public slots:
     void initalizeGame(int playerChips, int numberDecks);
 
     /**
+     * @brief Initalizes the game
+     * @param The player's starting chips
+     * @param The number of decks in the game
+     */
+    void initalizeGame(int playerChips, Card cards[], int numCards);
+
+    /**
      * @brief Adds a card to the dealer's hand
      */
     void dealerHit();
@@ -180,6 +187,11 @@ signals:
      * @brief Signal to indicate that the round is over
      */
     void roundFinished();
+
+    /**
+     * @brief Clear the table of all cards
+     */
+    void clearTable();
 
     /**
      * @brief signal to tell view to update the chip label

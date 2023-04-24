@@ -2,6 +2,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
+#include <QMessageBox>
 
 MainWindow::MainWindow(Controller& control, QWidget *parent)
     : QMainWindow(parent)
@@ -10,6 +11,13 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
 {
     ui->setupUi(this);
     setupUI();
+
+    //Construct Lessons
+    lessons[0] = new Lesson1(ui, control);
+
+    //Initial Lesson Connections
+    connect(ui->actionLesson1, &QAction::triggered, lessons[0], &Lesson::initLesson);
+    connect(lessons[0], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
 
     //Controller Signals
     connect(&control, &Controller::hitAction, this, &MainWindow::addCardToPlayArea);
@@ -37,6 +45,10 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     connect(ui->acceptInsurancePushButton, &QPushButton::clicked, &control, &Controller::acceptInsurance);
     connect(ui->denyInsurancePushButton, &QPushButton::clicked, &control, &Controller::denyInsurance);
 
+    //PlayMenuButtons
+    connect(ui->actionStartPlay, &QAction::triggered, this, &MainWindow::initalizeGame);
+    connect(ui->actionStartPlay, &QAction::triggered, lessons[0], &Lesson::completeLesson);
+
     //Lesson Menu Buttons
     connect(ui->actionLesson1, &QAction::triggered, this, &MainWindow::selectLesson);
     connect(ui->actionLesson2, &QAction::triggered, this, &MainWindow::selectLesson);
@@ -54,13 +66,38 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     connect(ui->actionLesson14, &QAction::triggered, this, &MainWindow::selectLesson);
     connect(ui->actionLesson15, &QAction::triggered, this, &MainWindow::selectLesson);
 
-    //Initalize Default Game
-    controller.initalizeGame(10000, 2);
+    initalizeGame();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete lessons[0];
+}
+
+void MainWindow::displayTextPopup(QString title, QString message, QString buttonMessage)
+{
+    QMessageBox popup(QMessageBox::Information, title, message, QMessageBox::Ok, this);
+    popup.exec();
+    //popup.addButton()
+}
+
+void MainWindow::initalizeGame()
+{
+    ui->doubleDownPushButton->setEnabled(false);
+    ui->splitPushButton->setEnabled(false);
+    ui->hitPushButton->setEnabled(false);
+    ui->standPushButton->setEnabled(false);
+
+    ui->dealPushButton->setEnabled(true);
+    ui->betComboBox->setEnabled(true);
+    ui->handNumberComboBox->setEnabled(true);
+
+    //Reset play area to inital state
+    clearTable();
+
+    //Initalize Default Game
+    controller.initalizeGame(10000, 2);
 }
 
 void MainWindow::addCardToPlayArea(Card card, bool toDealerArea, bool faceDown)
@@ -262,8 +299,7 @@ void MainWindow::startRound()
 
 void MainWindow::initialDeal(QVector<Card> dealerCards, QVector<Card> playerCards, int totalChips)
 {
-    clearDealerArea();
-    clearPlayerArea();
+    clearTable();
 
     for (int card = 0; card < 2; card++)
     {
@@ -272,6 +308,16 @@ void MainWindow::initialDeal(QVector<Card> dealerCards, QVector<Card> playerCard
     }
 
     setPlayerChips(totalChips);
+}
+
+void MainWindow::clearTable()
+{
+    clearDealerArea();
+    setDealerTotal(0);
+    clearPlayerArea();
+    setPlayerTotal(0);
+
+    //TODO : Reset Chip area.
 }
 
 void MainWindow::clearPlayerArea()

@@ -4,6 +4,7 @@
 
 #include <QMainWindow>
 #include "controller.h"
+#include "lesson.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,6 +19,14 @@ public:
     MainWindow(Controller& control, QWidget *parent = nullptr);
     ~MainWindow();
 public slots:
+    /**
+     * @brief Creates a informational popup
+     * @param title - The title of the popup
+     * @param message - The message on the popup
+     * @param buttonMessage - The message on the popup's continue button
+     */
+    void displayTextPopup(QString title, QString message, QString buttonMessage);
+
     /**
      * @brief Draws a new card on the play area
      * @param Card - the card to add
@@ -71,9 +80,19 @@ public slots:
     void selectLesson();
 
     /**
+     * @brief Initilizes the game with 10000 chips and 2 decks
+     */
+    void initalizeGame();
+
+    /**
      * @brief Tells the controller to deal out cards and passes bet amount to controller.
      */
     void startRound();
+
+    /**
+     * @brief Clears the table by clearing the player and dealer area and 0 ing their scores
+     */
+    void clearTable();
 
     /**
      * @brief Clears ui->dealerArea
@@ -135,6 +154,7 @@ private:
     Ui::MainWindow *ui;
     Controller& controller;
     QPixmap chipMap;
+    Lesson* lessons[15];
 };
 
 #endif // MAINWINDOW_H
