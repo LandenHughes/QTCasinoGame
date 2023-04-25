@@ -167,6 +167,8 @@ signals:
      */
     void setStandButtonEnabled(bool enabled);
 
+    void setDenyInsuranceButtonEnabled(bool enabled);
+
     /**
      * @brief Sets the label which tells the player their current total to newTotal
      * @param newTotal

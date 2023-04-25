@@ -67,8 +67,9 @@ SOURCES += \
     lesson03.cpp \
     lesson04.cpp \
     lesson05.cpp \
+    lesson06.cpp \
+    lesson07.cpp \
     lesson12.cpp \
-    lesson7.cpp \
     lesson13.cpp \
     lesson14.cpp \
     lesson15.cpp \
