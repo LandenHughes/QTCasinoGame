@@ -11,8 +11,7 @@ void Lesson7::initLesson()
     currentStep = 0;
 
     //Stack the deck as needed.  Remember cards are dealt to the player hands, then the player hands in 1 hand rounds.
-    Card cards[]{Card(3, 6), Card(2, 8), Card(0, 7), Card(3, 10), Card(1, 6), Card(0,8), Card(3,3),
-                 Card(0, 7), Card(2, 3), Card(0, 13), Card(1, 8), Card(3, 1), Card(2,1)};
+    Card cards[]{Card(3, 6), Card(2, 8), Card(0, 7), Card(3, 10), Card(1, 6), Card(0,8), Card(3,3)};
     //For this lesson, I want the field model to have 1000 chips to start.
     emit controller.clearTable();
     controller.initalizeGame(1000, cards, 10);
@@ -41,7 +40,7 @@ void Lesson7::stepLesson()
         emit displayTextPopup("Basic Strategy: Introduction to the Basic Strategy",
                               "As you can see, you've already been dealt a hand with a 6 and a 8. This is what's called a \"hard total\" of 14.\n"
                               "The reason it's called a hard total is because you don't have an Ace. As Aces can be worth either 1 or 11 "
-                              "they are called soft totals. This is because while the ace is worth 11, you cannot bust and can therefore "
+                              "hands with them are called soft totals. This is because while the ace is worth 11, you cannot bust and can therefore "
                               "afford to play slightly more agressively.\n"
                               "Though, please note that if you have an Ace and several other cards that are worth more than 10, your score is once "
                               "more considered a hard total. This is because the Ace is already worth 1 and cannot reduce it's value to save you from "
