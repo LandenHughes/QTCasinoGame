@@ -32,10 +32,16 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     lessons[13] = nullptr;
     lessons[14] = nullptr;
 
+
     //Initial Lesson Connections
     connect(lessons[0], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
     connect(lessons[6], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
     connect(lessons[11], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
+//    connect(lessons[12], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
+//    connect(lessons[13], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
+//    connect(lessons[14], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
+
+
 
     //Controller Signals
     connect(&control, &Controller::hitAction, this, &MainWindow::addCardToPlayArea);
