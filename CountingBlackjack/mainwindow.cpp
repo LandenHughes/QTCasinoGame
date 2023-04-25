@@ -14,15 +14,27 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
 
     //Construct Lessons
     lessons[0] = new Lesson1(ui, control);
+    lessons[1] = nullptr;
+    lessons[2] = nullptr;
 
-    //Lesson Section 4 Construction
+    lessons[3] = nullptr;
+    lessons[4] = nullptr;
+    lessons[5] = nullptr;
+
+    lessons[6] = new Lesson7(ui, control);
+    lessons[7] = nullptr;
+    lessons[8] = nullptr;
+    lessons[9] = nullptr;
+    lessons[10] = nullptr;
+
     lessons[11] = new Lesson12(ui, control);
+    lessons[12] = nullptr;
+    lessons[13] = nullptr;
+    lessons[14] = nullptr;
 
     //Initial Lesson Connections
-    connect(ui->actionLesson1, &QAction::triggered, lessons[0], &Lesson::initLesson);
     connect(lessons[0], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
-
-    connect(ui->actionLesson12, &QAction::triggered, lessons[11], &Lesson::initLesson);
+    connect(lessons[6], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
     connect(lessons[11], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
 
     //Controller Signals
@@ -53,7 +65,6 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
 
     //PlayMenuButtons
     connect(ui->actionStartPlay, &QAction::triggered, this, &MainWindow::initalizeGame);
-    connect(ui->actionStartPlay, &QAction::triggered, lessons[0], &Lesson::completeLesson);
 
     //Lesson Menu Buttons
     connect(ui->actionLesson1, &QAction::triggered, this, &MainWindow::selectLesson);
@@ -90,6 +101,12 @@ void MainWindow::displayTextPopup(QString title, QString message, QString button
 
 void MainWindow::initalizeGame()
 {
+    //End any active lessons
+    for (int var = 0; var < 15; ++var) {
+        if (lessons[var] != nullptr) { lessons[var]->completeLesson(); }
+    }
+
+    //Enable/disable buttons
     ui->doubleDownPushButton->setEnabled(false);
     ui->splitPushButton->setEnabled(false);
     ui->hitPushButton->setEnabled(false);
@@ -283,8 +300,14 @@ void MainWindow::selectLesson()
     if(actionText.contains("actionLesson"))
     {
         actionText.remove("actionLesson");
-        int lessonNum = actionText.toInt();
-        emit startLessonNumber(lessonNum);
+        int lessonNum = actionText.toInt() - 1;
+
+        for (int var = 0; var < 15; ++var) {
+            if (lessons[var] != nullptr) { lessons[var]->completeLesson(); }
+        }
+
+        if (lessons[lessonNum] != nullptr) { lessons[lessonNum]->initLesson(); }
+        else { qDebug() << "Invalid lesson selected! Lesson" << lessonNum; }
     }
 }
 

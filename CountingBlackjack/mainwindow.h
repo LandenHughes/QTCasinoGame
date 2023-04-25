@@ -147,9 +147,6 @@ public slots:
 //     */
 //    void denyInsurance();
 
-signals:
-    void startLessonNumber(int lessonNum);
-
 private:
     Ui::MainWindow *ui;
     Controller& controller;

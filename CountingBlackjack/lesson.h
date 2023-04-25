@@ -51,6 +51,14 @@ public:
     void completeLesson();
 };
 
+class Lesson7 : public Lesson {
+public:
+    Lesson7(Ui::MainWindow *ui, Controller &controller);
+    void initLesson();
+    void stepLesson();
+    void completeLesson();
+};
+
 class Lesson12: public Lesson{
 public:
     Lesson12(Ui::MainWindow *ui, Controller &controller);

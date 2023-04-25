@@ -101,11 +101,8 @@ void Lesson1::stepLesson()
                               ,"You got an Ace!\n"
                                "Aces have the neat property as being able to be treated as a 1 or an 11, depending on which one would make you have a bigger hand!\n"
                                "Right now, the ace is treated as an 11, since that would bring you to 21!\n"
-                               "Since you have 21, just stay for now!  You can't get a better hand than this!"
+                               "Since you have 21, just stand for now! You can't get a better hand than this!"
                               ,"Perfect!");
-        emit displayTextPopup("Basic Rules: Card Values Hitting, and Busting"
-                              ,"Now all you need to do is stand one last time to collect your payout!"
-                              ,"Got it!");
 
     }
     else if (currentStep == 5)
@@ -114,8 +111,8 @@ void Lesson1::stepLesson()
         //emit controller.setDealButtonEnabled(false); //Disable the "Deal" Button
 
         emit displayTextPopup("Basic Rules: Card Values Hitting, and Busting"
-                              ,"You've retreived your payout, thus completeing the first lesson!\n"
-                               "The next lesson will go over when you bet, when you and the dealer play, and the dealer's strategy.\n"
+                              ,"Congadulations! You have completeing the first lesson!\n"
+                               "The next lesson will go over when you bet, the order of play, and the dealer's strategy.\n"
                                "To access it just nagivate to Lessons > Section 1 > Lesson 2"
                               ,"Ok!");
 
