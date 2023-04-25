@@ -17,13 +17,26 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
 
     //Lesson Section 4 Construction
     lessons[11] = new Lesson12(ui, control);
+    lessons[12] = new Lesson13(ui, control);
+    lessons[13] = new Lesson14(ui, control);
+    lessons[14] = new Lesson15(ui, control);
+
 
     //Initial Lesson Connections
     connect(ui->actionLesson1, &QAction::triggered, lessons[0], &Lesson::initLesson);
     connect(lessons[0], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
 
+    //section 4 lesson connections
     connect(ui->actionLesson12, &QAction::triggered, lessons[11], &Lesson::initLesson);
     connect(lessons[11], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
+    connect(ui->actionLesson13, &QAction::triggered, lessons[12], &Lesson::initLesson);
+    connect(lessons[12], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
+    connect(ui->actionLesson14, &QAction::triggered, lessons[13], &Lesson::initLesson);
+    connect(lessons[13], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
+    connect(ui->actionLesson15, &QAction::triggered, lessons[14], &Lesson::initLesson);
+    connect(lessons[14], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
+
+
 
     //Controller Signals
     connect(&control, &Controller::hitAction, this, &MainWindow::addCardToPlayArea);
