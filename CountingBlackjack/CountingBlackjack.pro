@@ -64,6 +64,9 @@ SOURCES += \
     hand.cpp \
     lesson1.cpp \
     lesson12.cpp \
+    lesson13.cpp \
+    lesson14.cpp \
+    lesson15.cpp \
     main.cpp \
     mainwindow.cpp
 
