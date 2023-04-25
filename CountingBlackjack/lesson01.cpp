@@ -15,9 +15,7 @@ void Lesson1::initLesson()
                  Card(0, 7), Card(2, 3), Card(0, 13), Card(1, 8), Card(3, 1), Card(2,1)};
     //For this lesson, I want the field model to have 10 chips to start.  This is needed to clear the board at the start.
     emit controller.clearTable();
-    controller.initalizeGame(10, cards, 10);
-
-    //TODO: Disable changing bets and hand size, set both to minimum values.
+    controller.initalizeGame(100, cards, 10);
 
     // Connect the lesson to the ui, allowing it to advnace when any of these buttons are pressed
     connect(ui->dealPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
@@ -103,9 +101,6 @@ void Lesson1::stepLesson()
                                "Right now, the ace is treated as an 11, since that would bring you to 21!\n"
                                "Since you have 21, just stay for now!  You can't get a better hand than this!"
                               ,"Perfect!");
-        emit displayTextPopup("Basic Rules: Card Values Hitting, and Busting"
-                              ,"Now all you need to do is stand one last time to collect your payout!"
-                              ,"Got it!");
 
     }
     else if (currentStep == 5)
