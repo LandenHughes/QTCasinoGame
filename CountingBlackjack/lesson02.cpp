@@ -14,7 +14,7 @@ void Lesson2::initLesson()
     Card cards[]{Card(1,10), Card(2,10), Card(3,11), Card(1,12), Card(0,13), Card(0,8), Card(2,9), Card(1,2), Card(3,10), Card(3,9), Card(0,5), Card(2,7), Card(0,1), Card(1,1), Card(2,1)};
     //For this lesson, I want the field model to have 10 chips to start.  This is needed to clear the board at the start.
     emit controller.clearTable();
-    controller.initalizeGame(200, cards, 10);
+    controller.initalizeGame(200, cards, 15);
 
     // Connect the lesson to the ui, allowing it to advnace when any of these buttons are pressed
     connect(ui->dealPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
@@ -62,7 +62,7 @@ void Lesson2::stepLesson()
 
         emit displayTextPopup("Basic Rules: The Order of Play & The Dealer's Turn"
                               ,"Looks like the dealer also got a 20.\n"
-                               "In the case of a draw, you just get oyur bet back without an extra payout.\n"
+                               "In the case of a draw, also known as a push, you just get oyur bet back without an extra payout.\n"
                                "Deal out another hand and start fresh!"
                               ,"At least I didn't lose much!");
     }
