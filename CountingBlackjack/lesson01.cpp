@@ -15,9 +15,7 @@ void Lesson1::initLesson()
                  Card(0, 7), Card(2, 3), Card(0, 13), Card(1, 8), Card(3, 1), Card(2,1)};
     //For this lesson, I want the field model to have 10 chips to start.  This is needed to clear the board at the start.
     emit controller.clearTable();
-    controller.initalizeGame(10, cards, 10);
-
-    //TODO: Disable changing bets and hand size, set both to minimum values.
+    controller.initalizeGame(100, cards, 10);
 
     // Connect the lesson to the ui, allowing it to advnace when any of these buttons are pressed
     connect(ui->dealPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);

@@ -51,6 +51,46 @@ public:
     void completeLesson();
 };
 
+class Lesson2 : public Lesson {
+public:
+    Lesson2(Ui::MainWindow *ui, Controller &controller);
+    void initLesson();
+    void stepLesson();
+    void completeLesson();
+};
+
+class Lesson3 : public Lesson {
+public:
+    Lesson3(Ui::MainWindow *ui, Controller &controller);
+    void initLesson();
+    void stepLesson();
+    void completeLesson();
+};
+
+class Lesson4 : public Lesson {
+public:
+    Lesson4(Ui::MainWindow *ui, Controller &controller);
+    void initLesson();
+    void stepLesson();
+    void completeLesson();
+};
+
+class Lesson5 : public Lesson {
+public:
+    Lesson5(Ui::MainWindow *ui, Controller &controller);
+    void initLesson();
+    void stepLesson();
+    void completeLesson();
+};
+
+class Lesson6 : public Lesson {
+public:
+    Lesson6(Ui::MainWindow *ui, Controller &controller);
+    void initLesson();
+    void stepLesson();
+    void completeLesson();
+};
+
 class Lesson7 : public Lesson {
 public:
     Lesson7(Ui::MainWindow *ui, Controller &controller);
