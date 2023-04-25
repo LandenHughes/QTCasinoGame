@@ -62,7 +62,11 @@ SOURCES += \
     deckmodel.cpp \
     fieldmodel.cpp \
     hand.cpp \
-    lesson1.cpp \
+    lesson01.cpp \
+    lesson02.cpp \
+    lesson03.cpp \
+    lesson04.cpp \
+    lesson05.cpp \
     lesson12.cpp \
     lesson7.cpp \
     lesson13.cpp \
