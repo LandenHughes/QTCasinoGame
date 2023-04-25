@@ -51,4 +51,13 @@ public:
     void completeLesson();
 };
 
+class Lesson12: public Lesson{
+public:
+    Lesson12(Ui::MainWindow *ui, Controller &controller);
+    void initLesson();
+    void stepLesson();
+    void completeLesson();
+
+};
+
 #endif // LESSON_H

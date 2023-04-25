@@ -63,6 +63,7 @@ SOURCES += \
     fieldmodel.cpp \
     hand.cpp \
     lesson1.cpp \
+    lesson12.cpp \
     main.cpp \
     mainwindow.cpp
 

@@ -15,9 +15,15 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     //Construct Lessons
     lessons[0] = new Lesson1(ui, control);
 
+    //Lesson Section 4 Construction
+    lessons[11] = new Lesson12(ui, control);
+
     //Initial Lesson Connections
     connect(ui->actionLesson1, &QAction::triggered, lessons[0], &Lesson::initLesson);
     connect(lessons[0], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
+
+    connect(ui->actionLesson12, &QAction::triggered, lessons[11], &Lesson::initLesson);
+    connect(lessons[11], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
 
     //Controller Signals
     connect(&control, &Controller::hitAction, this, &MainWindow::addCardToPlayArea);
