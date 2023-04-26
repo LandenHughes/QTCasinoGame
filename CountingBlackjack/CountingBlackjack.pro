@@ -69,11 +69,11 @@ SOURCES += \
     lesson05.cpp \
     lesson06.cpp \
     lesson07.cpp \
+    lesson08.cpp \
     lesson12.cpp \
     lesson13.cpp \
     lesson14.cpp \
     lesson15.cpp \
-    lesson8.cpp \
     main.cpp \
     mainwindow.cpp
 
