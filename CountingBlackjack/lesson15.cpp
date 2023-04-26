@@ -24,6 +24,7 @@ void Lesson15::initLesson()
     connect(ui->dealPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
     connect(ui->hitPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
     connect(ui->standPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
+    connect(ui->splitPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
 
     stepLesson();
 }
@@ -35,39 +36,39 @@ void Lesson15::stepLesson()
     if (currentStep == 0)
     {
         //Briefly Describe true count
-        emit displayTextPopup("Intro to Illustrious18"
+        emit displayTextPopup("Intro to illustrious 18"
                               ,"The final lesson will teach you how to use the Illustrious 18 created by Donald Schlesinger. "
                                "Schlesinger is a member of the Blackjack hall of fame and the author of Blackjack Attack. "
                                "This will take some memorization but will provide a significant advantage over the house."
                               ,"Continue");
 
-        emit displayTextPopup("Intro to Illustrious18"
+        emit displayTextPopup("Intro to illustrious 18"
                               ,"All of the following plays represent player hand on the left vs a dealer up-card and an index. "
                                "If the true count is less than the index the player should hit. "
                                "In any other case the player should stand, double or split accordingly.\n"
-                              "hand v dealer Card	Index"
+                              "\thand v dealer Card	\tIndex\n"
                           "1		Insurance		+3\n"
                           "2		16 Vs. 10		+0\n"
                           "3		15 Vs. 10		+4\n"
                           "4		10,10 Vs. 5		+5\n"
                           "5		10,10 Vs. 6		+4\n"
                           "6		10 Vs. 10		+4\n"
-                          "7		12 Vs. 3		+2\n"
-                          "8		12 Vs. 2		+3\n"
-                          "9		11 Vs. A		+1\n"
-                          "10		9 Vs. 2		    +1\n"
-                          "11		10 Vs. A		+4\n"
-                          "12		9 Vs. 7		    +3\n"
-                          "13		16 Vs. 9		+5\n"
-                          "14		13 Vs. 2		-1\n"
-                          "15		12 Vs. 4		0\n"
-                          "16		12 Vs. 5		-2\n"
-                          "17		12 Vs. 6		-1\n"
-                          "18		13 Vs. 3		-2\n"
+                          "7		12 Vs. 3		\t+2\n"
+                          "8		12 Vs. 2		\t+3\n"
+                          "9		11 Vs. A		\t+1\n"
+                          "10		9 Vs. 2		    \t+1\n"
+                          "11		10 Vs. A		\t+4\n"
+                          "12		9 Vs. 7		    \t+3\n"
+                          "13		16 Vs. 9		\t+5\n"
+                          "14		13 Vs. 2		\t-1\n"
+                          "15		12 Vs. 4		\t 0\n"
+                          "16		12 Vs. 5		\t-2\n"
+                          "17		12 Vs. 6		\t-1\n"
+                          "18		13 Vs. 3		\t-2\n\n"
                                "You can refer later to the illustrious 18 chart in the help menu."
                               ,"Continue");//will prob need to fix formatting
 
-        emit displayTextPopup("Intro to Illustrious18"
+        emit displayTextPopup("Intro to illustrious 18"
                               ,"Lets say the current running count is 9 and there are 2 decks remaining making the true count 4.5. "
                                "Place your bet and select deal to continue."
                               ,"Continue");
@@ -84,13 +85,13 @@ void Lesson15::stepLesson()
         emit controller.setStandButtonEnabled(false);
 
 
-        emit displayTextPopup("Using the illustrious18"
+        emit displayTextPopup("Using the illustrious 18"
                               ,"You have two 10s and the dealer's upcard is a 7. "
                                "This corosponds to #5 on the illustrious 18(refer to illustrious 18 in help menu). "
-                               "Since the true countis higher than the index you should split since you have two high value cards. "
+                               "Since the true count is higher than the index you should split since you have two high value cards. "
                               ,"Continue");
         emit controller.setSplitButtonEnabled(true);
-
+        emit controller.setHitButtonEnabled(false);
     }
 
     else if (currentStep == 2)
@@ -103,59 +104,29 @@ void Lesson15::stepLesson()
         emit controller.setStandButtonEnabled(false);
 
 
-        emit displayTextPopup("Using the illustrious18"
-                              ,"Hit on the first hand"
+        emit displayTextPopup("Using the illustrious 18"
+                              ,"You were delt an 8 so you should stand here"
                               ,"Continue");
-        emit controller.setHitButtonEnabled(true);
+        emit controller.setStandButtonEnabled(true);
 
     }
 
     else if (currentStep == 3)
     {
-        //after first hit
+        //after stand
         emit controller.setSplitButtonEnabled(false);
         emit controller.setHitButtonEnabled(false);
         emit controller.setDoubleButtonEnabled(false);
         emit controller.setStandButtonEnabled(false);
 
 
-        emit displayTextPopup("Using the illustrious18"
+        emit displayTextPopup("Using the illustrious 18"
                               ,"Stand on this hand"
                               ,"Continue");
         emit controller.setStandButtonEnabled(true);
     }
 
     else if (currentStep == 4)
-    {
-        //after first stand
-        emit controller.setSplitButtonEnabled(false);
-        emit controller.setHitButtonEnabled(false);
-        emit controller.setDoubleButtonEnabled(false);
-        emit controller.setStandButtonEnabled(false);
-
-
-        emit displayTextPopup("Using the illustrious18"
-                              ,"You should hit on this hand too"
-                              ,"Continue");
-        emit controller.setHitButtonEnabled(true);
-    }
-
-    else if (currentStep == 5)
-    {
-        //after second hit
-        emit controller.setSplitButtonEnabled(false);
-        emit controller.setHitButtonEnabled(false);
-        emit controller.setDoubleButtonEnabled(false);
-        emit controller.setStandButtonEnabled(false);
-
-
-        emit displayTextPopup("Using the illustrious18"
-                              ,"You now stand"
-                              ,"Continue");
-        emit controller.setStandButtonEnabled(true);
-    }
-
-    else if (currentStep == 6)
     {
         //after second stand
         emit controller.setSplitButtonEnabled(false);
@@ -164,15 +135,14 @@ void Lesson15::stepLesson()
         emit controller.setStandButtonEnabled(false);
 
 
-        emit displayTextPopup("Using the illustrious18"
-                              ,"You won with the first hand and pushed with the second."
+        emit displayTextPopup("Using the illustrious 18"
+                              ,"You won with the first hand and pushed with the second. "
                                "Not bad! Deal your next hand"
                               ,"Continue");
-        emit controller.setStandButtonEnabled(true);
 
     }
 
-    else if (currentStep == 7)
+    else if (currentStep == 5)
     {
         //after second deal Deal player: 5, 7 Dealer: 2 upcard, Ace downcard
         emit controller.setSplitButtonEnabled(false);
@@ -181,7 +151,7 @@ void Lesson15::stepLesson()
         emit controller.setStandButtonEnabled(false);
 
 
-        emit displayTextPopup("Using the illustrious18"
+        emit displayTextPopup("Using the illustrious 18"
                               ," Now lets say the true count is 1. "
                                "You have a 12 total and the dealer has a 2 upcard. "
                                "This corosponds to #8 on the illustrious 18 but since the the true count is 1 "
@@ -191,7 +161,7 @@ void Lesson15::stepLesson()
         emit controller.setHitButtonEnabled(true);
     }
 
-    else if (currentStep == 8)
+    else if (currentStep == 6)
     {
         //after hit(deal player 9 to put them to 21)
         emit controller.setSplitButtonEnabled(false);
@@ -204,9 +174,20 @@ void Lesson15::stepLesson()
                               ,"Nice! You hit 21, you win"
                               ,"Continue");
 
+        emit controller.setStandButtonEnabled(true);
+    }
+
+    else if (currentStep == 7)
+    {
+        //after hit(deal player 9 to put them to 21)
+        emit controller.setSplitButtonEnabled(false);
+        emit controller.setHitButtonEnabled(false);
+        emit controller.setDoubleButtonEnabled(false);
+        emit controller.setStandButtonEnabled(false);
+
         emit displayTextPopup("End of lessons"
-                              ,"This is the end of the lessons you can now play blackjack as normal and feel free to refer to the illustrious18 "
-                               "in the help menu as you play."
+                              ,"This is the end of the lessons you can now play blackjack as normal just by hitting the deal button. "
+                               "Feel free to refer to the illustrious 18 in the help menu as you play."
                               ,"Continue");
 
         completeLesson();
@@ -249,6 +230,8 @@ void Lesson15::completeLesson()
     disconnect(ui->dealPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
     disconnect(ui->hitPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
     disconnect(ui->standPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
+    disconnect(ui->splitPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
+
 
     //Do what needs to be done to comlplete the lesson, such as displaying a window and reenabling diabled buttons.
     emit lessonFinished();

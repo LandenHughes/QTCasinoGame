@@ -42,7 +42,7 @@ void Lesson13::stepLesson()
         emit displayTextPopup("True Count Example"
                               ,"For example if you running count is +2 and there are 3 decks left your true count is 2/3. "
                               "This puts you at a disadvantage to the house. When the true count is below 1 you are at a disadvantage, "
-                              "when count is 1 you are playing an even game and should rely on basic strategy, and when true count is greater than 1"
+                              "when count is 1 you are playing an even game and should rely on basic strategy, and when true count is greater than 1 "
                               "you are at an advantage."
                               ,"Continue");
 
@@ -55,12 +55,6 @@ void Lesson13::stepLesson()
     else if (currentStep == 1)
     {
         //After a hand is dealt...deal player 3 and 2 and dealer 8 up and Ace down
-
-        emit controller.setSplitButtonEnabled(false);
-        emit controller.setHitButtonEnabled(false);
-        emit controller.setDoubleButtonEnabled(false);
-        emit controller.setStandButtonEnabled(false);
-
 
         emit displayTextPopup("Calculating the true count"
                               ,"You got a 3 and 2, and the dealers upcard is king, the new current running count is 3. "
@@ -78,8 +72,9 @@ void Lesson13::stepLesson()
 
         emit displayTextPopup("See if your calcultion was right"
                               ,"With one deck remaining and the running count still at 3 the new true count is 3/1 which is 3. "
-                               "You are now in a very good position for you next hand."
+                               "You are now in a very good position for you next hand.\nSelect stand to end the lesson"
                               ,"Continue");
+
         completeLesson();
     }
 
@@ -121,6 +116,7 @@ void Lesson13::completeLesson()
     disconnect(ui->dealPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
     disconnect(ui->hitPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
     disconnect(ui->standPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
+    emit controller.clearTable();
 
     //Do what needs to be done to comlplete the lesson, such as displaying a window and reenabling diabled buttons.
     emit lessonFinished();

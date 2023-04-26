@@ -35,7 +35,7 @@ void Lesson14::stepLesson()
     {
         //Briefly Describe true count
         emit displayTextPopup("Continuing from last lesson"
-                              ,"We will continue where we left off on the last lesson. Remember the Running count is 3 and there is only"
+                              ,"We will continue where we left off on the last lesson. Remember the Running count is 3 and there is only "
                               "one remaining deck so the true count is 3 aswell."
                               ,"Continue");
 
@@ -43,8 +43,8 @@ void Lesson14::stepLesson()
                               ,"In this lesson we will discuss bet spreads. "
                                "The idea of a bet spread is to assist you in how much to increase or decrease your bets given the true count. "
                                "You can use your own style and decide what will work for you but to start I suggest to place you bets using this "
-                               "formula, (true count - 1) * previous bet(for this game bet units are 10). With the currenttrue count being 3 what "
-                               "should your next bet be? Go ahead and place your bet and hit deal to continue."
+                               "formula, (true count - 1) * previous bet(for this game bet units are 10). With the current true count being 3 what "
+                               "should your next bet be? Change your bet amount and hit deal to continue."
                               ,"Continue");
 
     }
@@ -95,13 +95,14 @@ void Lesson14::stepLesson()
         emit controller.setSplitButtonEnabled(false);
         emit controller.setHitButtonEnabled(false);
         emit controller.setDoubleButtonEnabled(false);
-        emit controller.setStandButtonEnabled(false);
 
 
         emit displayTextPopup("Bet based on true count"
                               ,"Congrats! You have blackjack and now have learned the basics of counting. "
                                "The next lesson will conver some special cases that will continue to assist you in taking the casios money!"
                               ,"Continue");
+
+
         completeLesson();
     }
 
