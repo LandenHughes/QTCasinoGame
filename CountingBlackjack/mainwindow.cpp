@@ -28,9 +28,9 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     lessons[10] = nullptr;
 
     lessons[11] = new Lesson12(ui, control);
-    lessons[12] = nullptr;
-    lessons[13] = nullptr;
-    lessons[14] = nullptr;
+    lessons[12] = new Lesson13(ui, control);;
+    lessons[13] = new Lesson14(ui, control);;
+    lessons[14] = new Lesson15(ui, control);;
 
 
     //Initial Lesson Connections
