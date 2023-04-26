@@ -11,7 +11,7 @@ void Lesson2::initLesson()
     currentStep = 0;
 
     //Stack the deck as needed.  Remember cards are dealt to the player hands, then the dealer hands in 1 hand rounds.
-    Card cards[]{Card(1,10), Card(2,10), Card(3,11), Card(1,12), Card(0,13), Card(0,8), Card(2,9), Card(1,2), Card(3,10), Card(3,9), Card(0,5), Card(2,7), Card(0,1), Card(1,1), Card(2,1)};
+    Card cards[]{Card(1,10), Card(2,10), Card(3,11), Card(1,12), Card(0,13), Card(0,8), Card(2,9), Card(1,2), Card(3,10), Card(3,9), Card(0,3), Card(2,7), Card(0,1), Card(1,12), Card(2,1)};
     //For this lesson, I want the field model to have 10 chips to start.  This is needed to clear the board at the start.
     emit controller.clearTable();
     controller.initalizeGame(200, cards, 15);
@@ -62,7 +62,7 @@ void Lesson2::stepLesson()
 
         emit displayTextPopup("Basic Rules: The Order of Play & The Dealer's Turn"
                               ,"Looks like the dealer also got a 20.\n"
-                               "In the case of a draw, also known as a push, you just get oyur bet back without an extra payout.\n"
+                               "In the case of a draw, also known as a push, you just get your bet back without an extra payout.\n"
                                "Deal out another hand and start fresh!"
                               ,"At least I didn't lose much!");
     }
@@ -102,7 +102,7 @@ void Lesson2::stepLesson()
         //After a hand is dealt...
 
         emit controller.setSplitButtonEnabled(false);
-        emit controller.setHitButtonEnabled(false);
+        emit controller.setStandButtonEnabled(false);
         emit controller.setDoubleButtonEnabled(false);
 
         emit displayTextPopup("Basic Rules: The Order of Play & The Dealer's Turn"
@@ -113,6 +113,9 @@ void Lesson2::stepLesson()
     else if (currentStep == 6)
     {
         //Player hits and busts
+
+        emit controller.setStandButtonEnabled(true);
+
         emit displayTextPopup("Basic Rules: The Order of Play & The Dealer's Turn"
                               ,"Darn, you busted!  A bust is when you go over 21.\n"
                                "Since you busted, the dealer wins automatically, because the players always play before the dealer."

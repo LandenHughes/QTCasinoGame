@@ -49,7 +49,7 @@ void Lesson4::stepLesson()
 
         emit displayTextPopup("Basic Rules: Splitting"
                               ,"Since you got two cards of the same value, you can split them into 2 different hands, each one getting a new card!\n"
-                               "When splitting, you have to add your origional bet to your second hand as well, so look at your chip count when splitting.\n"
+                               "When splitting, you have to add your original bet to your second hand as well, so look at your chip count when splitting.\n"
                                "(Any card with a value of 10 can be split, so you could split a 10 and Jack if needed, for example.)"
                               ,"Sweet!");
     }

@@ -20,6 +20,7 @@ void Lesson5::initLesson()
     connect(ui->dealPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
     connect(ui->hitPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
     connect(ui->standPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
+    connect(ui->doubleDownPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
 
     stepLesson();
 }
@@ -58,9 +59,11 @@ void Lesson5::stepLesson()
         //Player doubles down...
 
         emit displayTextPopup("Advanced Rules: Double Down"
-                              ,"From your extra card, you got 18, not bad."
+                              ,"From your extra card, you got 18, not bad.\n"
                                "Stand to let the dealer know it's their turn!"
                               ,"Gotcha");
+
+        emit controller.setStandButtonEnabled(true);
     }
 
     if (currentStep == 3)
@@ -76,34 +79,6 @@ void Lesson5::stepLesson()
         completeLesson();
     }
 
-
-    /**
-     * And so on and so forth.  Remember that the order of steps is:
-     * 0 - Lesson opens, emidiately call stepLesson() after a lesson opens.
-     * 1 - First hand is dealt.
-     * 2 + This happens for any action, such as a dealout, the end of a round, the player hitting, the player standing, the player splitting, etc.
-     *     Make sure you enable/disable buttons and stack the deck as needed to keep things on the right track.
-     *     This does not mean each lesson needs to be linear, as you could for exmple offer hit and split, and the next step would see if the player busted or
-     *     not to reprimand them from hitting at 20, or let them know how lucky they got.
-     *
-     *     Just know that all actions will move the step forward, so KNOW THIS when preparing the lesson.
-     *
-     *     List of action that advance:
-     *
-     *     Opening the lesson.
-     *     Clicking "Deal"
-     *     Clicking "Stand"
-     *     Clicking "Hit" (REMEMBER THE PLAYER HAS TO HIT STAND AFTER BUSTING).
-     *     Clicking "Double Down"
-     *     Clicking "Split"
-     *     Clicking "Insurance"
-     *     The Dealer's turn ending
-     *
-     *     Actions that DO NOT ADVANCE:
-     *     Setting the bet
-     *     Setting the hand size
-     **/
-
     //Move to the next step
     currentStep++;
 }
@@ -115,6 +90,7 @@ void Lesson5::completeLesson()
     disconnect(ui->dealPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
     disconnect(ui->hitPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
     disconnect(ui->standPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
+    disconnect(ui->doubleDownPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
 
     //Do what needs to be done to comlplete the lesson, such as displaying a window and reenabling diabled buttons.
     emit lessonFinished();

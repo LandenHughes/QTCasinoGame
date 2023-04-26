@@ -14,12 +14,12 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
 
     //Construct Lessons
     lessons[0] = new Lesson1(ui, control);
-    lessons[1] = nullptr;
-    lessons[2] = nullptr;
+    lessons[1] = new Lesson2(ui, control);
+    lessons[2] = new Lesson3(ui, control);
 
-    lessons[3] = nullptr;
-    lessons[4] = nullptr;
-    lessons[5] = nullptr;
+    lessons[3] = new Lesson4(ui, control);
+    lessons[4] = new Lesson5(ui, control);
+    lessons[5] = new Lesson6(ui, control);
 
     lessons[6] = new Lesson7(ui, control);
     lessons[7] = nullptr;
@@ -35,11 +35,16 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
 
     //Initial Lesson Connections
     connect(lessons[0], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
+    connect(lessons[1], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
+    connect(lessons[2], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
+    connect(lessons[3], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
+    connect(lessons[4], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
+    connect(lessons[5], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
     connect(lessons[6], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
     connect(lessons[11], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
-//    connect(lessons[12], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
-//    connect(lessons[13], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
-//    connect(lessons[14], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
+    connect(lessons[12], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
+    connect(lessons[13], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
+    connect(lessons[14], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
 
 
 

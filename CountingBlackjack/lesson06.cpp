@@ -45,32 +45,45 @@ void Lesson6::stepLesson()
         //Player gets 17, dealer gets Blackjack...
 
         emit controller.setHitButtonEnabled(false);
-        emit controller.setStandButtonEnabled(false);
-        emit controller.setDenyInsuranceButtonEnabled(false);
 
         emit displayTextPopup("Advanced Rules: Insurance"
-                              ,"Since the dealer has a face-up ace card, you can pay insurance here!\n"
-                               "To get insurance, make an insurance bet that's worth half of your hand's bet.\n"
-                               "If the dealer doesn't have a Blackjack, you simply lose the insurance bet, but you can still win the hand!\n"
-                               "Try getting some insurance!"
-                              ,"Better safe than sorry!");
+                              ,"Since the dealer has a face-up ace card, you can pay insurance after playing your hand!\n"
+                               "In some casinos, insurance is payed before you play, but in this game, we play so you pay for insurance afterwards."
+                              ,"OK");
+        emit displayTextPopup("Advanced Rules: Insurance"
+                              , "Just stay this hand since it's already 18."
+                              ,"OK");
+
     }
 
     if (currentStep == 2)
     {
-        //Player gets insurance...
+        //Player stands, is offered insurance...
+
+        emit controller.setDenyInsuranceButtonEnabled(false);
 
         emit displayTextPopup("Advanced Rules: Insurance"
-                              ,"You bought the insurance, and the dealer revealed... Blackjack!\n"
-                               "If they have a Blackjack, the insurance bet pays out 2:1.\n"
-                               "This is a fancy way of saying you don't win or loseany chips if you insured against a Blackjack.\n"
-                               "Stand to end this round."
+                              ,"At this point you can choose to buy insurance.\n"
+                               "Insurance costs half the bet of your hand.\n"
+                               "If the dealer does not have a Blackjack, you simply lose this insurance cost.\n"
+                               "If they do have a Blackjack, your insurance gets payed back 2:1!\n"
+                               "This is a fancy way of saying that you don't lose any chips, but you don't gain any other.\n"
                               ,"Gotcha");
+
+        emit displayTextPopup("Advanced Rules: Insurance"
+                              ,"I have a bad feeling about this, so try getting insurance!"
+                              ,"Gotcha");
+
     }
 
     if (currentStep == 3)
     {
-        //Player stands...
+        //Player gets insurance...
+
+        emit displayTextPopup("Advanced Rules: Insurance"
+                              ,"The dealer in fact had a Blackjack!\n"
+                               "Since you insured yourself, your precious chips stay on your side of the table!"
+                              ,"Exit");
 
         emit displayTextPopup("Advanced Rules: Insurance"
                               ,"This is the end of the advanced rules section.\n"
