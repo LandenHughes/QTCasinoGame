@@ -109,7 +109,7 @@ public:
 
 class Lesson9 : public Lesson {
 public:
-    Lesson8(Ui::MainWindow *ui, Controller &controller);
+    Lesson9(Ui::MainWindow *ui, Controller &controller);
     void initLesson();
     void stepLesson();
     void completeLesson();
@@ -117,7 +117,7 @@ public:
 
 class Lesson10 : public Lesson {
 public:
-    Lesson8(Ui::MainWindow *ui, Controller &controller);
+    Lesson10(Ui::MainWindow *ui, Controller &controller);
     void initLesson();
     void stepLesson();
     void completeLesson();
@@ -125,7 +125,7 @@ public:
 
 class Lesson11 : public Lesson {
 public:
-    Lesson8(Ui::MainWindow *ui, Controller &controller);
+    Lesson11(Ui::MainWindow *ui, Controller &controller);
     void initLesson();
     void stepLesson();
     void completeLesson();
