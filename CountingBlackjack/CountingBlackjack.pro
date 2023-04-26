@@ -73,6 +73,7 @@ SOURCES += \
     lesson13.cpp \
     lesson14.cpp \
     lesson15.cpp \
+    lesson8.cpp \
     main.cpp \
     mainwindow.cpp
 
