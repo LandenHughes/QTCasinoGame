@@ -66,6 +66,7 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     connect(&control, &Controller::notifyUpdateChipView, this, &MainWindow::updateChipsOnTable);
     connect(&control, &Controller::offerInsurance, this, &MainWindow::offerInsurance);
     connect(&control, &Controller::showInsuranceButtons, this, &MainWindow::showInsuranceButtons);
+    connect(&control, &Controller::insufficientChips, this, &MainWindow::insufficientChips);
 
     //Game Control Buttons
     connect(ui->hitPushButton, &QPushButton::clicked, &control, qOverload<>(&Controller::hit));
@@ -133,7 +134,7 @@ void MainWindow::initalizeGame()
     clearTable();
 
     //Initalize Default Game
-    controller.initalizeGame(10000, 2);
+    controller.initalizeGame(10, 2);
 }
 
 void MainWindow::addCardToPlayArea(Card card, bool toDealerArea, bool faceDown)
@@ -464,19 +465,25 @@ void MainWindow::showInsuranceButtons(bool show)
     ui->denyInsurancePushButton->setVisible(show);
 }
 
-//void MainWindow::acceptInsurance()
-//{
-//    ui->acceptInsurancePushButton->setEnabled(false);
-//    ui->acceptInsurancePushButton->setVisible(false);
-//    ui->denyInsurancePushButton->setEnabled(false);
-//    ui->denyInsurancePushButton->setVisible(false);
-//}
+void MainWindow::insufficientChips()
+{
+    QMessageBox warning;
+    warning.setText("You do not have enough money to make this bet!\n"
+                    "How would you like to proceed?");
+    warning.setIcon(QMessageBox::Critical);
+    QAbstractButton* moreMoney = warning.addButton(tr("Conjure up more money out of thin air"), QMessageBox::YesRole);
+    QAbstractButton* exitButton = warning.addButton(tr("Cut my losses and go home"), QMessageBox::NoRole);
 
-//void MainWindow::denyInsurance()
-//{
-//    ui->acceptInsurancePushButton->setEnabled(false);
-//    ui->acceptInsurancePushButton->setVisible(false);
-//    ui->denyInsurancePushButton->setEnabled(false);
-//    ui->denyInsurancePushButton->setVisible(false);
-//}
+    warning.exec();
 
+    if (warning.clickedButton()==moreMoney)
+    {
+        controller.setPlayerChips(10000);
+        warning.close();
+    }
+    else if(warning.clickedButton()==exitButton)
+    {
+        warning.close();
+        QApplication::quit();
+    }
+}

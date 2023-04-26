@@ -103,6 +103,11 @@ int FieldModel::getPlayerChips()
     return playerChips;
 }
 
+void FieldModel::setPlayerChips(int newChipAmount)
+{
+    playerChips = newChipAmount;
+}
+
 bool FieldModel::isDealerCardHidden()
 {
     return dealerHand.size() <= 2 && getDealerScore() != 21;

@@ -91,11 +91,6 @@ public slots:
      */
     void endRound();
 
-//    /**
-//     * @brief doChipPhysics - sends
-//     */
-//    void doChipPhysics(QPixmap*);
-
     /**
      * @brief Method runs on a timer, tells the world to update, and the view to draw
      */
@@ -106,6 +101,12 @@ public slots:
      * @param betAmt
      */
     void createChips(int betAmt);
+
+    /**
+     * @brief Sets the player's balance to newChipAmount
+     * @param newChipAmount
+     */
+    void setPlayerChips(int newChipAmount);
 
 signals:
     /**
@@ -142,6 +143,11 @@ signals:
      * @param totalChips - The total number of chips that the player has
      */
     void setChipTotal(int totalChips);
+
+    /**
+     * @brief Used to tell the view to display a popup to inform the player of insufficient chips.
+     */
+    void insufficientChips();
 
     /**
      * @brief Use to tell the view to enables/disables split button

@@ -137,15 +137,10 @@ public slots:
      */
     void showInsuranceButtons(bool show);
 
-//    /**
-//     * @brief Makes UI changes and informs controller of selection
-//     */
-//    void acceptInsurance();
-
-//    /**
-//     * @brief Makes UI changes and informs controller of selection
-//     */
-//    void denyInsurance();
+    /**
+         * @brief Displays a popup to inform the player of insufficient chips
+         */
+        void insufficientChips();
 
 private:
     Ui::MainWindow *ui;

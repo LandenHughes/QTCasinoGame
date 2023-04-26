@@ -103,6 +103,8 @@ void Controller::doubleDown()
 
 void Controller::dealOutCards(int numberHands, int bet)
 {
+    if(bet > fieldModel.getPlayerChips())
+        emit insufficientChips();
     QVector<Card> playerHands;
     for(int i = 0; i < numberHands; i++)
         playerHands.append(fieldModel.dealPlayerHand(deckModel, bet));
@@ -172,4 +174,10 @@ void Controller::createChips(int betAmt)
     chip.clearWorld();
     chip.createChips(betAmt, 0);
     chipTimer->start(10); //16ms is 60 frames a second
+}
+
+void Controller::setPlayerChips(int newChipAmount)
+{
+    fieldModel.setPlayerChips(newChipAmount);
+    emit setChipTotal(newChipAmount);
 }

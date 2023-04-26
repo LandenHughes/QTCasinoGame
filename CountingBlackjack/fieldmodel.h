@@ -83,6 +83,12 @@ public:
     int getPlayerChips();
 
     /**
+     * @brief setPlayerChips
+     * @param newChipAmount
+     */
+    void setPlayerChips(int newChipAmount);
+
+    /**
      * @brief isDealerCardHidden
      * @return whether or not the dealer card should be hidden. True if there are two cards or less cards and the hand is not blackjack
      */
