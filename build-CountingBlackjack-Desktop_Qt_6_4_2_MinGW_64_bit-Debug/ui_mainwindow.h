@@ -46,6 +46,7 @@ public:
     QAction *actionLesson13;
     QAction *actionLesson14;
     QAction *actionLesson15;
+    QAction *actionIllustrious18;
     QWidget *centralwidget;
     QLabel *drawDeck;
     QLabel *discardDeck;
@@ -123,6 +124,8 @@ public:
         actionLesson14->setObjectName("actionLesson14");
         actionLesson15 = new QAction(MainWindow);
         actionLesson15->setObjectName("actionLesson15");
+        actionIllustrious18 = new QAction(MainWindow);
+        actionIllustrious18->setObjectName("actionIllustrious18");
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         drawDeck = new QLabel(centralwidget);
@@ -172,14 +175,14 @@ public:
         acceptInsurancePushButton = new QPushButton(centralwidget);
         acceptInsurancePushButton->setObjectName("acceptInsurancePushButton");
         acceptInsurancePushButton->setEnabled(false);
-        acceptInsurancePushButton->setGeometry(QRect(510, 393, 340, 31));
+        acceptInsurancePushButton->setGeometry(QRect(510, 400, 340, 30));
         dealPushButton = new QPushButton(centralwidget);
         dealPushButton->setObjectName("dealPushButton");
         dealPushButton->setGeometry(QRect(30, 560, 80, 24));
         denyInsurancePushButton = new QPushButton(centralwidget);
         denyInsurancePushButton->setObjectName("denyInsurancePushButton");
         denyInsurancePushButton->setEnabled(false);
-        denyInsurancePushButton->setGeometry(QRect(150, 393, 340, 31));
+        denyInsurancePushButton->setGeometry(QRect(150, 400, 340, 30));
         betComboBox = new QComboBox(centralwidget);
         betComboBox->addItem(QString());
         betComboBox->addItem(QString());
@@ -276,7 +279,7 @@ public:
         MainWindow->setStatusBar(statusbar);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1000, 21));
+        menubar->setGeometry(QRect(0, 0, 1000, 19));
         menuPlay = new QMenu(menubar);
         menuPlay->setObjectName("menuPlay");
         menuHelp = new QMenu(menubar);
@@ -297,6 +300,8 @@ public:
         menubar->addAction(menuLessons->menuAction());
         menubar->addAction(menuHelp->menuAction());
         menuPlay->addAction(actionStartPlay);
+        menuHelp->addSeparator();
+        menuHelp->addAction(actionIllustrious18);
         menuLessons->addAction(menuSection1->menuAction());
         menuLessons->addAction(menuSection_2_Advanced_Rules->menuAction());
         menuLessons->addAction(menuSection_3_Basic_Strategy->menuAction());
@@ -344,6 +349,7 @@ public:
         actionLesson13->setText(QCoreApplication::translate("MainWindow", "Lesson 13: Running Count Vs. True Count", nullptr));
         actionLesson14->setText(QCoreApplication::translate("MainWindow", "Lesson 14: Bet Spreads", nullptr));
         actionLesson15->setText(QCoreApplication::translate("MainWindow", "Lesson 15: The Illustrious 18", nullptr));
+        actionIllustrious18->setText(QCoreApplication::translate("MainWindow", "Illustrious18", nullptr));
         drawDeck->setText(QCoreApplication::translate("MainWindow", "Deck", nullptr));
         discardDeck->setText(QCoreApplication::translate("MainWindow", "Discard", nullptr));
         labelTotalChipsTitle->setText(QCoreApplication::translate("MainWindow", "Total Chips", nullptr));
@@ -353,9 +359,9 @@ public:
         hitPushButton->setText(QString());
         standPushButton->setText(QString());
         doubleDownPushButton->setText(QString());
-        acceptInsurancePushButton->setText(QCoreApplication::translate("MainWindow", "ACCEPT INSURANCE", nullptr));
+        acceptInsurancePushButton->setText(QString());
         dealPushButton->setText(QCoreApplication::translate("MainWindow", "DEAL", nullptr));
-        denyInsurancePushButton->setText(QCoreApplication::translate("MainWindow", "DENY INSURANCE", nullptr));
+        denyInsurancePushButton->setText(QString());
         betComboBox->setItemText(0, QCoreApplication::translate("MainWindow", "10", nullptr));
         betComboBox->setItemText(1, QCoreApplication::translate("MainWindow", "20", nullptr));
         betComboBox->setItemText(2, QCoreApplication::translate("MainWindow", "30", nullptr));

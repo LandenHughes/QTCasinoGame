@@ -484,7 +484,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>21</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuPlay">
@@ -497,6 +497,8 @@
     <property name="title">
      <string>Help</string>
     </property>
+    <addaction name="separator"/>
+    <addaction name="actionIllustrious18"/>
    </widget>
    <widget class="QMenu" name="menuLessons">
     <property name="title">
@@ -639,6 +641,11 @@
   <action name="actionLesson15">
    <property name="text">
     <string>Lesson 15: The Illustrious 18</string>
+   </property>
+  </action>
+  <action name="actionIllustrious18">
+   <property name="text">
+    <string>Illustrious18</string>
    </property>
   </action>
  </widget>

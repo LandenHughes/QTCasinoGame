@@ -97,6 +97,9 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     connect(ui->actionLesson14, &QAction::triggered, this, &MainWindow::selectLesson);
     connect(ui->actionLesson15, &QAction::triggered, this, &MainWindow::selectLesson);
 
+    connect(ui->actionIllustrious18, &QAction::triggered, this, &MainWindow::showIllustrious18);
+
+
     initalizeGame();
 }
 
@@ -323,6 +326,32 @@ void MainWindow::selectLesson()
         if (lessons[lessonNum] != nullptr) { lessons[lessonNum]->initLesson(); }
         else { qDebug() << "Invalid lesson selected! Lesson" << lessonNum; }
     }
+}
+
+void MainWindow::showIllustrious18()
+{
+    displayTextPopup("Illustrious 18"
+                          ,"Player hand is on the right and the dealer upcard is on the right.\n"
+                          "\thand v dealer Card	\tIndex\n"
+                      "1		Insurance		+3\n"
+                      "2		16 Vs. 10		+0\n"
+                      "3		15 Vs. 10		+4\n"
+                      "4		10,10 Vs. 5		+5\n"
+                      "5		10,10 Vs. 6		+4\n"
+                      "6		10 Vs. 10		+4\n"
+                      "7		12 Vs. 3		\t+2\n"
+                      "8		12 Vs. 2		\t+3\n"
+                      "9		11 Vs. A		\t+1\n"
+                      "10		9 Vs. 2		    \t+1\n"
+                      "11		10 Vs. A		\t+4\n"
+                      "12		9 Vs. 7		    \t+3\n"
+                      "13		16 Vs. 9		\t+5\n"
+                      "14		13 Vs. 2		\t-1\n"
+                      "15		12 Vs. 4		\t 0\n"
+                      "16		12 Vs. 5		\t-2\n"
+                      "17		12 Vs. 6		\t-1\n"
+                      "18		13 Vs. 3		\t-2\n\n"
+                          ,"Continue");
 }
 
 void MainWindow::startRound()
