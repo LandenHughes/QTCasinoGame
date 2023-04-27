@@ -129,7 +129,6 @@ void MainWindow::initalizeGame()
 
     ui->dealPushButton->setEnabled(true);
     ui->betComboBox->setEnabled(true);
-    ui->handNumberComboBox->setEnabled(true);
 
     //Reset play area to inital state
     clearTable();
@@ -244,7 +243,6 @@ void MainWindow::setupUI()
     ui->labelTotalChips->setStyleSheet(styleSheet);
     ui->labelTotalChipsTitle->setStyleSheet(styleSheet);
     ui->labelBetTitle->setStyleSheet(styleSheet);
-    ui->labelNumberOfHandsTitle->setStyleSheet(styleSheet);
     ui->dealerTotalLabel->setStyleSheet(styleSheet);
     ui->playerTotalLabel->setStyleSheet(styleSheet);
     ui->acceptInsurancePushButton->setVisible(false);
@@ -360,8 +358,7 @@ void MainWindow::startRound()
     ui->doubleDownPushButton->setEnabled(false);
     ui->dealPushButton->setEnabled(false);
     ui->betComboBox->setEnabled(false);
-    ui->handNumberComboBox->setEnabled(false);
-    controller.dealOutCards(ui->handNumberComboBox->currentText().toInt(), ui->betComboBox->currentText().toInt());
+    controller.dealOutCards(1, ui->betComboBox->currentText().toInt());
     //TODO:
     //send a pixmap that represents the chipArea to chipPhysics for the chips to be drawn on
     controller.createChips(ui->betComboBox->currentText().toInt());
@@ -428,7 +425,6 @@ void MainWindow::endRound()
     ui->doubleDownPushButton->setEnabled(false);
     ui->dealPushButton->setEnabled(true);
     ui->betComboBox->setEnabled(true);
-    ui->handNumberComboBox->setEnabled(true);
 }
 
 void MainWindow::setPlayerTotal(int newTotal)
