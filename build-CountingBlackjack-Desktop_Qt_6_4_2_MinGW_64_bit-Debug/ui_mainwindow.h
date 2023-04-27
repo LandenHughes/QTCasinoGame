@@ -69,6 +69,8 @@ public:
     QLabel *dealerTotalLabel;
     QLabel *playerTotalLabel;
     QLabel *backgroundImage;
+    QLabel *labelDraw;
+    QLabel *labelDiscard;
     QStatusBar *statusbar;
     QMenuBar *menubar;
     QMenu *menuPlay;
@@ -232,6 +234,16 @@ public:
         backgroundImage = new QLabel(centralwidget);
         backgroundImage->setObjectName("backgroundImage");
         backgroundImage->setGeometry(QRect(0, 0, 1000, 700));
+        labelDraw = new QLabel(centralwidget);
+        labelDraw->setObjectName("labelDraw");
+        labelDraw->setGeometry(QRect(20, 40, 101, 20));
+        labelDraw->setFont(font);
+        labelDraw->setAlignment(Qt::AlignCenter);
+        labelDiscard = new QLabel(centralwidget);
+        labelDiscard->setObjectName("labelDiscard");
+        labelDiscard->setGeometry(QRect(880, 40, 101, 20));
+        labelDiscard->setFont(font);
+        labelDiscard->setAlignment(Qt::AlignCenter);
         MainWindow->setCentralWidget(centralwidget);
         backgroundImage->raise();
         drawDeck->raise();
@@ -252,6 +264,8 @@ public:
         labelTotalChips->raise();
         dealerTotalLabel->raise();
         playerTotalLabel->raise();
+        labelDraw->raise();
+        labelDiscard->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
         MainWindow->setStatusBar(statusbar);
@@ -351,6 +365,8 @@ public:
         dealerTotalLabel->setText(QCoreApplication::translate("MainWindow", "Known Dealer Total: 0", nullptr));
         playerTotalLabel->setText(QCoreApplication::translate("MainWindow", "Hand Total: 0", nullptr));
         backgroundImage->setText(QString());
+        labelDraw->setText(QCoreApplication::translate("MainWindow", "Draw", nullptr));
+        labelDiscard->setText(QCoreApplication::translate("MainWindow", "Discard", nullptr));
         menuPlay->setTitle(QCoreApplication::translate("MainWindow", "Play", nullptr));
         menuHelp->setTitle(QCoreApplication::translate("MainWindow", "Help", nullptr));
         menuLessons->setTitle(QCoreApplication::translate("MainWindow", "Lessons", nullptr));

@@ -328,6 +328,7 @@ void MainWindow::setupUI()
 //Lesson Menu Slots
 void MainWindow::selectLesson()
 {
+    controller.endRound();
     //https://stackoverflow.com/questions/37938304/how-to-know-which-button-was-clicked-in-qt
     QAction* actionSender = qobject_cast<QAction*>(sender()); //Gets the button/action menu that was just selected
     QString actionText = actionSender->objectName(); //actionLesson1, actionLesson2, etc.

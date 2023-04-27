@@ -58,7 +58,6 @@ SOURCES += \
     card.cpp \
     chipphysics.cpp \
     controller.cpp \
-    counttracker.cpp \
     deckmodel.cpp \
     fieldmodel.cpp \
     hand.cpp \
@@ -131,7 +130,6 @@ HEADERS += \
     card.h \
     chipphysics.h \
     controller.h \
-    counttracker.h \
     deckmodel.h \
     fieldmodel.h \
     hand.h \
