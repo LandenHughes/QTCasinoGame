@@ -134,7 +134,7 @@ void MainWindow::initalizeGame()
     clearTable();
 
     //Initalize Default Game
-    controller.initalizeGame(10, 2);
+    controller.initalizeGame(1000, 2);
 }
 
 void MainWindow::addCardToPlayArea(Card card, bool toDealerArea, bool faceDown)

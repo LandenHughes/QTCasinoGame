@@ -328,8 +328,8 @@ public:
         actionLesson14->setText(QCoreApplication::translate("MainWindow", "Lesson 14: Bet Spreads", nullptr));
         actionLesson15->setText(QCoreApplication::translate("MainWindow", "Lesson 15: The Illustrious 18", nullptr));
         actionIllustrious18->setText(QCoreApplication::translate("MainWindow", "Illustrious18", nullptr));
-        drawDeck->setText(QCoreApplication::translate("MainWindow", "Deck", nullptr));
-        discardDeck->setText(QCoreApplication::translate("MainWindow", "Discard", nullptr));
+        drawDeck->setText(QString());
+        discardDeck->setText(QString());
         labelTotalChipsTitle->setText(QCoreApplication::translate("MainWindow", "Total Chips", nullptr));
         labelCurrentBet->setText(QString());
         labelBetTitle->setText(QCoreApplication::translate("MainWindow", "Bet", nullptr));
