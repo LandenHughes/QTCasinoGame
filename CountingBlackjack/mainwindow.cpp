@@ -105,6 +105,20 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete lessons[0];
+    delete lessons[1];
+    delete lessons[2];
+    delete lessons[3];
+    delete lessons[4];
+    delete lessons[5];
+    delete lessons[6];
+    delete lessons[7];
+    delete lessons[8];
+    delete lessons[9];
+    delete lessons[10];
+    delete lessons[11];
+    delete lessons[12];
+    delete lessons[13];
+    delete lessons[14];
 }
 
 void MainWindow::displayTextPopup(QString title, QString message, QString buttonMessage)
