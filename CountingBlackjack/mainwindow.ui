@@ -27,7 +27,7 @@
      <enum>QFrame::Box</enum>
     </property>
     <property name="text">
-     <string>Deck</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="discardDeck">
@@ -43,7 +43,7 @@
      <enum>QFrame::Box</enum>
     </property>
     <property name="text">
-     <string>Discard</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="labelTotalChipsTitle">
