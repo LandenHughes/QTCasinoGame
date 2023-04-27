@@ -17,6 +17,21 @@ DeckModel::DeckModel(Card cardsToAdd[], int numCards)
         cardsInDeck.push_front(cardsToAdd[i]);
 }
 
+int DeckModel::numCardsInDeck()
+{
+   return cardsInDeck.size();
+}
+
+void DeckModel::burnCards(int numCards)
+{
+   for(int i = 0; i < numCards; i++)
+   {
+        Card dealtCard = cardsInDeck.back();
+        cardsDiscarded.push_back(dealtCard);
+        cardsInDeck.pop_back();
+   }
+}
+
 void DeckModel::reshuffle()
 {
     cardsInDeck.append(cardsDiscarded);

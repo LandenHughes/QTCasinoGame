@@ -14,7 +14,7 @@ void Lesson7::initLesson()
     Card cards[]{Card(3, 6), Card(2, 8), Card(0, 7), Card(3, 10), Card(1, 6), Card(0,8), Card(3,3)};
     //For this lesson, I want the field model to have 1000 chips to start.
     emit controller.clearTable();
-    controller.initalizeGame(1000, cards, 10);
+    controller.initalizeGame(1000, cards, 7);
 
     //TODO: Disable changing bets and hand size, set both to minimum values.
 

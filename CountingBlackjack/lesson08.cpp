@@ -17,9 +17,7 @@ void Lesson8::initLesson()
                  Card(2,3), Card(3,9), Card(1, 1), Card(2,2), Card(0, 4), Card(2, 13), Card(3, 10), Card(3, 12)};
     //For this lesson, I want the field model to have 1000 chips to start.
     emit controller.clearTable();
-    controller.initalizeGame(1000, cards, 10);
-
-    //TODO: Disable changing bets and hand size, set both to minimum values.
+    controller.initalizeGame(1000, cards, 24);
 
     // Connect the lesson to the ui, allowing it to advnace when any of these buttons are pressed
     connect(&controller, &Controller::roundFinished, this, &Lesson::stepLesson);
@@ -41,7 +39,7 @@ void Lesson8::stepLesson()
 
         emit displayTextPopup("Basic Strategy: Hard Totals",
                               "Welcome to the 8th lesson!\n"
-                              "This section focuses on what to do when you have hands without Aces.\n",
+                              "This section focuses on what to do when you have a hand without an Ace.\n",
                               "Ok!");
         emit displayTextPopup("Basic Strategy: Hard Totals",
                               "As you can see, you've already been dealt a hard 19.\n"
@@ -62,9 +60,9 @@ void Lesson8::stepLesson()
         emit controller.setStandButtonEnabled(false);
 
         emit displayTextPopup("Basic Strategy: Hard Totals",
-                              "You've gotten your next hand: a hard 8.\n",
+                              "You've gotten your next hand: a hard 8.\n"
                               "You should hit on this hand. You cannot bust will have diffculty winning with a total of 8.\n"
-                              "In fact, you should hit on any hand with a total of 11 or less for this very reason\n"
+                              "In fact, you should hit on any hand with a total of 11 or less for this very reason\n",
                               "Ok!");
     }
     else if (currentStep == 3)
@@ -80,22 +78,31 @@ void Lesson8::stepLesson()
     }
     else if (currentStep == 4)
     {
+        emit controller.setHitButtonEnabled(false);
+        emit controller.setStandButtonEnabled(true);
+
+        emit displayTextPopup("Basic Strategy: Hard Totals",
+                              "With that hit, you're total is 19! That's enough to stand!\n",
+                              "Ok!");
+    }
+    else if (currentStep == 5)
+    {
         emit displayTextPopup("Basic Strategy: Hard Totals",
                               "And that's another hand won with basic strategy!\n"
                               "Lets deal you out another hand now!",
                               "Ok!");
     }
-    else if (currentStep == 5)
+    else if (currentStep == 6)
     {
         emit controller.setHitButtonEnabled(false);
 
         emit displayTextPopup("Basic Strategy: Hard Totals",
-                              "Okay so this time you've gotten a hard 15.\n",
+                              "Okay so this time you've gotten a hard 15.\n"
                               "As it's within 13-16 we once more we look towards the up-card. This time it's only a 4!\n"
-                              "You should stand on this hand and other hands that have a hard total of 12-16 and an up-card of 6 or less."
+                              "You should stand on this hand and other hands that have a hard total of 12-16 and an up-card of 6 or less.",
                               "Ok!");
     }
-    else if (currentStep == 6)
+    else if (currentStep == 7)
     {
         emit displayTextPopup("Basic Strategy: Hard Totals",
                               "Oh, that's unfortunate, you lost! Still this is an important thing to know. Basic strategy doesn't gaurentee "
@@ -103,7 +110,7 @@ void Lesson8::stepLesson()
                               "Don't get discouraged! There is one last thing to teach you, so deal yourself out another hand!",
                               "Ok");
     }
-    else if (currentStep == 7)
+    else if (currentStep == 8)
     {
         emit controller.setStandButtonEnabled(false);
 
@@ -114,17 +121,22 @@ void Lesson8::stepLesson()
                               "and 7-Ace.",
                               "Got it!");
     }
-    else if (currentStep == 8)
+    else if (currentStep == 9)
     {
         disconnect(ui->hitPushButton, &QPushButton::clicked, this, &Lesson::stepLesson);
+
+        emit controller.setStandButtonEnabled(true);
+        emit controller.setHitButtonEnabled(true);
 
         emit displayTextPopup("Basic Strategy: Hard Totals",
                               "A 4, bringing your total to 16\n"
                               "Against an up-card of 2, you remember what to do right?",
                               "Yes!");
     }
-    else if (currentStep == 9)
+    else if (currentStep == 10)
     {
+        ui->dealPushButton->setEnabled(false);
+
         emit displayTextPopup("Basic Strategy: Hard Totals",
                               "That brings us to the end of Lesson 8!\n"
                               "The next lesson will talk about what to do when you have an ace in your starting hand.\n"

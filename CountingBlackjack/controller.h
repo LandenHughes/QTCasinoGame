@@ -15,6 +15,12 @@ class Controller : public QObject
 public:
     Controller();
 
+    /**
+     * @brief Reterives and returns the number of cards remaining in the dekc
+     * @return The number of cards remaining in the deck
+     */
+    int cardsInDeck();
+
 public slots:
     /**
      * @brief Request a hit from the deck for the currently playing had.
@@ -36,6 +42,17 @@ public slots:
      * @param The number of decks in the game
      */
     void initalizeGame(int playerChips, Card cards[], int numCards);
+
+    /**
+     * @brief Deal out a starting hand to the player and dealer
+     */
+    void dealOutCards(int numberHands, int bet);
+
+    /**
+     * @brief Puts some number of cards straight from the deck into the discard pile
+     * @param numCards - The number of cards to burn
+     */
+    void burnCards(int numCards);
 
     /**
      * @brief Adds a card to the dealer's hand
@@ -75,11 +92,6 @@ public slots:
      * @return False if the hit does not result in a bust.  True if the hit results in a bust.
      */
     void doubleDown();
-
-    /**
-     * @brief Deal out a starting hand to the player and dealer
-     */
-    void dealOutCards(int numberHands, int bet);
 
     /**
      * @brief Begins the turn of the dealer, where they reveal their card and hit to 17+.

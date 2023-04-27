@@ -70,6 +70,7 @@ SOURCES += \
     lesson06.cpp \
     lesson07.cpp \
     lesson08.cpp \
+    lesson09.cpp \
     lesson12.cpp \
     lesson13.cpp \
     lesson14.cpp \

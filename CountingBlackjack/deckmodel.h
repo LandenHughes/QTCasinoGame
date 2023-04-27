@@ -25,6 +25,19 @@ public:
     DeckModel(Card cardsToAdd[], int numCards);
 
     /**
+     * @brief cardsInDeck
+     * @return The number of cards remaining in the deck
+     */
+    int numCardsInDeck();
+
+    /**
+     * @brief Puts some number of cards straight from the deck into the discard pile
+     * If there are less than numCards in the deck burns the rest of the deck, but does not reshuffle
+     * @param numCards - The number of cards to burn
+     */
+    void burnCards(int numCards);
+
+    /**
      * @brief Shuffles all cards in cardsInDeck.
      */
     void shuffle();

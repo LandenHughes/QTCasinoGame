@@ -27,6 +27,11 @@ bool Controller::hit(int hand)
     return fieldModel.getPlayerHand(hand).getScore() > 21;
 }
 
+int Controller::cardsInDeck()
+{
+    return deckModel.numCardsInDeck();
+}
+
 void Controller::initalizeGame(int playerChips, int numberDecks)
 {
     fieldModel = FieldModel(playerChips);
@@ -41,6 +46,11 @@ void Controller::initalizeGame(int playerChips, Card cards[], int numCards)
     deckModel = DeckModel(cards, numCards);
 
     emit setChipTotal(playerChips);
+}
+
+void Controller::burnCards(int numCards)
+{
+    deckModel.burnCards(numCards);
 }
 
 void Controller::dealerHit()

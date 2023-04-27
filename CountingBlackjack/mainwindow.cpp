@@ -23,7 +23,7 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
 
     lessons[6] = new Lesson7(ui, control);
     lessons[7] = new Lesson8(ui, control);
-    lessons[8] = nullptr;
+    lessons[8] = new Lesson9(ui, control);
     lessons[9] = nullptr;
     lessons[10] = nullptr;
 
@@ -42,6 +42,7 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     connect(lessons[5], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
     connect(lessons[6], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
     connect(lessons[7], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
+    connect(lessons[8], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
     connect(lessons[11], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
     connect(lessons[12], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
     connect(lessons[13], &Lesson::displayTextPopup, this, &MainWindow::displayTextPopup);
