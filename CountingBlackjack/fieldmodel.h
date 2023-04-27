@@ -113,7 +113,7 @@ public:
      */
     void endRound();
 
-    bool playerWin;
+    bool playerWin;//used for the box2d to determine how many chips to generate
     bool isWinBlackjack;
 
 private:
