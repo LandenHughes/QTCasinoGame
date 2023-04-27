@@ -46,6 +46,7 @@ public:
     QAction *actionLesson13;
     QAction *actionLesson14;
     QAction *actionLesson15;
+    QAction *actionIllustrious18;
     QWidget *centralwidget;
     QLabel *drawDeck;
     QLabel *discardDeck;
@@ -123,6 +124,8 @@ public:
         actionLesson14->setObjectName("actionLesson14");
         actionLesson15 = new QAction(MainWindow);
         actionLesson15->setObjectName("actionLesson15");
+        actionIllustrious18 = new QAction(MainWindow);
+        actionIllustrious18->setObjectName("actionIllustrious18");
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         drawDeck = new QLabel(centralwidget);
@@ -276,7 +279,7 @@ public:
         MainWindow->setStatusBar(statusbar);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1000, 21));
+        menubar->setGeometry(QRect(0, 0, 1000, 19));
         menuPlay = new QMenu(menubar);
         menuPlay->setObjectName("menuPlay");
         menuHelp = new QMenu(menubar);
@@ -297,6 +300,8 @@ public:
         menubar->addAction(menuLessons->menuAction());
         menubar->addAction(menuHelp->menuAction());
         menuPlay->addAction(actionStartPlay);
+        menuHelp->addSeparator();
+        menuHelp->addAction(actionIllustrious18);
         menuLessons->addAction(menuSection1->menuAction());
         menuLessons->addAction(menuSection_2_Advanced_Rules->menuAction());
         menuLessons->addAction(menuSection_3_Basic_Strategy->menuAction());
@@ -344,6 +349,7 @@ public:
         actionLesson13->setText(QCoreApplication::translate("MainWindow", "Lesson 13: Running Count Vs. True Count", nullptr));
         actionLesson14->setText(QCoreApplication::translate("MainWindow", "Lesson 14: Bet Spreads", nullptr));
         actionLesson15->setText(QCoreApplication::translate("MainWindow", "Lesson 15: The Illustrious 18", nullptr));
+        actionIllustrious18->setText(QCoreApplication::translate("MainWindow", "Illustrious18", nullptr));
         drawDeck->setText(QCoreApplication::translate("MainWindow", "Deck", nullptr));
         discardDeck->setText(QCoreApplication::translate("MainWindow", "Discard", nullptr));
         labelTotalChipsTitle->setText(QCoreApplication::translate("MainWindow", "Total Chips", nullptr));

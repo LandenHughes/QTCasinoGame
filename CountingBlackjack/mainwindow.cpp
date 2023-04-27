@@ -96,9 +96,7 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     connect(ui->actionLesson13, &QAction::triggered, this, &MainWindow::selectLesson);
     connect(ui->actionLesson14, &QAction::triggered, this, &MainWindow::selectLesson);
     connect(ui->actionLesson15, &QAction::triggered, this, &MainWindow::selectLesson);
-
     connect(ui->actionIllustrious18, &QAction::triggered, this, &MainWindow::showIllustrious18);
-
 
     initalizeGame();
 }
