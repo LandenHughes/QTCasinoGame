@@ -27,7 +27,7 @@
      <enum>QFrame::Box</enum>
     </property>
     <property name="text">
-     <string>Deck</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="discardDeck">
@@ -43,7 +43,7 @@
      <enum>QFrame::Box</enum>
     </property>
     <property name="text">
-     <string>Discard</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="labelTotalChipsTitle">
@@ -78,7 +78,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Chips Area</string>
+     <string/>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -88,7 +88,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>440</y>
+      <y>490</y>
       <width>81</width>
       <height>16</height>
      </rect>
@@ -219,7 +219,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>460</y>
+      <y>510</y>
       <width>81</width>
       <height>24</height>
      </rect>
@@ -276,68 +276,6 @@
      </rect>
     </property>
     <layout class="QHBoxLayout" name="playerArea"/>
-   </widget>
-   <widget class="QLabel" name="labelNumberOfHandsTitle">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>500</y>
-      <width>151</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Elephant</family>
-      <pointsize>12</pointsize>
-      <bold>false</bold>
-      <kerning>true</kerning>
-     </font>
-    </property>
-    <property name="text">
-     <string>Number of hands</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="handNumberComboBox">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>520</y>
-      <width>81</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="currentText">
-     <string>1</string>
-    </property>
-    <item>
-     <property name="text">
-      <string>1</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>2</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>3</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>4</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>5</string>
-     </property>
-    </item>
    </widget>
    <widget class="QLabel" name="labelTotalChips">
     <property name="geometry">
@@ -455,6 +393,50 @@
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="labelDraw">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>40</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Elephant</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Draw</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelDiscard">
+    <property name="geometry">
+     <rect>
+      <x>880</x>
+      <y>40</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Elephant</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Discard</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
    <zorder>backgroundImage</zorder>
    <zorder>drawDeck</zorder>
    <zorder>discardDeck</zorder>
@@ -471,11 +453,11 @@
    <zorder>betComboBox</zorder>
    <zorder>horizontalLayoutWidget</zorder>
    <zorder>horizontalLayoutWidget_2</zorder>
-   <zorder>labelNumberOfHandsTitle</zorder>
-   <zorder>handNumberComboBox</zorder>
    <zorder>labelTotalChips</zorder>
    <zorder>dealerTotalLabel</zorder>
    <zorder>playerTotalLabel</zorder>
+   <zorder>labelDraw</zorder>
+   <zorder>labelDiscard</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
@@ -497,6 +479,8 @@
     <property name="title">
      <string>Help</string>
     </property>
+    <addaction name="separator"/>
+    <addaction name="actionIllustrious18"/>
    </widget>
    <widget class="QMenu" name="menuLessons">
     <property name="title">
@@ -639,6 +623,11 @@
   <action name="actionLesson15">
    <property name="text">
     <string>Lesson 15: The Illustrious 18</string>
+   </property>
+  </action>
+  <action name="actionIllustrious18">
+   <property name="text">
+    <string>Illustrious18</string>
    </property>
   </action>
  </widget>

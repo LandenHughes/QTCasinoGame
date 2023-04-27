@@ -138,6 +138,11 @@ public slots:
     void showInsuranceButtons(bool show);
 
     /**
+     * @brief showHelpMenu
+     */
+    void showIllustrious18();
+
+    /**
          * @brief Displays a popup to inform the player of insufficient chips
          */
         void insufficientChips();

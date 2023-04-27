@@ -97,6 +97,7 @@ MainWindow::MainWindow(Controller& control, QWidget *parent)
     connect(ui->actionLesson13, &QAction::triggered, this, &MainWindow::selectLesson);
     connect(ui->actionLesson14, &QAction::triggered, this, &MainWindow::selectLesson);
     connect(ui->actionLesson15, &QAction::triggered, this, &MainWindow::selectLesson);
+    connect(ui->actionIllustrious18, &QAction::triggered, this, &MainWindow::showIllustrious18);
 
     initalizeGame();
 }
@@ -105,6 +106,20 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete lessons[0];
+    delete lessons[1];
+    delete lessons[2];
+    delete lessons[3];
+    delete lessons[4];
+    delete lessons[5];
+    delete lessons[6];
+    delete lessons[7];
+    delete lessons[8];
+    delete lessons[9];
+    delete lessons[10];
+    delete lessons[11];
+    delete lessons[12];
+    delete lessons[13];
+    delete lessons[14];
 }
 
 void MainWindow::displayTextPopup(QString title, QString message, QString buttonMessage)
@@ -129,13 +144,12 @@ void MainWindow::initalizeGame()
 
     ui->dealPushButton->setEnabled(true);
     ui->betComboBox->setEnabled(true);
-    ui->handNumberComboBox->setEnabled(true);
 
     //Reset play area to inital state
     clearTable();
 
     //Initalize Default Game
-    controller.initalizeGame(10, 2);
+    controller.initalizeGame(1000, 2);
 }
 
 void MainWindow::addCardToPlayArea(Card card, bool toDealerArea, bool faceDown)
@@ -244,9 +258,11 @@ void MainWindow::setupUI()
     ui->labelTotalChips->setStyleSheet(styleSheet);
     ui->labelTotalChipsTitle->setStyleSheet(styleSheet);
     ui->labelBetTitle->setStyleSheet(styleSheet);
-    ui->labelNumberOfHandsTitle->setStyleSheet(styleSheet);
     ui->dealerTotalLabel->setStyleSheet(styleSheet);
     ui->playerTotalLabel->setStyleSheet(styleSheet);
+    ui->labelDraw->setStyleSheet(styleSheet);
+    ui->labelDiscard->setStyleSheet(styleSheet);
+
     ui->acceptInsurancePushButton->setVisible(false);
     ui->denyInsurancePushButton->setVisible(false);
 
@@ -291,10 +307,12 @@ void MainWindow::setupUI()
     ui->denyInsurancePushButton->setIcon(denyButtonIcon);
     ui->denyInsurancePushButton->setIconSize(ui->denyInsurancePushButton->size());
 
-    //Set image for draw pile
+    //Set image for draw and discard pile
     QPixmap cardBack(":/images/Playing_Cards/back.png");
     cardBack = cardBack.scaled(ui->drawDeck->size());
     ui->drawDeck->setPixmap(cardBack);
+    ui->discardDeck->setPixmap(cardBack);
+
     //Make player and dealer hands display cards from the center of the screen
     ui->dealerArea->setAlignment(Qt::AlignHCenter);
     ui->playerArea->setAlignment(Qt::AlignHCenter);
@@ -326,6 +344,32 @@ void MainWindow::selectLesson()
     }
 }
 
+void MainWindow::showIllustrious18()
+{
+    displayTextPopup("Illustrious 18"
+                          ,"Player hand is on the right and the dealer upcard is on the right.\n"
+                          "\thand v dealer Card	\tIndex\n"
+                      "1		Insurance		+3\n"
+                      "2		16 Vs. 10		+0\n"
+                      "3		15 Vs. 10		+4\n"
+                      "4		10,10 Vs. 5		+5\n"
+                      "5		10,10 Vs. 6		+4\n"
+                      "6		10 Vs. 10		+4\n"
+                      "7		12 Vs. 3		\t+2\n"
+                      "8		12 Vs. 2		\t+3\n"
+                      "9		11 Vs. A		\t+1\n"
+                      "10		9 Vs. 2		    \t+1\n"
+                      "11		10 Vs. A		\t+4\n"
+                      "12		9 Vs. 7		    \t+3\n"
+                      "13		16 Vs. 9		\t+5\n"
+                      "14		13 Vs. 2		\t-1\n"
+                      "15		12 Vs. 4		\t 0\n"
+                      "16		12 Vs. 5		\t-2\n"
+                      "17		12 Vs. 6		\t-1\n"
+                      "18		13 Vs. 3		\t-2\n\n"
+                          ,"Continue");
+}
+
 void MainWindow::startRound()
 {
     ui->hitPushButton->setEnabled(true);
@@ -334,8 +378,7 @@ void MainWindow::startRound()
     ui->doubleDownPushButton->setEnabled(false);
     ui->dealPushButton->setEnabled(false);
     ui->betComboBox->setEnabled(false);
-    ui->handNumberComboBox->setEnabled(false);
-    controller.dealOutCards(ui->handNumberComboBox->currentText().toInt(), ui->betComboBox->currentText().toInt());
+    controller.dealOutCards(1, ui->betComboBox->currentText().toInt());
     //TODO:
     //send a pixmap that represents the chipArea to chipPhysics for the chips to be drawn on
     controller.createChips(ui->betComboBox->currentText().toInt());
@@ -402,7 +445,6 @@ void MainWindow::endRound()
     ui->doubleDownPushButton->setEnabled(false);
     ui->dealPushButton->setEnabled(true);
     ui->betComboBox->setEnabled(true);
-    ui->handNumberComboBox->setEnabled(true);
 }
 
 void MainWindow::setPlayerTotal(int newTotal)

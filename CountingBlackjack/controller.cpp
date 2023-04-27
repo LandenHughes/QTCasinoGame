@@ -166,8 +166,8 @@ void Controller::playOnHand(int handPos)
 {
     Hand hand = fieldModel.getPlayerHand(handPos);
     emit setPlayerTotal(hand.getScore());
-    emit setDoubleButtonEnabled(hand.canDouble());
-    emit setSplitButtonEnabled(hand.canSplit());
+    emit setDoubleButtonEnabled(hand.canDouble() && fieldModel.getPlayerChips() >= hand.getBet()/2);
+    emit setSplitButtonEnabled(hand.canSplit()  && fieldModel.getPlayerChips() >= hand.getBet());
     emit setHitButtonEnabled(hand.canHit());
     emit setStandButtonEnabled(true);
     emit displayCardsInPlayerArea(hand.asList());
