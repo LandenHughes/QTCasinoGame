@@ -393,6 +393,50 @@
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="labelDraw">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>40</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Elephant</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Draw</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelDiscard">
+    <property name="geometry">
+     <rect>
+      <x>880</x>
+      <y>40</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Elephant</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Discard</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
    <zorder>backgroundImage</zorder>
    <zorder>drawDeck</zorder>
    <zorder>discardDeck</zorder>
@@ -412,6 +456,8 @@
    <zorder>labelTotalChips</zorder>
    <zorder>dealerTotalLabel</zorder>
    <zorder>playerTotalLabel</zorder>
+   <zorder>labelDraw</zorder>
+   <zorder>labelDiscard</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">

@@ -259,6 +259,9 @@ void MainWindow::setupUI()
     ui->labelBetTitle->setStyleSheet(styleSheet);
     ui->dealerTotalLabel->setStyleSheet(styleSheet);
     ui->playerTotalLabel->setStyleSheet(styleSheet);
+    ui->labelDraw->setStyleSheet(styleSheet);
+    ui->labelDiscard->setStyleSheet(styleSheet);
+
     ui->acceptInsurancePushButton->setVisible(false);
     ui->denyInsurancePushButton->setVisible(false);
 
@@ -303,10 +306,12 @@ void MainWindow::setupUI()
     ui->denyInsurancePushButton->setIcon(denyButtonIcon);
     ui->denyInsurancePushButton->setIconSize(ui->denyInsurancePushButton->size());
 
-    //Set image for draw pile
+    //Set image for draw and discard pile
     QPixmap cardBack(":/images/Playing_Cards/back.png");
     cardBack = cardBack.scaled(ui->drawDeck->size());
     ui->drawDeck->setPixmap(cardBack);
+    ui->discardDeck->setPixmap(cardBack);
+
     //Make player and dealer hands display cards from the center of the screen
     ui->dealerArea->setAlignment(Qt::AlignHCenter);
     ui->playerArea->setAlignment(Qt::AlignHCenter);
