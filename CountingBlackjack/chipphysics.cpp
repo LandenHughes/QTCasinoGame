@@ -36,13 +36,14 @@ void ChipPhysics::createChips(int betAmt, int offset)//bet amt will determine nu
         chipBodyDef.type = b2_dynamicBody; //Dynamic bodies move when colliding with static objects
 
         //Done so chips don't run off the screen at bets >20
-        if(i%5 == 0 && i != 0)
+        if(i%4 == 0 && i != 0)
         {
             xOffset = 0; //Resets chips spawning to the left side of box
-            yOffset = 1; //Makes chips spawn higher to avoid clipping with other chips
+            yOffset++; //Makes chips spawn higher to avoid clipping with other chips
         }
 
         chipBodyDef.position.Set((10.0f + xOffset * 25), (yOffset * 25)); //Starting position of the body (i*25 is an offset for creating multiple chips to avoid overlap)
+        qDebug() << chipBodyDef.position.x << " " << chipBodyDef.position.y;
         chipBodyDef.angle = 0.0f; //Starting angle of the body
         chipBodyDef.allowSleep = true; //When bodies are at rest they are put into a sleep state to improve performance
         b2Body *worldChipBody = world->CreateBody(&chipBodyDef);
@@ -52,20 +53,18 @@ void ChipPhysics::createChips(int betAmt, int offset)//bet amt will determine nu
         chipShape.m_radius = 10.0f; //Set radius
         chipFixtureDef.shape = &chipShape;
         chipFixtureDef.density = 0.009f; //Chips are 9g in real life
-        chipFixtureDef.restitution = 0.0f; //Makes the chip bounce
+        chipFixtureDef.restitution = 0.8f; //Makes the chip bounce
         worldChipBody->CreateFixture(&chipFixtureDef);
         b2Fixture *chipFixture = worldChipBody->CreateFixture(&chipFixtureDef);
         chipFixture->SetDensity(0.009f);
 
-        yOffset++;
         xOffset++;
-        qDebug() << "body mass" << worldChipBody->GetMass();
     }
 }
 
 void ChipPhysics::updateAnimation()
 {
-    world->Step(100.0f, 6.0f, 2.0f);
+    world->Step(1.0f/20.0f, 5.0f, 8.0f);
 }
 
 b2Body* ChipPhysics::getWorldChip()
