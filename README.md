@@ -8,5 +8,3 @@ This educational casino simulator was my group's final project for CS3505 (Sprin
 - Developement with Box2D physics engine
 - Graphic design
 - Working on a large-scale project with a team
-
-I am still working on this project on my own and hope to implement more classic casino games!
